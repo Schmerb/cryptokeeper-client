@@ -1,0 +1,62 @@
+.login {
+    color: $third;
+    // background: palette(third, vlight);
+    width: 80%;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+    @include mediaMin($landscape) {
+        border: 1px solid rgba(0,0,0,0.3);
+        border-radius: 10px;
+    }
+
+    h3 {
+        color: $primary;
+    }
+}
+
+.login-form {
+    padding: 10px 20px;
+
+    .form-input {
+        margin-bottom: 10px;
+    }
+
+   input {
+       background: transparent;
+       width: 100%;
+       max-width: 300px;
+       height: 40px;
+       line-height: 40px;
+       padding-left: 25px;
+       border: none;
+       border-bottom: 1px solid lightgrey;
+       outline: none;
+       background-size: 20px;
+       background-repeat: no-repeat;
+       background-position: 0 8px;
+    }
+
+    input[name=username] {
+        background-image: url('/assets/icons/person-grey.png');
+    }
+
+    input[name=password] {
+        background-image: url('/assets/icons/lock-grey.png');
+    }
+  
+    button {
+        @include transition(0.2s);
+        color: $primary;
+        width: 200px;
+        padding: 10px;
+        margin-top: 10px;
+        border: 1px solid $third;
+        border-radius: 10px;
+
+        &:hover {
+            // color: $third;
+            border-color: $primary;
+        }
+    }
+}

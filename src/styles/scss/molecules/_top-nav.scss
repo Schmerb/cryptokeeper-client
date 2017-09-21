@@ -1,0 +1,102 @@
+// // // // // // // // // //
+//
+//      Top Banner nav
+//
+// // // // // // // // // //
+
+.m-nav {
+    height: $banner;
+    
+    a {
+        color: $third;
+        display: inline-block;
+    }
+
+   
+
+    > ul {
+        @include transition(1.2s, left, cubic-bezier(.21,.46,.2,.9));
+        position: absolute;
+        left: -200%;
+        background: palette(third, light);
+        width: 200px;
+        min-height: 100vh;
+        z-index: 2;
+
+        &.open {
+            padding-left: 40px;
+            padding-top: 40px;
+            left: 0;
+            z-index: 6;
+            box-shadow: 0 0 25px rgba(0,0,0,0.7);
+
+            li {
+                display: block;
+                line-height: 30px;
+            }
+
+            a {
+                display: block;
+                color: $offwhite;
+                &:hover {
+                    color: $primary;
+                }
+            }
+
+           .logout-btn {
+                color: $offwhite;
+                width: 100%;
+                text-align: left;
+
+               &:hover {
+                   color: $primary;
+               }
+           }
+        }
+    }
+
+
+    @media screen and (min-width: $expand) {
+        ul {
+            position: relative;
+            left: unset;
+            background: unset;
+            width: unset;
+            height: $banner;
+            min-height: unset;
+            margin-left: 40px;
+        }
+    
+        .user-links {
+            float: right;
+        }
+    
+        li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+    }
+}
+
+.logout-btn {
+    @include transition;
+    border: none;
+    color: $third;
+
+    &:hover {
+        color: $offwhite;
+    }
+}
+
+a.avatar-link {
+    &:hover {
+        color: $third;
+    }
+}
+
+.tie-avatar {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+}
+

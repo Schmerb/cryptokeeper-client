@@ -1,0 +1,125 @@
+// // // // // // // // // // // // // //
+//
+//      Variables / Constants / @Mixins
+//
+// // // // // // // // // // // // // // 
+
+
+
+// ==================================================
+//      colors
+// ==================================================
+$primary:   #26a69a;
+$secondary: #1C86D9;
+$third:     #283640;
+$brown:     #B16555;
+$offwhite:  #f8f8ff;
+
+
+$palettes: (
+    primary: (
+        base: $primary,
+        light: lighten($primary, 5%),
+        dark: darken($primary, 5%),
+    ),
+    third: (
+        base: $third,
+        vlight: lighten($third, 20%),
+        light: lighten($third, 5%),
+        dark: darken($third, 5%),
+        vdark: darken($third, 20%)
+    )
+);
+
+@function palette($palette, $tone: 'base') {
+    @return map-get( map-get($palettes, $palette), $tone);
+}
+
+
+
+// ==================================================
+//      numbers
+// ==================================================
+$banner: 80px;
+
+
+
+// ==================================================
+//      mixins
+// ==================================================
+
+
+@mixin transition($time: 0.3s, $what: all, $type: ease-in-out) {
+    -webkit-transition: $what $time $type;
+       -moz-transition: $what $time $type;
+            transition: $what $time $type;
+}
+
+@mixin transform($type) {
+        -ms-transform: $type;
+    -webkit-transform: $type;
+       -moz-transform: $type;
+            transform: $type;
+}
+
+
+
+@mixin cover() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin center($left: 50%, $x: -50%) {
+    position: absolute;
+    left: $left;
+    @include transform(translateX($x));
+}
+
+@mixin middle($top: 50%, $y: -50%) {
+    position: absolute;
+    top: $top;
+    @include transform(translateY($y));
+}
+
+@mixin middleR($right: 0, $top: 50%, $y: -50%) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    @include transform(translateY($y));
+}
+
+@mixin middleL($left: 0, $top: 50%, $y: -50%) {
+    position: absolute;
+    top: $top;
+    left: $left;
+    @include transform(translateY($y));
+}
+
+@mixin abs-middle($top: 50%, $left: 50%) {
+    position: absolute;
+    top: $top;
+    left: $left;
+    @include transform(translate(-50%, -50%));
+}
+
+
+@mixin mediaMin($min) {
+    @media screen and (min-width: $min) {
+        @content;
+    }
+}
+
+@mixin mediaMax($max) {
+    @media screen and (max-width: $max) {
+        @content;
+    }
+}
+
+@mixin mediaMinMax($min, $max) {
+    @media screen and (min-width: $min) and (max-width: $max) {
+        @content;
+    }
+}

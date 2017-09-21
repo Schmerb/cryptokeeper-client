@@ -1,0 +1,59 @@
+// // // // // // // // // //
+//
+//      Box
+//
+// // // // // // // // // //
+
+.box {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+
+    h3 {
+        padding-left: 40px;
+    }
+
+    p {
+        position: absolute;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        text-align: center;
+        transform: translate(-50%, -50%);
+        transition: font-size 0.4s ease;
+    }
+
+    &:hover {
+        background: palette(primary, light);
+        color: $third;
+        p {
+            font-size: larger;
+        }
+    }
+
+    @media screen and (min-width: $collapse) {
+        width: 45%;
+    }
+}
+
+.left-col {
+    float: left;
+    background: $secondary; 
+
+    p {
+        color: $third;
+    }
+}
+
+.right-col {
+    float: right;
+    background: $third;
+    color: $brown;
+}
+
+.row {
+    overflow: auto;
+}

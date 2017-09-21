@@ -1,0 +1,40 @@
+// ==================================================
+//      Footer
+// ==================================================
+
+footer {
+    position: absolute;
+    background: palette(primary, dark);
+    color: $primary;
+    background: $third;
+    width: 100%;
+    height: 100px;
+    left: 0;
+    bottom: 0;
+}
+
+.f-nav {
+    text-align: center;
+
+    ul {
+        display: inline-block;
+        padding: 20px 0;
+    }
+
+    a, button {
+        color: $offwhite;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+}
+
+.copy {
+    font-size: 13px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+

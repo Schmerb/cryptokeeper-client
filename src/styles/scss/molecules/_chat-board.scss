@@ -1,0 +1,107 @@
+.chat-box {
+    position: relative;
+    width: 50%;
+    height: 500px;
+    margin: 30px auto;
+    padding: 50px 20px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.2);
+    
+    img {
+        position: absolute;
+        width: 50px;
+        height: auto;
+        left: 40px;
+        top: 40px;
+    }
+
+    &.name-box {
+        form {
+            @include middle;
+            height: 70px;
+            
+            input {
+                border: none;
+                border-bottom: 2px solid rgba(0,0,0,0.4);
+            }
+        }
+    }
+
+    form {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+
+        input {
+            background: transparent;
+            border: 0.5px solid rgba(0,0,0,0.1);
+            height: 30px;
+            line-height: 30px;
+            padding-left: 10px;
+            outline: none;
+        }
+    }
+
+    h2 {
+        margin-top: 0;
+    }
+
+    #messages {
+        height: 300px;
+        border: 1px solid $primary;
+        overflow-y: scroll;
+    }
+
+    ul {
+        background: rgba(0,0,0,0.04);
+    }
+
+    li {
+        text-align: left;
+        height: 30px;
+        line-height: 30px;
+        &:nth-of-type(2n) {
+            background-color: lightgrey;
+
+            span {
+                background-color: palette(third, vlight);
+            }
+        }
+        
+        span {
+            display: inline-block;
+            float: left;
+            margin-right: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+            min-width: 100px;
+            background-color: $primary;
+
+        }
+    }
+
+    .user-list {
+        position: absolute;
+        top: 0;
+        left: -200px;
+        height: 100%;
+        width: 200px;
+        border: 1px solid lightgrey;
+        ul {
+        }
+        
+        li {
+            background: transparent;
+            padding-left: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.2);
+        }
+    } 
+}
+
+.user-typing {
+    float: left;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
