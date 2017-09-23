@@ -6,13 +6,15 @@ import ChatForm from './chat-form';
 import ChatMessages from './chat-messages';
 import ChatUserList from './chat-user-list';
 
+// import './chat-borad.min.css';
+
 import {
     logUserIn,
     addNewMessage,
     updateUsersList,
     setUserName,
     userTyping
-} from '../../../actions/chat';
+} from 'actions/chat';
 
 const ioClient = require('socket.io-client')  
 const socket   = ioClient('http://localhost:8080');

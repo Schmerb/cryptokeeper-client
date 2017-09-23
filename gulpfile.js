@@ -13,11 +13,11 @@ const gulp      = require('gulp'),
 // - SCSS/CSS
 /////////////////
 
-const SCSS_SRC  = './src/styles/scss/**/*.scss';
-const SCSS_DEST = './src/styles/css';
+const SCSS_SRC  = './src/components/**/*.scss';
+const SCSS_DEST = './src/css';
 
 gulp.task('build-scss', function() {
-    return gulp.src(SCSS_SRC)
+    return gulp.src('./src/components/screen.scss')
         .pipe(sassGlob())
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(minifyCSS())

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {fetchProtectedData} from '../../actions/protected-data';
+import {fetchProtectedData} from 'actions/protected-data';
 
 export class Dashboard extends React.Component {
     componentDidMount() {

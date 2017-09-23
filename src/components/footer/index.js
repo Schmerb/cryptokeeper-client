@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom';
 import {setCurrentUser, setAuthToken} from '../../actions/auth';
 import {clearAuthToken} from '../../local-storage';
 
+
+
 export class Footer extends React.Component {
     // * * * * * * * * * * * * * * * * * * * *
     // logs user out by removing jwt token

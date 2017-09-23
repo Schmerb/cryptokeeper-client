@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 
-import {refreshAuthToken} from '../actions/auth';
+import {refreshAuthToken} from 'actions/auth';
 
 import Header from './header/';
 import Main from './main/';

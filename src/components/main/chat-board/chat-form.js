@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {
     addNewMessage
-} from '../../../actions/chat';
+} from 'actions/chat';
 
 export class ChatForm extends React.Component {
 

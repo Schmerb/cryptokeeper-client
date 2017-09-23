@@ -45,7 +45,7 @@
 .burger,
 .burger::after,
 .burger::before {
-    @include transition;
+    @include transition(0.35s);
     background: $third;
     width: 35px;
     height: 4px;
@@ -62,10 +62,10 @@
         }
 
         &:before {
-            transform: rotate(45deg);
+            transform: rotate(-315deg);
         }
         &:after {
-            transform: rotate(-45deg);
+            transform: rotate(-225deg);
         }
     }
 

@@ -1,0 +1,9 @@
+@import "scss/utils/**/*.scss"; // vars / functions
+
+@import "scss/base/*.scss";
+@import "scss/atoms/*.scss";  
+
+
+@import 'header/*.scss';
+@import 'main/**/*.scss';
+@import 'footer/**/*.scss';

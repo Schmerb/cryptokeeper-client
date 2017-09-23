@@ -15,9 +15,9 @@
    
 
     > ul {
-        @include transition(1.2s, left, cubic-bezier(.21,.46,.2,.9));
+        @include transition(0.8s, left, cubic-bezier(.41,.29,.45,.97));
         position: absolute;
-        left: -200%;
+        left: -100%;
         background: palette(third, light);
         width: 200px;
         min-height: 100vh;

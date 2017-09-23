@@ -5,11 +5,13 @@
 // // // // // // // // // //
 
 .box {
+    @include transition(0.4s);
+    display: inline-block;
     position: relative;
-    width: 100%;
+    width: 400px;
     height: 300px;
     margin-bottom: 20px;
-    transition: all 0.4s ease;
+    text-align: left;
 
     h3 {
         padding-left: 40px;
@@ -33,14 +35,9 @@
             font-size: larger;
         }
     }
-
-    @media screen and (min-width: $collapse) {
-        width: 45%;
-    }
 }
 
 .left-col {
-    float: left;
     background: $secondary; 
 
     p {
@@ -49,7 +46,6 @@
 }
 
 .right-col {
-    float: right;
     background: $third;
     color: $brown;
 }
