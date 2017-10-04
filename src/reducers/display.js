@@ -1,4 +1,4 @@
-import { TOGGLE_MENU } from '../actions/display'
+import { TOGGLE_MENU } from 'actions/display'
 
 const initialState = {
     open: false
@@ -12,7 +12,7 @@ export default function reducer(state = initialState, action) {
         return Object.assign({}, state, {
             open: !state.open
         });
-    }
+    } 
     return state;
 }
 

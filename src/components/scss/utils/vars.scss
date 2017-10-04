@@ -1,0 +1,48 @@
+// // // // // // // // // // // // // //
+//
+//      Variables / Functions / Constants 
+//
+// // // // // // // // // // // // // // 
+
+// ==================================================
+//      numbers
+// ==================================================
+$banner: 80px;
+
+
+// ==================================================
+//      colors
+// ==================================================
+$primary:   #26a69a;
+$secondary: #1C86D9;
+$third:     #283640;
+$brown:     #B16555;
+$offwhite:  #f8f8ff;
+
+
+$palettes: (
+    primary: (
+        base:  $primary,
+        light: lighten($primary, 5%),
+        dark:  darken($primary, 5%),
+    ),
+    third: (
+        base:   $third,
+        vlight: lighten($third, 20%),
+        light:  lighten($third, 5%),
+        dark:   darken($third, 5%),
+        vdark:  darken($third, 20%)
+    )
+);
+
+
+// ==================================================
+//      functions
+// ==================================================
+
+@function palette($palette, $tone: 'base') {
+    @return map-get( map-get($palettes, $palette), $tone);
+}
+
+
+

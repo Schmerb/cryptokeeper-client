@@ -5,14 +5,11 @@
 
 main {
     min-height: 500px;
+    overflow: hidden;
 }
 
 .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    // overflow: auto;
-    // border: 1px solid black;
-
+    
     h2 {
         text-align: center;
     }

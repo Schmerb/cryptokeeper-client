@@ -52,7 +52,7 @@
 }
 
 .burger {
-    @include middle(50%);
+    @extend %middle;
     &.open {
         background: transparent;
 
@@ -60,7 +60,6 @@
             background: $offwhite;
             top: 0;
         }
-
         &:before {
             transform: rotate(-315deg);
         }
@@ -70,14 +69,12 @@
     }
 
     &:before {
-        @include middleL (0, -10px, 0);
+        @include middleL(0, -10px, 0);
         content: '';
     }
-
     &:after {
         @include middleL(0, 10px, 0);
         content: '';
-        
     }
     
 }

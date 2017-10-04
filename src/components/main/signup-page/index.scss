@@ -37,9 +37,9 @@
         padding: 10px;
         margin-top: 10px;
         border: 1px solid $third;
+        border-radius: 10px;
 
         &:hover {
-            // color: $primary;
             border-color: $primary;
         }
     }

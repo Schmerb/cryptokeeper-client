@@ -11,66 +11,69 @@
         color: $third;
         display: inline-block;
     }
-
-   
-
     > ul {
-        @include transition(0.8s, left, cubic-bezier(.41,.29,.45,.97));
+        @include transitions(left 0.8s cubic-bezier(.41,.29,.45,.97),
+                             padding 0s ease 0.3s);
         position: absolute;
         left: -100%;
         background: palette(third, light);
         width: 200px;
         min-height: 100vh;
-        z-index: 2;
+        z-index: 11;
+
 
         &.open {
             padding-left: 40px;
             padding-top: 40px;
             left: 0;
-            z-index: 6;
+            // z-index: 11;
             box-shadow: 0 0 25px rgba(0,0,0,0.7);
-
-            li {
-                display: block;
-                line-height: 30px;
-            }
-
-            a {
-                display: block;
-                color: $offwhite;
-                &:hover {
-                    color: $primary;
-                }
-            }
 
            .logout-btn {
                 color: $offwhite;
                 width: 100%;
                 text-align: left;
 
-               &:hover {
-                   color: $primary;
-               }
+                &:hover {
+                    color: $primary;
+                }
            }
         }
     }
+
+    // delayed class for menu links
+    .links-wrap {
+        &.openLinks {
+            li {
+                display: block;
+                line-height: 30px;
+            }
+            a {
+                display: block;
+                color: $offwhite;
+
+                &:hover {
+                    color: $primary;
+                }
+            }
+        }
+    }
+
 
 
     @media screen and (min-width: $expand) {
         ul {
             position: relative;
-            left: unset;
-            background: unset;
-            width: unset;
+            left: auto;
+            background: transparent;
+            width: auto;
             height: $banner;
-            min-height: unset;
+            min-height: auto;
             margin-left: 40px;
         }
-    
         .user-links {
             float: right;
         }
-    
         li {
             display: inline-block;
             margin-right: 15px;
@@ -79,7 +82,7 @@
 }
 
 .logout-btn {
-    @include transition;
+    @extend %transition;
     border: none;
     color: $third;
 

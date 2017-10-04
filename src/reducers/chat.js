@@ -4,7 +4,7 @@ import {
     UPDATE_USERS_LIST,
     SET_USER_NAME,
     USER_TYPING
- } from '../actions/chat'
+ } from 'actions/chat'
 
 const initialState = {
     msgs: [],

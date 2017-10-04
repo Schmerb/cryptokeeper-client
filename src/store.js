@@ -2,11 +2,12 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 import { loadAuthToken } from './local-storage';
-import authReducer from './reducers/auth';
-import protectedDataReducer from './reducers/protected-data';
-import displayReducer from './reducers/display';
-import chatReducer from './reducers/chat';
-import { setAuthToken } from './actions/auth';
+import authReducer from 'reducers/auth';
+import protectedDataReducer from 'reducers/protected-data';
+import displayReducer from 'reducers/display';
+import chatReducer from 'reducers/chat';
+import cryptoReducer from 'reducers/crypto';
+import { setAuthToken } from 'actions/auth';
 
 const store = createStore(
     combineReducers({
@@ -14,7 +15,8 @@ const store = createStore(
         auth: authReducer,
         protectedData: protectedDataReducer,
         display: displayReducer,
-        chat: chatReducer
+        chat: chatReducer,
+        crypto: cryptoReducer
     }),
     applyMiddleware(thunk)
 );

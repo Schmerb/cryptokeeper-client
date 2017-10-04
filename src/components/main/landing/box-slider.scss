@@ -1,11 +1,52 @@
-.slick-next,
-.slick-prev {
+// // // // // // // // // //
+//
+//       Box Slider
+//
+// // // // // // // // // //
 
-    &:before {
-        color: $third;
-    }
+.slick-slider {
+    margin-top: 20px;
 }
+
 
 .slick-slide {
     text-align: center;
+}
+
+
+.slick-next,
+.slick-prev {
+    z-index: 1000;
+
+    &:before {
+        color: $offwhite;
+    }
+}
+
+.slick-next {
+    right: 20px;
+}
+
+.slick-prev {
+    left: 20px;
+}
+
+
+.slick-dots {
+    li {
+        &.slick-active {
+            button {
+                &:before {
+                    color: $secondary;
+                }
+            }
+        }
+
+        button {
+            &:before {
+                color: $offwhite;
+                font-size: 14px;
+            }
+        }
+    }
 }

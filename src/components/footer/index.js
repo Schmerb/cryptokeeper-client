@@ -1,9 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import {setCurrentUser, setAuthToken} from '../../actions/auth';
-import {clearAuthToken} from '../../local-storage';
+import { setCurrentUser, setAuthToken } from 'actions/auth';
+import { toggleMenu } from 'actions/display';
+
+import { clearAuthToken } from 'local-storage';
 
 
 
@@ -16,6 +18,15 @@ export class Footer extends React.Component {
         this.props.dispatch(setAuthToken(null));
         clearAuthToken();
         this.hideMenu();
+    }
+
+    // * * * * * * * * * * * * * * * * * * * *
+    // hides menu if it is currently open
+    // * * * * * * * * * * * * * * * * * * * *
+    hideMenu() {
+        if(this.props.open) {
+            this.props.dispatch(toggleMenu());
+        }
     }
 
     render() {

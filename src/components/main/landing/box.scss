@@ -8,46 +8,57 @@
     @include transition(0.4s);
     display: inline-block;
     position: relative;
-    width: 400px;
+    width: 100%;
     height: 300px;
     margin-bottom: 20px;
-    text-align: left;
+    text-align: center;
+    opacity: 0.9;
+    cursor: pointer;
 
-    h3 {
-        padding-left: 40px;
-    }
-
-    p {
-        position: absolute;
-        margin: 0;
-        top: 50%;
-        left: 50%;
-        width: 100%;
-        text-align: center;
-        transform: translate(-50%, -50%);
-        transition: font-size 0.4s ease;
+    @include mediaMin($landscape) {
+        width: 400px;
     }
 
     &:hover {
         background: palette(primary, light);
         color: $third;
-        p {
-            font-size: larger;
+    }
+
+    h2 {
+        margin-top: 10px;
+    }
+    p {
+        position: absolute;
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        font-size: 24px;
+        width: 100%;
+        text-align: center;
+        transform: translate(-50%, -50%);
+        transition: font-size 0.4s ease;
+    }
+}
+
+.slick-slide {
+    &:nth-of-type(2n) {
+        .box {
+            background-color: $secondary; 
+            
+            h2, p {
+                color: $third;
+            }
         }
     }
-}
-
-.left-col {
-    background: $secondary; 
-
-    p {
-        color: $third;
+    &:nth-of-type(2n + 1) {
+        .box {
+            background-color: $third; 
+            
+            h2, p {
+                color: $brown;
+            }
+        }
     }
-}
-
-.right-col {
-    background: $third;
-    color: $brown;
 }
 
 .row {

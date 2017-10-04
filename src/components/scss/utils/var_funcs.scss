@@ -1,46 +1,8 @@
 // // // // // // // // // // // // // //
 //
-//      Variables / Constants / @Mixins
+//      @Mixins & @Placeholders
 //
 // // // // // // // // // // // // // // 
-
-
-
-// ==================================================
-//      colors
-// ==================================================
-$primary:   #26a69a;
-$secondary: #1C86D9;
-$third:     #283640;
-$brown:     #B16555;
-$offwhite:  #f8f8ff;
-
-
-$palettes: (
-    primary: (
-        base: $primary,
-        light: lighten($primary, 5%),
-        dark: darken($primary, 5%),
-    ),
-    third: (
-        base: $third,
-        vlight: lighten($third, 20%),
-        light: lighten($third, 5%),
-        dark: darken($third, 5%),
-        vdark: darken($third, 20%)
-    )
-);
-
-@function palette($palette, $tone: 'base') {
-    @return map-get( map-get($palettes, $palette), $tone);
-}
-
-
-
-// ==================================================
-//      numbers
-// ==================================================
-$banner: 80px;
 
 
 
@@ -49,27 +11,25 @@ $banner: 80px;
 // ==================================================
 
 
-@mixin transition($time: 0.3s, $what: all, $type: ease-in-out) {
-    -webkit-transition: $what $time $type;
-       -moz-transition: $what $time $type;
-            transition: $what $time $type;
+@mixin transition($time: 0.3s, $what: all, $type: ease-in-out, $delay: 0s) {
+    -webkit-transition: $what $time $type $delay;
+       -moz-transition: $what $time $type $delay;
+         -o-transition: $what $time $type $delay;
+            transition: $what $time $type $delay;
+}
+
+@mixin transitions($trans...) {
+    -webkit-transition: $trans;
+       -moz-transition: $trans;
+         -o-transition: $trans;
+            transition: $trans;
 }
 
 @mixin transform($type) {
-        -ms-transform: $type;
     -webkit-transform: $type;
        -moz-transform: $type;
+        -ms-transform: $type; 
             transform: $type;
-}
-
-
-
-@mixin cover() {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }
 
 @mixin center($left: 50%, $x: -50%) {
@@ -122,4 +82,32 @@ $banner: 80px;
     @media screen and (min-width: $min) and (max-width: $max) {
         @content;
     }
+}
+
+// ==================================================
+//      placeholders
+// ==================================================
+
+%transition {
+    @include transition(0.3s, all, ease-in-out);
+}
+
+%cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+%center {
+    @include center;
+}
+
+%middle {
+    @include middle;
+}
+
+%abs-middle {
+    @include abs-middle;
 }
