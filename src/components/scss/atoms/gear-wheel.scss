@@ -1,0 +1,29 @@
+.gear-item {
+    position: relative;
+    width: 60px;
+    height: 100%;
+    border-left: 1px solid rgba($third, 0.4);
+    border-right: 1px solid rgba($third, 0.4);
+}
+
+.gear-wheel {
+    position: relative;
+    left: 10px;
+    top: 16px;
+    width: 40px;
+    height: 40px;
+    fill: $brown;
+    fill: $third;
+    cursor: pointer;
+
+    &:hover {
+        // -webkit-animation: spin 4s infinite linear;
+        @include animation(spin 4s infinite linear);
+    }
+} 
+
+@include keyframes(spin) {
+    from { @include transform(rotate(0deg))   }
+    to   { @include transform(rotate(360deg)) }
+}
+

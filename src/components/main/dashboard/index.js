@@ -1,7 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom';
-import {fetchProtectedData} from 'actions/protected-data';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { fetchProtectedData } from 'actions/protected-data';
 
 export class Dashboard extends React.Component {
     componentDidMount() {
@@ -32,7 +32,7 @@ export class Dashboard extends React.Component {
 }
 
 const mapStateToProps = state => {
-    const {currentUser} = state.auth;
+    const { currentUser } = state.auth;
     return {
         loggedIn: currentUser !== null,
         username: currentUser ? state.auth.currentUser.username : '',

@@ -1,12 +1,12 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Route, withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Route, withRouter } from 'react-router-dom';
 
 import Landing from './landing/';
 import ChatBoard from './chat-board/';
 import LoginPage from './login-page/';
 import SignupPage from './signup-page/';
-import Dashboard from './dashboard';
+import Dashboard from './dashboard/';
 
 
 export class Main extends React.Component {

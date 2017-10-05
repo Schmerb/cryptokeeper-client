@@ -34,7 +34,7 @@
         }
     }
 
-    @include mediaMin($expand) {
+    @include mediaMin($collapse) {
         display: none; 
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import GearWheel from 'icons/gear-wheel';
 
 export default class TopNavLinks extends React.Component {
     constructor(props) {
@@ -17,11 +18,12 @@ export default class TopNavLinks extends React.Component {
     componentWillReceiveProps(nextProps) {
         console.log('componentWillReceiveProps, nextProps:', nextProps);
         let $this = this;
+        let delay = nextProps.open ? 0: 400;
         setTimeout(function() {
             $this.setState({
                 openLinks: nextProps.open
             });
-        }, 300);
+        }, delay);
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -47,35 +49,63 @@ export default class TopNavLinks extends React.Component {
                               <Link to={'/signup'} onClick={e => this.props.hideMenu()}>Signup</Link>
                           </li>
                       </ul>);
-        let user = null;
         if(this.props.loggedIn) {
-            user  = (<li className="welcome-msg"> 
-                        <Link className="avatar-link" to="/dashboard">
-                            <img src="/assets/icons/tie-avatar.svg" className="tie-avatar" alt="default profile avatar icon with tie"/> 
-                            {this.props.username}
-                        </Link>
-                    </li>);
-            links = (<ul>
-                        {!this.props.open ? user : null}
-                        <li><button className="logout-btn" onClick={() => this.props.logOut()}>Logout</button></li>
-                    </ul>);
+            if(this.state.openLinks) {
+                links = (<ul>
+                            <li>
+                                <Link className="avatar-link" to="/dashboard" onClick={e => this.props.hideMenu()}>
+                                    <img src="/assets/icons/tie-avatar.svg" className="tie-avatar" alt="default profile avatar icon with tie"/> 
+                                </Link>
+                            </li>
+                            <li>
+                                {this.props.username}
+                                {/* <img src="/assets/icons/arrow-down.png" className="arrow-down" alt="arrow to open profile menu"/>  */}
+                            </li>
+                            <li className="links-li">
+                                <button className="logout-btn" onClick={() => this.props.logOut()}>Logout</button>
+                            </li>
+                            <li className="gear-item">
+                                <Link to={'/dashboard'} onClick={e => this.props.hideMenu()}>
+                                    <GearWheel />
+                                </Link>
+                            </li>
+                        </ul>);
+            } else {
+                links = (<ul>
+                            {/* <li><button className="logout-btn" onClick={() => this.props.logOut()}>Logout</button></li> */}
+                            <li className="gear-item">
+                                <Link to={'/dashboard'} onClick={e => this.props.hideMenu()}>
+                                    <GearWheel />
+                                </Link>
+                            </li>
+                            <li>
+                                {this.props.username}
+                                <img src="/assets/icons/arrow-down.png" className="arrow-down" alt="arrow to open profile menu"/> 
+                            </li>
+                            <li>
+                                <Link className="avatar-link" to="/dashboard" onClick={e => this.props.hideMenu()}>
+                                    <img src="/assets/icons/tie-avatar.svg" className="tie-avatar" alt="default profile avatar icon with tie"/> 
+                                </Link>
+                            </li>
+                        </ul>);
+            }
         }
 
         return(
             <div className={`links-wrap ${classes}`}>
                 <li>
                     <ul>
-                        {this.props.open ? user: null}
-                        <li>
+                        <li>{this.state.openLinks ? links : null}</li>
+                        <li className="links-li">
                             <Link to={'/'} onClick={e => this.props.hideMenu()}>Home</Link>
                         </li>
-                        <li>
+                        <li className="links-li">
                             <Link to={'/chat'} onClick={e => this.props.hideMenu()}>LiveChat</Link>
                         </li>
                     </ul>
                 </li>
                 <li className="user-links">
-                    {links}
+                    {!this.props.open && !this.state.openLinks ? links : null}
                 </li>
             </div>
         );
