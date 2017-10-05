@@ -40,59 +40,38 @@ export default class TopNavLinks extends React.Component {
 
 
     render() {
-        let classes = `${this.state.openLinks ? 'openLinks': ''}`;
         let links   = (<ul>
-                          <li>
+                          <li className="links-li">
                               <Link to={'/login'} onClick={e => this.props.hideMenu()}>Login</Link>
                           </li>
-                          <li>
+                          <li className="links-li">
                               <Link to={'/signup'} onClick={e => this.props.hideMenu()}>Signup</Link>
                           </li>
                       </ul>);
         if(this.props.loggedIn) {
-            if(this.state.openLinks) {
-                links = (<ul>
-                            <li>
-                                <Link className="avatar-link" to="/dashboard" onClick={e => this.props.hideMenu()}>
-                                    <img src="/assets/icons/tie-avatar.svg" className="tie-avatar" alt="default profile avatar icon with tie"/> 
-                                </Link>
-                            </li>
-                            <li>
-                                {this.props.username}
-                                {/* <img src="/assets/icons/arrow-down.png" className="arrow-down" alt="arrow to open profile menu"/>  */}
-                            </li>
-                            <li className="links-li">
-                                <button className="logout-btn" onClick={() => this.props.logOut()}>Logout</button>
-                            </li>
-                            <li className="gear-item">
-                                <Link to={'/dashboard'} onClick={e => this.props.hideMenu()}>
-                                    <GearWheel />
-                                </Link>
-                            </li>
-                        </ul>);
-            } else {
-                links = (<ul>
-                            {/* <li><button className="logout-btn" onClick={() => this.props.logOut()}>Logout</button></li> */}
-                            <li className="gear-item">
-                                <Link to={'/dashboard'} onClick={e => this.props.hideMenu()}>
-                                    <GearWheel />
-                                </Link>
-                            </li>
-                            <li>
-                                {this.props.username}
-                                <img src="/assets/icons/arrow-down.png" className="arrow-down" alt="arrow to open profile menu"/> 
-                            </li>
-                            <li>
-                                <Link className="avatar-link" to="/dashboard" onClick={e => this.props.hideMenu()}>
-                                    <img src="/assets/icons/tie-avatar.svg" className="tie-avatar" alt="default profile avatar icon with tie"/> 
-                                </Link>
-                            </li>
-                        </ul>);
-            }
+            links = (<ul>
+                        <li className="gear-item">
+                            <Link to={'/dashboard'} onClick={e => this.props.hideMenu()}>
+                                <GearWheel />
+                            </Link>
+                        </li>
+                        <li>
+                            {this.props.username}
+                            <img src="/assets/icons/arrow-down.png" className={`arrow-down ${this.props.open ? 'hidden' : ''}`} alt="arrow to open profile menu"/> 
+                        </li>
+                        <li>
+                            <Link className="avatar-link" to="/dashboard" onClick={e => this.props.hideMenu()}>
+                                <img src="/assets/icons/tie-avatar.svg" className="tie-avatar" alt="default profile avatar icon with tie"/> 
+                            </Link>
+                        </li>
+                        <li className={`links-li ${!this.props.open ? 'hidden' : ''}`}>
+                            <button className="logout-btn" onClick={() => this.props.logOut()}>Logout</button>
+                        </li>
+                    </ul>);
         }
 
         return(
-            <div className={`links-wrap ${classes}`}>
+            <div className={`links-wrap ${this.state.openLinks ? 'openLinks': ''}`}>
                 <li>
                     <ul>
                         <li>{this.state.openLinks ? links : null}</li>

@@ -6,6 +6,12 @@
 
 html {
     box-sizing: border-box;
+
+    body {
+        .hidden {
+            display: none;
+        }
+    }
 }
 
 *, 
@@ -27,6 +33,10 @@ body {
     position: relative;
     overflow: hidden;
     height: 100%;
+}
+
+.hidden {
+    display: none;
 }
 
 // * * * * * * * * * * * * * * * * * * * *
