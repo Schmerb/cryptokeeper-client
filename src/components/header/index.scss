@@ -3,10 +3,12 @@
 // ==================================================
 
 header {
-    background: $primary;
+    position: relative;
+    background: rgba($primary, 0.8);
     width: 100%;
     height: $banner;
     line-height: $banner;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
 }
 
 

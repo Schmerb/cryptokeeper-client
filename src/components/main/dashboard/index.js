@@ -1,15 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { fetchProtectedData } from 'actions/protected-data';
+import { Redirect, withRouter, Route } from 'react-router-dom';
+
+import Portfolio from './portfolio/';
+import ProtectedData from './protected-data';
+import SideNav from './side-nav';
 
 export class Dashboard extends React.Component {
-    componentDidMount() {
-        if (!this.props.loggedIn) {
-            return;
-        }
-        this.props.dispatch(fetchProtectedData());
-    }
 
     render() {
         // Only visible to logged in users
@@ -17,15 +14,13 @@ export class Dashboard extends React.Component {
             return <Redirect to="/" />;
         }
 
+        console.log('This is the location: ', this.props.location);
+
         return (
             <div className="dashboard">
-                <div className="dashboard-username">
-                    Username: {this.props.username}
-                </div>
-                <div className="dashboard-name">Name: {this.props.name}</div>
-                <div className="dashboard-protected-data">
-                    Protected data: {this.props.protectedData}
-                </div>
+                <SideNav />
+                <Route exact path="/dashboard/portfolio" component={Portfolio}/>
+                {/* <ProtectedData /> */}
             </div>
         );
     }
@@ -44,4 +39,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps)(Dashboard);
+export default withRouter(connect(mapStateToProps)(Dashboard));

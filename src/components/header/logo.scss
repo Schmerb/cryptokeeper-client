@@ -7,6 +7,13 @@
 .logo {
     position: relative;
     float: left;
-    margin-left: 20px;
+    padding-left: 20px;
+    width: 200px;
     z-index: 10;
+
+    &.dash {
+        @include mediaMin($tablet) {
+            background-color: rgba($red, 0.8);
+        }
+    }
 }

@@ -12,7 +12,7 @@ export class Header extends React.Component {
     render() {
         return(
             <header role="banner">
-                <Logo />
+                <Logo location={this.props.location}/>
                 <TopNav />
             </header>
         );

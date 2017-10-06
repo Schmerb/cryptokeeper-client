@@ -7,7 +7,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     if(action.type === SET_AUTH_TOKEN) {
-        console.log('Setting state auth to ', action.authToken);
+        // console.log('Setting state auth to ', action.authToken);
         return Object.assign({}, state, {
             authToken: action.authToken
         });

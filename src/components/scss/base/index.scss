@@ -6,7 +6,7 @@
 
 html {
     box-sizing: border-box;
-
+    overflow-x: hidden;
     body {
         .hidden {
             display: none;
@@ -27,6 +27,35 @@ body {
     min-height: 100vh;
     min-width: 300px;
     padding-bottom: 100px;
+    overflow-x: hidden;
+}
+
+.dashboard-back {
+    &:before {
+        @extend %cover;
+        @include transform(scale(1.1));
+        content: '';
+        background-image: url('/assets/images/japan-neon.jpg');
+        background-image: url('/assets/images/city-night-cafe.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        -webkit-filter: blur(5px);
+        filter: blur(5px);
+    }
+}
+
+.landing-back {
+    &:before {
+        @extend %cover;
+        @include transform(scale(1.1));
+        content: '';
+        background-image: url('/assets/images/city-night-cafe.jpg');
+        background-image: url('/assets/images/japan-neon.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        -webkit-filter: blur(5px);
+        filter: blur(5px);
+    }
 }
 
 .no-scroll {

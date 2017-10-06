@@ -64,11 +64,29 @@ export class App extends React.Component {
         clearInterval(this.refreshInterval);
     };
 
+    // applyBackgroundImg() {
+    //     if(this.props.location.pathname.includes('dashboard')) {
+    //         document.body.classList.toggle('dashboard-back', true);
+    //     } else {
+    //         document.body.classList.toggle('dashboard-back', false);
+    //     }
+    //     if(this.props.location.pathname === '/') {
+    //         document.body.classList.toggle('landing-back', true);
+    //     } else {
+    //         document.body.classList.toggle('landing-back', false);
+    //     }
+    // }
+
 
     render () {
+        let dash = '';
+        if(this.props.location.pathname.includes('dashboard'))  {
+            dash = 'dash';
+        }
+        // this.applyBackgroundImg();
         return(
             <section className="app">
-                <Header />
+                <Header location={dash}/>
                 <Main />
                 <Footer />
             </section>

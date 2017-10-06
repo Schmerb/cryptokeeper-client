@@ -2,62 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Slider from 'react-slick';
 
-import {
-	updateBTCInfo,
-	updateETHInfo,
-	updateLTCInfo,
-	updateXMRInfo,
-} from 'actions/crypto';
-
 import Box from './box';
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const { CCC } = require('utils/ccc-streamer-utilities');
-const socket  = require('socket.io-client')('https://streamer.cryptocompare.com/');
-const subscription = [
-	'5~CCCAGG~BTC~USD',
-	'5~CCCAGG~ETH~USD',
-	'5~CCCAGG~XMR~USD',
-	'5~CCCAGG~LTC~USD'
-];
-
-// Monero   -- XMR
-// Litecoin -- LTC
-
-
 export class BoxSlider extends React.Component {
-
-	componentDidMount() {
-		this.socketIO();
-	}
-
-	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	// SocketIO event-listener / emitter, updates current
-	// currency prices in state
-	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-	socketIO() {
-		socket.emit('SubAdd', { subs: subscription });
-		socket.on('m', message => {
-			const messageType = message.substring(0, message.indexOf("~"));
-
-			const currencies = {
-				BTC: updateBTCInfo,
-				ETH: updateETHInfo,
-				LTC: updateLTCInfo,
-				XMR: updateXMRInfo
-			};
-
-			let res = {};
-			if (messageType === CCC.STATIC.TYPE.CURRENTAGG) {
-				res = CCC.CURRENT.unpack(message);
-				if(res.PRICE !== undefined) {
-					this.props.dispatch(currencies[res.FROMSYMBOL](res));
-				}
-			}
-		});
-	}
 
 	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	// Slick-slider settings object
@@ -94,7 +44,6 @@ export class BoxSlider extends React.Component {
 		);
 	}
 }
-
 
 const mapStateToProps = state => ({
 	BTC: state.crypto.BTC,

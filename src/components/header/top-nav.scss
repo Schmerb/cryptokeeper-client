@@ -9,7 +9,7 @@
     
     a {
         color: $third;
-        display: inline-block;
+        // display: inline-block;
     }
     > ul {
         @include transitions(left 0.8s cubic-bezier(.41,.29,.45,.97),
@@ -41,6 +41,7 @@
         &.openLinks {
             > li {
                 > ul {
+                    @extend %transition;
                     @include mediaMin($iphone6) {
                         padding-left: 20px;
                     }
@@ -59,7 +60,7 @@
                 }
             }
             a {
-                display: block;
+                // display: block;
                 color: $offwhite;
                 &:hover {
                     color: $primary;
@@ -76,10 +77,18 @@
                 top: 10px;
                 right: 10px;
                 fill: $brown;
+            }
+            .avatar-link {
+                position: relative;
+                bottom: 35px;
+            }
+            .username-li {
+                position: relative;
+                top: 35px;
             } 
         }
     }
-    @media screen and (min-width: $collapse) {
+    @include mediaMin($collapse) {
         ul {
             position: relative;
             left: auto;
@@ -87,7 +96,7 @@
             width: auto;
             height: $banner;
             min-height: auto;
-            margin-left: 40px;
+            margin-left: 10px;
         }
         .user-links {
             float: right;
@@ -108,16 +117,39 @@
         color: $offwhite;
     }
 }
-
-a.avatar-link {
+// Dropdown Sub-Menu
+.username-li.closed {
+    cursor: pointer;
     &:hover {
-        color: $third;
+        .sub-menu {
+            max-height: 200px;
+        }
+    }
+    .sub-menu {
+        @include transition(0.5s);
+        background-color: rgba($third, 0.9);
+        color: $offwhite;
+        width: 300px;
+        max-height: 0;
+        position: absolute;
+        left: 49px;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        overflow: hidden;
+        cursor: default;
+        z-index: -1;
+        &:hover {
+            max-height: 200px;
+        }
+        .logout-btn {
+            color: $offwhite;
+            margin-left: 20px;
+            &:hover {
+                color: $primary;
+            }
+        }
     }
 }
 
-.tie-avatar {
-    width: 40px;
-    height: 40px;
-    vertical-align: middle;
-}
+
 

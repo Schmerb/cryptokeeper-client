@@ -1,0 +1,12 @@
+.side-nav {
+    display: none;
+    position: relative;
+    float: left;
+    background-color: rgba($darkblue, 0.75);
+    width: 200px;
+    min-height: calc(100vh - 180px);
+
+    @include mediaMin($tablet) {
+        display: initial;
+    }
+}
