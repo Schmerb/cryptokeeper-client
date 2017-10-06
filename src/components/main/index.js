@@ -11,9 +11,21 @@ import Currencies from './currencies/';
 import CryptoStream from 'components/services/crypto-stream';
 
 export class Main extends React.Component {
+    applyBackgroundImg() {
+        if(this.props.location.pathname.includes('dashboard')) {
+            // document.body.classList.toggle('dashboard-back', true);
+            return 'dashboard-back';
+        } else if (this.props.location.pathname === '/') {
+            // document.body.classList.toggle('dashboard-back', false);
+            return 'landing-back';
+        }
+        return '';
+    }
+
     render() {
+        let classes = this.applyBackgroundImg();
         return(
-            <main role="main">
+            <main role="main" className={classes}>
                 <CryptoStream />
                 <div className="container">
                     <Route exact path="/" component={Landing} />

@@ -28,14 +28,16 @@ export class TopNav extends React.Component {
                     <WindowResizeListener onResize={windowSize => this.resize(windowSize)}/>
                     <Burger />
                     <Dim />
-                    <TopNavMenu />
+                    <TopNavMenu open={this.props.open} 
+                                openLinks={this.props.openLinks}/>
                 </nav>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    open: state.display.open
+    open: state.display.open,
+    openLinks: state.display.openLinks
 });
 
 // const mapDispatchToProps = dispatch => ({

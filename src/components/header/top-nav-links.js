@@ -1,29 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { toggleLinks } from 'actions/display';
+import { setCurrentUser, setAuthToken } from 'actions/auth';
+import { toggleMenu } from 'actions/display';
+import { clearAuthToken } from 'local-storage';
 
 import GearWheel from 'icons/gear-wheel';
 import TieAvatar from 'icons/tie-avatar';
 
-export default class TopNavLinks extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            openLinks: false
-        };
-    }
+export class TopNavLinks extends React.Component {
 
     componentDidMount() {
         // console.log('just mounted, props:', this.props);
     }
 
     componentWillReceiveProps(nextProps) {
-        // console.log('componentWillReceiveProps, nextProps:', nextProps);
+        console.log('componentWillReceiveProps, nextProps:', nextProps);
         let $this = this;
         let delay = nextProps.open ? 0: 400;
-        setTimeout(function() {
-            $this.setState({
-                openLinks: nextProps.open
-            });
+        setTimeout(() => {
+            $this.props.dispatch(toggleLinks(nextProps.open));
         }, delay);
     }
 
@@ -35,23 +33,40 @@ export default class TopNavLinks extends React.Component {
 
     componentDidUpdate(prevProps, prevState) {
         // console.log('just updated, prevProps:', prevProps);
-        // console.log('props', this.props);
     }
 
+      // * * * * * * * * * * * * * * * * * * * *
+    // logs user out by removing jwt token
+    // * * * * * * * * * * * * * * * * * * * *
+    logOut() {
+        this.props.dispatch(setCurrentUser(null));
+        this.props.dispatch(setAuthToken(null));
+        clearAuthToken();
+        this.hideMenu();
+    }
+
+    // * * * * * * * * * * * * * * * * * * * *
+    // hides menu if it is currently open
+    // * * * * * * * * * * * * * * * * * * * *
+    hideMenu() {
+        if(this.props.open) {
+            this.props.dispatch(toggleMenu());
+        }
+    }
 
     render() {
         let links   = (<ul>
                           <li className="links-li">
-                              <Link to={'/login'} onClick={e => this.props.hideMenu()}>Login</Link>
+                              <Link to={'/login'} onClick={e => this.hideMenu()}>Login</Link>
                           </li>
                           <li className="links-li">
-                              <Link to={'/signup'} onClick={e => this.props.hideMenu()}>Signup</Link>
+                              <Link to={'/signup'} onClick={e => this.hideMenu()}>Signup</Link>
                           </li>
                       </ul>);
         if(this.props.loggedIn) {
             links = (<ul>
                         <li className="gear-item">
-                            <Link to={'/dashboard/settings'} onClick={e => this.props.hideMenu()}>
+                            <Link to={'/dashboard/settings'} onClick={e => this.hideMenu()}>
                                 <GearWheel />
                             </Link>
                         </li>
@@ -62,41 +77,54 @@ export default class TopNavLinks extends React.Component {
                             </a>
                             <ul className={`sub-menu ${this.props.open ? 'hidden' : ''}`}>
                                 <li>
-                                    <button className="logout-btn" onClick={() => this.props.logOut()}>Logout</button>
+                                    <button className="logout-btn" onClick={() => this.logOut()}>Logout</button>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <Link className="avatar-link" to="/dashboard/portfolio" onClick={e => this.props.hideMenu()}>
+                            <Link className="avatar-link" to="/dashboard/portfolio" onClick={e => this.hideMenu()}>
                                 <TieAvatar />
                             </Link>
                         </li>
                         <li className={`links-li ${!this.props.open ? 'hidden' : ''}`}>
-                            <button className="logout-btn" onClick={() => this.props.logOut()}>Logout</button>
+                            <button className="logout-btn" onClick={() => this.logOut()}>Logout</button>
                         </li>
                     </ul>);
         }
 
         return(
-            <div className={`links-wrap ${this.state.openLinks ? 'openLinks': ''}`}>
+            <div className={`links-wrap ${this.props.openLinks ? 'openLinks': ''}`}>
                 <li>
                     <ul>
-                        <li>{this.state.openLinks ? links : null}</li>
+                        <li>{this.props.openLinks ? links : null}</li>
                         <li className="links-li">
-                            <Link to={'/'} onClick={e => this.props.hideMenu()}>Home</Link>
+                            <Link to={'/'} onClick={e => this.hideMenu()}>Home</Link>
                         </li>
                         <li className="links-li">
-                            <Link to={'/chat'} onClick={e => this.props.hideMenu()}>LiveChat</Link>
+                            <Link to={'/chat'} onClick={e => this.hideMenu()}>LiveChat</Link>
                         </li>
                         <li className="links-li">
-                            <Link to={'/currencies'} onClick={e => this.props.hideMenu()}>Currencies</Link>
+                            <Link to={'/currencies'} onClick={e => this.hideMenu()}>Currencies</Link>
                         </li>
                     </ul>
                 </li>
                 <li className="user-links">
-                    {!this.props.open && !this.state.openLinks ? links : null}
+                    {!this.props.open && !this.props.openLinks ? links : null}
                 </li>
             </div>
         );
     }
 }
+
+
+const mapStateToProps = state => {
+    const { currentUser } = state.auth;
+    return {
+        loggedIn: state.auth.currentUser !== null,
+        username: currentUser ? state.auth.currentUser.username : '',
+        open: state.display.open,
+        openLinks: state.display.openLinks
+    };
+};
+
+export default connect(mapStateToProps)(TopNavLinks);

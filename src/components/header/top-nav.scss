@@ -19,8 +19,12 @@
         background: palette(third, light);
         width: 70%;
         min-height: 100vh;
-        z-index: 1010;
+        z-index: 10;
 
+        &.openLinks {
+            z-index: 1012;
+        }
+        
         &.open {
             padding-left: 40px;
             padding-top: 40px;

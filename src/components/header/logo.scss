@@ -9,7 +9,7 @@
     float: left;
     padding-left: 20px;
     width: 200px;
-    z-index: 10;
+    z-index: 1011;
 
     &.dash {
         @include mediaMin($tablet) {
