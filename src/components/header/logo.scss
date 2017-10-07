@@ -12,7 +12,7 @@
     z-index: 1011;
 
     &.dash {
-        @include mediaMin($tablet) {
+        @include mediaMin($collapse) {
             background-color: rgba($red, 0.8);
         }
     }

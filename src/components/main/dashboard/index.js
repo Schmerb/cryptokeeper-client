@@ -20,7 +20,7 @@ export class Dashboard extends React.Component {
         let path = this.props.location.pathname;
         let nav  = null;
         let mobileDash = null;
-        if(this.props.width >= 736) {
+        if(this.props.width >= 800) {
             nav = (<SideNav />);
         } else {
             if(path === '/dashboard') {

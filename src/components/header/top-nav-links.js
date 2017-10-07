@@ -95,17 +95,18 @@ export class TopNavLinks extends React.Component {
         return(
             <div className={`links-wrap ${this.props.openLinks ? 'openLinks': ''}`}>
                 <li>
-                    <ul>
+                    <ul className={!this.props.openLinks ? 'main-links': ''}>
                         <li>{this.props.openLinks ? links : null}</li>
-                        <li className="links-li">
+                        <li className="links-li one">
                             <Link to={'/'} onClick={e => this.hideMenu()}>Home</Link>
                         </li>
-                        <li className="links-li">
+                        <li className="links-li two">
                             <Link to={'/chat'} onClick={e => this.hideMenu()}>LiveChat</Link>
                         </li>
-                        <li className="links-li">
+                        <li className="links-li three">
                             <Link to={'/currencies'} onClick={e => this.hideMenu()}>Currencies</Link>
                         </li>
+                        <hr className={this.props.openLinks ? 'hidden': ''}/>
                     </ul>
                 </li>
                 <li className="user-links">

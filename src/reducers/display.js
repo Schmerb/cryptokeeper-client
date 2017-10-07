@@ -6,6 +6,7 @@ import {
 
 const initialState = {
     open: false,
+    openLinks: false,
     width: window.innerWidth
 };
 

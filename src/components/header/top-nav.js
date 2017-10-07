@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import { WindowResizeListener } from 'react-window-resize-listener';
 import { toggleMenu } from 'actions/display';
 
 import Burger from './burger';
@@ -10,22 +9,20 @@ import TopNavMenu from './top-nav-menu';
 
 export class TopNav extends React.Component {
 
-    // * * * * * * * * * * * * * * * * * * * *
-    // Checks window on resize and hides 
-    // sidemenu if currently opened
-    // * * * * * * * * * * * * * * * * * * * *
-    resize(windowSize) {
-        let width  = windowSize.windowWidth;
-        if(width >= 500 && this.props.open) {
-                // this.props.toggleTheMenu();
-                this.props.dispatch(toggleMenu());
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Fires when component is about to receive new props
+    // i.e. variable in state has been updated 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.width !== this.props.width && nextProps.width >= 700 && this.props.open) {
+            // this.props.toggleTheMenu();
+            this.props.dispatch(toggleMenu());
         }
     }
 
     render() {
         return (
                 <nav className="m-nav">
-                    <WindowResizeListener onResize={windowSize => this.resize(windowSize)}/>
                     <Burger />
                     <Dim />
                     <TopNavMenu open={this.props.open} 
@@ -37,7 +34,8 @@ export class TopNav extends React.Component {
 
 const mapStateToProps = state => ({
     open: state.display.open,
-    openLinks: state.display.openLinks
+    openLinks: state.display.openLinks,
+    width: state.display.width
 });
 
 // const mapDispatchToProps = dispatch => ({
