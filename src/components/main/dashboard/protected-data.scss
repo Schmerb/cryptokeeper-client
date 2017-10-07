@@ -1,8 +1,16 @@
+// // // // // // // // // //
+//
+//       Protected Data
+//
+// // // // // // // // // //
+
 .protected-data {
     display: inline-block;
     color: $offwhite;
     position: relative;
-    border: 1px solid $offwhite;
+    font-size: 22px;
+    text-align: left;
     padding: 20px;
+    border: 1px solid $offwhite;
     z-index: 10;
 }

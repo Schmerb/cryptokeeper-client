@@ -1,0 +1,120 @@
+// // // // // // // // // // // // // //
+//
+//      Mobile Dashboard
+//
+// // // // // // // // // // // // // // 
+
+.mobile-dashboard {
+    position: relative;
+    h2 {
+        text-align: center;
+    }
+    a {
+        > div {
+            @extend %abs-middle;
+        }
+    }
+    svg {
+        @extend %transition;
+        width: 60px;
+        height: 60px;
+        fill: $offwhite;
+        @include mediaMin($landscape) {
+            width: 80px;
+            height: 80px;
+        }
+        @include mediaMin($landscape + 200) {
+            width: 100px;
+            height: 100px;
+        }
+        &.portfolio-icon {
+            width: 55px;
+            height: 55px;
+            margin-left: 12px;
+            margin-bottom: 10px;
+            @include mediaMin($landscape) {
+                width: 70px;
+                height: 70px;
+                margin-left: 15px;
+            }
+            @include mediaMin($landscape + 200) {
+                width: 90px;
+                height: 90px;
+                margin-left: 5px;
+            }
+        }
+        &.gear-wheel {
+            position: static;
+        }
+    }
+}
+
+$length: 50%;
+$thickness: 1px;
+
+.mobile-links {
+    a {
+        @extend %transition;
+        position: relative;
+        width: 50%;
+        padding-top: 50%;
+        font-size: 1em;
+        float: left;
+        &:hover {
+            background-color: rgba($offwhite, 0.05);
+            svg {
+                fill: $secondary;
+                stroke: $offwhite;
+                // stroke-width: 2px;
+            }
+        }
+        span {
+            display: block;
+            text-align: center;
+        }
+        @include mediaMin($landscape) {
+            font-size: 1.2em;
+        }
+    }
+    li {
+        &:first-of-type {
+            a {
+                &:after, &:before {
+                    content: '';
+                    background-color: rgba($offwhite, 0.2);
+                    width: $thickness;
+                    height: $length;
+                }
+                &:after {
+                    @include middleR;
+                }
+                &:before {
+                    @extend %center;
+                    bottom: 0;
+                    height: $thickness;
+                    width: $length;
+                }
+            }
+        }
+        &:last-of-type {
+            a {
+                &:after, &:before {
+                    content: '';
+                    background-color: rgba($offwhite, 0.2);
+                    width: $thickness;
+                    height: $length;
+                }
+                &:after {
+                    @include middleL;
+                }
+                &:before {
+                    @extend %center;
+                    top: 0;
+                    height: $thickness;
+                    width: $length;
+                }
+            }
+        }
+    }
+}
+

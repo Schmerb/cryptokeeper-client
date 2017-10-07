@@ -1,7 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import {toggleMenu} from '../../actions/display';
+import { toggleMenu } from '../../actions/display';
 
 export class Burger extends React.Component {
 
@@ -15,7 +16,11 @@ export class Burger extends React.Component {
     }
 
     render() {
-        let classes = `burger ${this.props.open ? 'open': ''}`;
+        let open    = this.props.open;
+        let classes = `burger ${open ? 'open': ''}`;
+        if(open && this.props.location.pathname === '/dashboard') {
+            classes += ' dash';
+        }
         return(
             <button className="burger-btn" onClick={e => this.open(e)}>
                 <div className={classes}></div>
@@ -28,4 +33,4 @@ const mapStateToProps = state => ({
     open: state.display.open
 });
 
-export default connect(mapStateToProps)(Burger);
+export default withRouter(connect(mapStateToProps)(Burger));

@@ -1,21 +1,14 @@
+// // // // // // // // // //
+//
+//       Landing
+//
+// // // // // // // // // //
+
 #landing {
     position: relative;
     min-height: 600px;
     height: calc(100vh - 180px);
     padding-top: 50px;
-
-    // &:before {
-    //     @extend %cover;
-    //     @include transform(scale(1.1));
-    //     content: '';
-    //     background-image: url('/assets/images/city-night-cafe.jpg');
-    //     background-image: url('/assets/images/japan-neon.jpg');
-    //     background-size: cover;
-    //     background-repeat: no-repeat;
-    //     -webkit-filter: blur(5px);
-    //     filter: blur(5px);
-    // }
-
     > h2 {
         color: $offwhite;
         position: relative;

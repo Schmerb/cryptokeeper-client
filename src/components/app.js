@@ -1,8 +1,9 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import {refreshAuthToken} from 'actions/auth';
+import { refreshAuthToken } from 'actions/auth';
+import { setWidth } from 'actions/display';
 
 import Header from './header/';
 import Main from './main/';
@@ -36,11 +37,29 @@ export class App extends React.Component {
     };
 
     // * * * * * * * * * * * * * * * * * * * *
-    // 
+    // Fires when component is about to mount
     // * * * * * * * * * * * * * * * * * * * *
     componentWillMount() {
+        let $this = this;
         this.stopPeriodicRefresh();
+        window.addEventListener('resize', () => this.handleWindowResize($this));
     };
+
+    // * * * * * * * * * * * * * * * * * * * *
+    // Fires when component is about to Unmount
+    // * * * * * * * * * * * * * * * * * * * *
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleWindowResize);
+    };
+
+    // * * * * * * * * * * * * * * * * * * * *
+    // Dispatches action to update current 
+    // window width in state
+    // * * * * * * * * * * * * * * * * * * * *
+    handleWindowResize($this) {
+        console.log('innder width:', window.innerWidth);
+        this.props.dispatch(setWidth(window.innerWidth));
+    }
 
     // * * * * * * * * * * * * * * * * * * * *
     // starts timer and refreshes JWT token
@@ -64,29 +83,10 @@ export class App extends React.Component {
         clearInterval(this.refreshInterval);
     };
 
-    // applyBackgroundImg() {
-    //     if(this.props.location.pathname.includes('dashboard')) {
-    //         document.body.classList.toggle('dashboard-back', true);
-    //     } else {
-    //         document.body.classList.toggle('dashboard-back', false);
-    //     }
-    //     if(this.props.location.pathname === '/') {
-    //         document.body.classList.toggle('landing-back', true);
-    //     } else {
-    //         document.body.classList.toggle('landing-back', false);
-    //     }
-    // }
-
-
     render () {
-        let dash = '';
-        if(this.props.location.pathname.includes('dashboard'))  {
-            dash = 'dash';
-        }
-        // this.applyBackgroundImg();
         return(
             <section className="app">
-                <Header location={dash}/>
+                <Header />
                 <Main />
                 <Footer />
             </section>

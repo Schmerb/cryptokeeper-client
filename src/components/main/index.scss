@@ -12,6 +12,15 @@ main {
     &:before {
         z-index: -1;
     }
+    &:after {
+        @extend %cover;
+        background-color: rgba(black, 0.5);
+    }
+}
+
+main::after {
+    @extend %cover;
+    background-color: rgba(black, 0.5);
 }
 
 .dashboard-back, 
@@ -27,8 +36,12 @@ main {
     }
 }
 .dashboard-back {
+    &:after {
+        @extend %cover;
+        background-color: rgba(black, 0.5);
+    }
     &:before {
-        background-image: url('/assets/images/japan-neon.jpg');
+        // background-image: url('/assets/images/japan-neon.jpg');
         background-image: url('/assets/images/city-night-cafe.jpg');
     }
 }

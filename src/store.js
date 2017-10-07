@@ -1,13 +1,19 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { 
+    createStore, 
+    applyMiddleware, 
+    combineReducers 
+} from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
+
+import { setAuthToken }  from 'actions/auth';
 import { loadAuthToken } from './local-storage';
-import authReducer from 'reducers/auth';
+
+import authReducer          from 'reducers/auth';
 import protectedDataReducer from 'reducers/protected-data';
-import displayReducer from 'reducers/display';
-import chatReducer from 'reducers/chat';
-import cryptoReducer from 'reducers/crypto';
-import { setAuthToken } from 'actions/auth';
+import displayReducer       from 'reducers/display';
+import chatReducer          from 'reducers/chat';
+import cryptoReducer        from 'reducers/crypto';
 
 const store = createStore(
     combineReducers({

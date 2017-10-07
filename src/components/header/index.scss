@@ -6,12 +6,45 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba($primary, 0.8);
+    background-color: rgba($primary, 0.8);
     width: 100%;
     height: $banner;
     line-height: $banner;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    // z-index: 1;
+
+    // Styles for /dashboard MOBILE ONLY
+    &.dash {
+        @include mediaMax($collapse - 1){
+            background-color: transparent;
+            box-shadow: none;
+
+            .logo {
+                color: $offwhite;
+            }
+            .burger-btn {
+                &:hover {
+                    .burger {
+                        background-color: $brown;
+                        &:before, &:after {
+                            background-color: $brown;
+                        }
+                        &.open {
+                            background-color: transparent;
+                        }
+                    }
+                }
+            }
+            .burger {
+                background-color: $offwhite;
+                &:before, &:after {
+                    background-color: $offwhite;
+                }
+                &.dash {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
 }
 
 

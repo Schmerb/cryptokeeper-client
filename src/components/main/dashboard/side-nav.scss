@@ -1,12 +1,84 @@
+// // // // // // // // // //
+//
+//       SideNav (Dashboard)
+//
+// // // // // // // // // //
+
 .side-nav {
-    display: none;
+    background-color: rgba($darkblue, 0.75);
     position: relative;
     float: left;
-    background-color: rgba($darkblue, 0.75);
     width: 200px;
-    min-height: calc(100vh - 180px);
+    min-height: calc(100vh - 80px);
+    padding: 20px;
+    z-index: 10;
 
-    @include mediaMin($tablet) {
-        display: initial;
+    li {
+        @include transition(0.2s);
+        border-top: 2px solid transparent;
+        border-bottom: 2px solid transparent;
+        padding: 5px 0;
+        &.current {
+            // border-top: 2px solid hotpink;
+            border-bottom: 2px solid hotpink;
+        }
+
+        &:hover {
+            color: rgba($offwhite, 0.5);
+            border-bottom: 2px solid rgba(hotpink, 0.6);
+            svg {
+                fill: rgba($offwhite, 0.5);
+            }
+        }
+    }
+    svg {
+        @include transition(0.2s);
+        width: 25px;
+        height: 25px;
+        fill: $offwhite;
+    }
+}
+// Main dash links
+.dash-links {
+    margin-top: 10px;
+    li {
+        font-size: 22px;
+        margin-bottom: 20px;
+        svg {
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        span {
+            vertical-align: middle;
+        }
+    }
+}
+// dash menu divider
+.dash-hr {
+    opacity: 0.3;
+    margin-top: 80px;
+}
+// My Account links
+.account-links {
+    margin-top: 80px;
+
+    li {
+        font-size: 18px;
+        margin-left: 15px;
+
+        &:first-of-type {
+            margin-top: 15px;
+        }
+    }
+}
+// Logout btn
+.logout-li {
+    button {
+        @include transition(0.2s);
+        color: $offwhite;
+        border: none;
+        &:hover {
+            color: rgba($offwhite, 0.5);
+        }
     }
 }
