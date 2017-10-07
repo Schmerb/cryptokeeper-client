@@ -25,7 +25,9 @@ $iphone6PLand: 736px;
 $landscape: 415px;
 
 $expand: 530px;
-$collapse: 800px;
+
+$collapse: 800px; // Needs to stay in sync with width in 
+                  // /login, /signup & /dashboard !
 
 $tablet: 737px; 
 

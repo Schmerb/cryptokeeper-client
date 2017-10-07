@@ -2,13 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 
-import Landing from './landing/';
-import ChatBoard from './chat-board/';
-import LoginPage from './login-page/';
-import SignupPage from './signup-page/';
-import Dashboard from './dashboard/';
-import Currencies from './currencies/';
-import CryptoStream from 'components/services/crypto-stream';
+import Landing      from './landing/';
+import ChatBoard    from './chat-board/';
+import LoginPage    from './login-page/';
+import SignupPage   from './signup-page/';
+import Dashboard    from './dashboard/';
+import Currencies   from './currencies/';
 
 export class Main extends React.Component {
     applyBackgroundImg() {
@@ -26,7 +25,6 @@ export class Main extends React.Component {
         let classes = this.applyBackgroundImg();
         return(
             <main role="main" className={classes}>
-                <CryptoStream />
                 <div className="container">
                     <Route exact path="/" component={Landing} />
                     <Route exact path="/chat" component={ChatBoard} />

@@ -30,6 +30,9 @@
                 fill: rgba($offwhite, 0.5);
             }
         }
+        a {
+            display: block;
+        }
     }
     svg {
         @include transition(0.2s);
@@ -43,7 +46,9 @@
     margin-top: 10px;
     li {
         font-size: 22px;
-        margin-bottom: 20px;
+        padding-top: 20px;
+
+        // margin-bottom: 20px;
         svg {
             margin-right: 10px;
             vertical-align: middle;
@@ -75,10 +80,46 @@
 .logout-li {
     button {
         @include transition(0.2s);
+        display: block;
         color: $offwhite;
+        width: 100%;
+        text-align: left;
         border: none;
         &:hover {
             color: rgba($offwhite, 0.5);
         }
+    }
+}
+
+.dash-vr {
+    @extend %transition;
+    opacity: 0;
+    position: absolute;
+    right: -4px;
+    top: -100px;
+    background-color: $red;
+    width: 4px;
+    height: 50px;
+    border: none;
+
+    &.one {
+        opacity: 1;
+        top: 40px;
+    }
+    &.two {
+        opacity: 1;
+        top: 90px;
+    }
+    &.three {
+        opacity: 1;
+        top: 335px;
+    }
+    &.four {
+        opacity: 1;
+        top: 375px;
+    }
+    &.five {
+        opacity: 1;
+        top: 415px;
     }
 }

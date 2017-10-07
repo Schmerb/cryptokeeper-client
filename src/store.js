@@ -15,6 +15,8 @@ import displayReducer       from 'reducers/display';
 import chatReducer          from 'reducers/chat';
 import cryptoReducer        from 'reducers/crypto';
 
+import cryptoService from 'services/crypto-stream';
+
 const store = createStore(
     combineReducers({
         form: formReducer,
@@ -26,6 +28,10 @@ const store = createStore(
     }),
     applyMiddleware(thunk)
 );
+
+// Opens socket.IO connection and updates store
+// on data received
+cryptoService(store);
 
 // Hydrate the authToken from localStorage if it exist
 const authToken = loadAuthToken();
