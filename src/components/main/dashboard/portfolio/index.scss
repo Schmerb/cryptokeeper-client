@@ -1,10 +1,19 @@
+// // // // // // // // // //
+//
+//       Portfolio
+//
+// // // // // // // // // //
+
 .portfolio {
     position: relative;
-    
+    padding: 20px;
     h2 {
-        text-align: center;
+        // text-align: center;
     }
     .portfolio-container {
+        // overflow: auto;
         text-align: center;
     }
 }
+
+

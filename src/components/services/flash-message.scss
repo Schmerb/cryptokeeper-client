@@ -16,8 +16,8 @@
     &.fadeIn {
         opacity: 1;
     }
-}
-
+}  
+ 
 .flash-box {
     @extend %center;
     position: fixed;
@@ -29,7 +29,7 @@
     padding: 20px;
     z-index: 10;
 
-    h2 {
+    h2 {  
         @extend %abs-middle;
         text-align: center;
     }

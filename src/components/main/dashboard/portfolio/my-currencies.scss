@@ -1,0 +1,36 @@
+// // // // // // // // // //
+//
+//     My Currencies Section
+//
+// // // // // // // // // //
+
+.my-currencies {
+    position: relative;
+    margin-top: 40px;
+    min-width: 300px;
+    border: 1px solid white;
+
+    @include mediaMin($collapse) {
+        float: right;
+    }
+
+    button {
+        background-color: rgba(#39386c, 0.7);
+        width: 100%;
+        max-width: 400px;
+        height: 100px;
+        border: none;
+        margin: 0 auto;
+
+        @include mediaMin($collapse) {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+    }
+
+    .circle-plus-icon {
+        width: 40px;
+        height: 40px;
+    }
+}

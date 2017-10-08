@@ -1,0 +1,25 @@
+// // // // // // // // // //
+//
+//       Currency Box
+//
+// // // // // // // // // //
+
+
+.c-box {
+    background-color: rgba($primary, 0.7);
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    margin: 10px auto;
+
+    @include mediaMin($collapse) {
+        width: 48%;
+        height: 50%;
+        &:first-of-type {
+            float: left;
+        }
+        &:last-of-type {
+            float: right;
+        }
+    }
+}

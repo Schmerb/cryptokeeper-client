@@ -9,7 +9,7 @@ import Events          from './events/';
 import Avatar          from './account/avatar';
 import Settings        from './account/settings';
 import SideNav         from './side-nav';
-import FlashMessage    from './flash-message';
+import FlashMessage    from 'components/services/flash-message';
 
 export class Dashboard extends React.Component {
 

@@ -5,7 +5,8 @@
 
 main {
     position: relative;
-    min-height: 500px;
+    
+    min-height: 100vh;
     padding-top: $banner;
     overflow: hidden;
 
@@ -15,6 +16,10 @@ main {
     &:after {
         @extend %cover;
         background-color: rgba(black, 0.5);
+    }
+
+    @include mediaMin($collapse) {
+        min-height: 500px;
     }
 }
 

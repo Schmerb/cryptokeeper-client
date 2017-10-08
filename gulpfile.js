@@ -6,18 +6,19 @@ const gulp      = require('gulp'),
       sassGlob  = require('gulp-sass-glob'),
       minifyCSS = require('gulp-clean-css'),
       rename    = require('gulp-rename'),
-      concat    = require('gulp-concat');
+      concat    = require('gulp-concat'),
+      watch     = require('gulp-watch');
 
 
 /////////////////
 // - SCSS/CSS
 /////////////////
 
-const SCSS_SRC  = './src/components/**/*.scss';
-const SCSS_DEST = './src/css';
+const SCSS_SRC  = 'src/components/**/*.scss';
+const SCSS_DEST = 'src/css';
 
 gulp.task('build_scss', function() {
-    return gulp.src('./src/components/screen.scss')
+    return gulp.src('src/components/screen.scss')
         .pipe(sassGlob())
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(minifyCSS())
@@ -27,7 +28,9 @@ gulp.task('build_scss', function() {
 
 // Detect changes in SCSS
 gulp.task('watch_scss', () => {
-    gulp.watch(SCSS_SRC, ['build_scss']);
+    return watch(SCSS_SRC, () => {
+        gulp.start('build_scss');
+    });
 })
 
 // Run tasks

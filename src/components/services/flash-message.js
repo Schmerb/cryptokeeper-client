@@ -20,11 +20,13 @@ export class FlashMessage extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         const $this = this;
-        if(this.props.flashMsgClass === '' && nextProps.flashMsgClass === 'fadeIn') {
+        const currentClass = this.props.flashMsgClass;
+        const nextClass    = nextProps.flashMsgClass;
+        if(currentClass === '' && nextClass === 'fadeIn') {
             setTimeout(function() {
                 $this.props.dispatch(flashMsgClass(''));
             }, 2000);
-        } else if(this.props.flashMsgClass === 'fadeIn' && nextProps.flashMsgClass === '') {
+        } else if(currentClass === 'fadeIn' && nextClass === '') {
             setTimeout(function() {
                 $this.props.dispatch(flashMsgClass('hidden'));
             }, 500);
