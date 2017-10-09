@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { toggleLinks } from 'actions/display';
-import { setCurrentUser, setAuthToken } from 'actions/auth';
 import { toggleMenu } from 'actions/display';
-import { clearAuthToken } from 'local-storage';
+import { setCurrentUser, setAuthToken } from 'actions/auth';
+import { clearAuthToken } from 'utils/local-storage';
 
 import GearWheel from 'icons/gear-wheel';
 import TieAvatar from 'icons/tie-avatar';

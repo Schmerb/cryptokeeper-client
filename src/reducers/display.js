@@ -15,8 +15,28 @@ const initialState = {
     hasTouch: false,
     flashMsgClass: '',
     item: '',
-    currency: 'USD'
+    currency: 'USD',
+    currencySym: '$'
 };
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Returns appropriate currency symbol
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function getCurrencySym(currency) {
+    switch (currency) {
+        case 'USD':
+            return '$';
+        case 'AUD':
+            return 'A$';
+        case 'EUR':
+            return '\u0024';
+            // return '\u20AC';
+        case 'GBP':
+            return '\xA3';
+        default:
+            return currency;
+    }
+}
 
 //
 // Display Reducer
@@ -51,7 +71,8 @@ export default function reducer(state = initialState, action) {
             });
         case SET_BASE_CURRENCY :
             return Object.assign({}, state, {
-                currency: action.currency
+                currency: action.currency,
+                currencySym: getCurrencySym(action.currency)
             });
         default:
             return state;

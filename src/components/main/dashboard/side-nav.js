@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { dashHoverVr } from 'actions/display';
 import { setCurrentUser, setAuthToken } from 'actions/auth';
-import { clearAuthToken } from 'local-storage';
+import { clearAuthToken } from 'utils/local-storage';
 
 import PortfolioBag from 'icons/portfolio-bag';
 import EventGraph from 'icons/event-graph';

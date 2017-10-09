@@ -60,7 +60,9 @@ export class MyCurrencies extends React.Component {
 
     render() {
         const c_data = this.getData();
-        const boxes = c_data.map((data, index) => <CurrencyBox key={index} data={data}/>);
+        const boxes = c_data.map((data, index) => (
+            <CurrencyBox key={index} data={data} currencySym={this.props.currencySym}/>
+        ));
         return(
             <section className="my-currencies">
                 <h2>My Currencies</h2>
@@ -77,7 +79,8 @@ const mapStateToProps = state => ({
     BTC: state.crypto.BTC,
     ETH: state.crypto.ETH,
     LTC: state.crypto.LTC,
-    XMR: state.crypto.XMR
+    XMR: state.crypto.XMR,
+    currencySym: state.display.currencySym
 });
 
 export default connect(mapStateToProps)(MyCurrencies);

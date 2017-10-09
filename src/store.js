@@ -7,7 +7,7 @@ import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
 import { setAuthToken }  from 'actions/auth';
-import { loadAuthToken } from './local-storage';
+import { loadAuthToken } from 'utils/local-storage';
 
 import authReducer          from 'reducers/auth';
 import protectedDataReducer from 'reducers/protected-data';
@@ -42,5 +42,9 @@ if (authToken) {
     // console.log('setting auth token');
     store.dispatch(setAuthToken(token));
 }
+
+// FETCH PREV STATE FROM LocalStorage
+
+// Eventually, hydrate state based off of user account MongoDB data!!!!
 
 export default store;

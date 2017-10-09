@@ -11,13 +11,16 @@ export default class CurrencyBox extends React.Component {
                 <h2>{data.type}</h2>
                 <ul>
                     <li>
-                        <span>Price:</span> $<span>{data.price}</span>
+                        <span className="type">Price:</span> 
+                        <span className="value">{this.props.currencySym}{data.price}</span>
                     </li>
                     <li>
-                        <span>Owned:</span> <span>{data.owned}</span>
+                        <span className="type">Owned:</span> 
+                        <span className="value">{data.owned}</span>
                     </li>
                     <li>
-                        <span>Valued:</span> $<span>{valued}</span>
+                        <span className="type">Valued:</span> 
+                        <span className="value">{this.props.currencySym}{valued}</span>
                     </li>
                 </ul>
                 <button className="edit-btn">

@@ -53,6 +53,7 @@ export class BaseCurrencyBox extends React.Component {
                         <option value="USD">Dollar</option>
                         <option value="EUR">Euro</option>
                         <option value="GBP">Pound</option>
+                        <option value="AUD">Australian</option>
                         {/* <option value="canadian">Canadian</option> */}
                     </select>
                     <ArrowDown />

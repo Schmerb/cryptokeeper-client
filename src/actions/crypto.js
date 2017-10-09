@@ -21,3 +21,9 @@ export const updateXMRInfo = (info) => ({
     type: UPDATE_XMR_INFO,
     info 
 });
+
+export const UPDATE_AUD_INFO = 'UPDATE_AUD_INFO';
+export const updateAUDInfo = (info) => ({
+    type: UPDATE_AUD_INFO,
+    info 
+});

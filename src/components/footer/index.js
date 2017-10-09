@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { setCurrentUser, setAuthToken } from 'actions/auth';
 import { toggleMenu } from 'actions/display';
 
-import { clearAuthToken } from 'local-storage';
+import { clearAuthToken } from 'utils/local-storage';
 
 
 

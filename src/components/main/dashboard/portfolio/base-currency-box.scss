@@ -42,10 +42,9 @@
         height: 40px;
     }
     .arrow-down-icon {
-        @extend %middleR;
+        @include middleR(30px);
         fill: $offwhite;
         pointer-events: none;
-
         width: 30px;
         height: 30px;
     }
@@ -54,11 +53,15 @@
         font-size: 24px;
         height: 40px;
         line-height: 40px;
+        width: 260px;
+        @include mediaMin($collapse) {
+            width: 200px;
+        }
         select {
             color: $offwhite;
             appearance: none;
             background-color: transparent;
-            width: 120px;
+            width: 150px;
             border: none;
             outline: none;
             cursor: pointer;
