@@ -5,17 +5,48 @@ import {
 	updateXMRInfo,
 } from 'actions/crypto';
 
+
 const { CCC } = require('utils/ccc-streamer-utilities');
 const socket  = require('socket.io-client')('https://streamer.cryptocompare.com/');
-const subscription = [
-	'5~CCCAGG~BTC~USD',
-	'5~CCCAGG~ETH~USD',
-	'5~CCCAGG~XMR~USD',
-	'5~CCCAGG~LTC~USD'
-];
 
-export default function(store) {
-    socket.emit('SubAdd', { subs: subscription });
+
+let store = null;
+let currency = 'USD';
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Event Listener callback for redux state change
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function handleChange() {
+    const state = store.getState();
+    const newCurrency = state.display.currency;
+    // console.log('currency: ', currency);
+    // console.log('newCurrency: ', newCurrency);
+    if(newCurrency !== currency) {
+        emitSubscription('SubAdd', newCurrency);
+        emitSubscription('SubRemove', currency);
+        currency = newCurrency;
+    }
+};
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Emits socketIO event to subscribe to stream
+// for given currencies
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function emitSubscription(type, currency) {
+    let subscription = [
+        `5~CCCAGG~BTC~${currency}`,
+        `5~CCCAGG~ETH~${currency}`,
+        `5~CCCAGG~XMR~${currency}`,
+        `5~CCCAGG~LTC~${currency}`
+    ];
+    socket.emit(type, { subs: subscription });
+}
+
+export default function(storeObj) {
+    store = storeObj;
+    store.subscribe(handleChange);
+
+    emitSubscription('SubAdd', currency);
     socket.on('m', message => {
         const messageType = message.substring(0, message.indexOf("~"));
 

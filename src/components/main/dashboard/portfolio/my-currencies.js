@@ -16,19 +16,43 @@ export class MyCurrencies extends React.Component {
             {
                 type: "BTC",
                 name: "Bitcoin",
-                price: props.BTC.price,
+                price: props.BTC.price.toFixed(2),
                 owned: 0.34092
             },
             {
                 type: "ETH",
                 name: "Ethereum",
-                price: props.ETH.price,
+                price: props.ETH.price.toFixed(2),
                 owned: 11.23
             },
             {
                 type: "LTC",
                 name: "Litecoin",
-                price: props.LTC.price,
+                price: props.LTC.price.toFixed(2),
+                owned: 5.6
+            },
+            {
+                type: "LTC",
+                name: "Litecoin",
+                price: props.LTC.price.toFixed(2),
+                owned: 5.6
+            },
+            {
+                type: "LTC",
+                name: "Litecoin",
+                price: props.LTC.price.toFixed(2),
+                owned: 5.6
+            },
+            {
+                type: "LTC",
+                name: "Litecoin",
+                price: props.LTC.price.toFixed(2),
+                owned: 5.6
+            },
+            {
+                type: "LTC",
+                name: "Litecoin",
+                price: props.LTC.price.toFixed(2),
                 owned: 5.6
             },
         ];

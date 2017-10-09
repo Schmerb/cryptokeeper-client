@@ -2,27 +2,31 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 
-import Landing      from './landing/';
-import ChatBoard    from './chat-board/';
-import LoginPage    from './login-page/';
-import SignupPage   from './signup-page/';
-import Dashboard    from './dashboard/';
-import Currencies   from './currencies/';
+import Landing    from './landing/';
+import ChatBoard  from './chat-board/';
+import LoginPage  from './login-page/';
+import SignupPage from './signup-page/';
+import Dashboard  from './dashboard/';
+import Currencies from './currencies/';
 
 export class Main extends React.Component {
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Returns appropriate class with background image for
+    // current url
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     applyBackgroundImg() {
-        if(this.props.location.pathname.includes('dashboard')) {
-            // document.body.classList.toggle('dashboard-back', true);
+        let pathname = this.props.location.pathname;
+        if(pathname.includes('dashboard')) {
             return 'dashboard-back';
-        } else if (this.props.location.pathname === '/') {
-            // document.body.classList.toggle('dashboard-back', false);
+        } else if (pathname === '/') {
             return 'landing-back';
         }
         return '';
     }
 
     render() {
-        let classes = this.applyBackgroundImg();
+        let classes = `${this.applyBackgroundImg()} ${this.props.hasTouch ? 'hasTouch' : ''}`;
         return(
             <main role="main" className={classes}>
                 <div className="container">
@@ -39,7 +43,8 @@ export class Main extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.auth.currentUser !== null,
+    hasTouch: state.display.hasTouch
 });
 
 export default withRouter(connect(mapStateToProps)(Main));

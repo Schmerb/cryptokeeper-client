@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ProtectedData from './protected-data';
+// import ProtectedData from './protected-data';
 import BaseCurrencyBox from './base-currency-box';
 import MyCurrencies from './my-currencies';
 

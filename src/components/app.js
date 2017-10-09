@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 
 import { refreshAuthToken } from 'actions/auth';
 import { setWidth } from 'actions/display';
+import { hasTouch } from 'actions/display';
 
 import Header from './header/';
 import Main from './main/';
@@ -21,6 +22,7 @@ export class App extends React.Component {
             console.log('hasAuthToken: ', this.props.hasAuthToken);
             this.props.dispatch(refreshAuthToken());
         }
+        this.checkForTouch();
     };
 
     // * * * * * * * * * * * * * * * * * * * *
@@ -51,6 +53,29 @@ export class App extends React.Component {
     componentWillUnmount() {
         window.removeEventListener('resize', this.handleWindowResize);
     };
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Checks if a user has touched their device and
+    // applies class to body and global var indicating whether
+    // user has touched / can touch. 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    checkForTouch() {
+        window.USER_IS_TOUCHING = false;
+        const $this = this;
+        window.addEventListener('touchstart', function onFirstTouch() {
+            // we could use a class
+            document.body.classList.add('user-is-touching');
+          
+            // or set some global variable
+            window.USER_IS_TOUCHING = true;
+          
+            // or set your app's state however you normally would
+            $this.props.dispatch(hasTouch(true));
+          
+            // we only need to know once that a human touched the screen, so we can stop listening now
+            window.removeEventListener('touchstart', onFirstTouch, false);
+          }, false);
+    }
 
     // * * * * * * * * * * * * * * * * * * * *
     // Dispatches action to update current 

@@ -7,14 +7,22 @@
 .my-currencies {
     position: relative;
     margin-top: 40px;
-    min-width: 300px;
-    border: 1px solid white;
 
     @include mediaMin($collapse) {
-        float: right;
+        display: inline-block;
+        width: 400px;
+        padding-bottom: 100px;
     }
-
-    button {
+    @include mediaMin($desktop) {
+        float: right;
+        width: 64%;
+        margin: 0;
+        padding-bottom: 100px;
+    }
+    h2 {
+        margin-bottom: 10px;
+    }
+    .add-currency-btn {
         background-color: rgba(#39386c, 0.7);
         width: 100%;
         max-width: 400px;
@@ -27,10 +35,15 @@
             left: 0;
             bottom: 0;
         }
-    }
-
-    .circle-plus-icon {
-        width: 40px;
-        height: 40px;
+        @include mediaMin($desktop) {
+            width: 100%;
+            max-width: initial;
+        }
+        .circle-plus-icon {
+            fill: $offwhite;
+            opacity: 0.8;
+            width: 40px;
+            height: 40px;
+        }
     }
 }

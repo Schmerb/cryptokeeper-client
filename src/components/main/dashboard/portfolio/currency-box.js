@@ -1,9 +1,11 @@
 import React from 'react';
 
+import EditIcon from 'icons/edit-icon';
+
 export default class CurrencyBox extends React.Component {
     render() {
         const { data } = this.props;
-        const valued = data.price * data.owned;
+        const valued = (data.price * data.owned).toFixed(2);
         return(
             <div className="c-box">
                 <h2>{data.type}</h2>
@@ -18,6 +20,9 @@ export default class CurrencyBox extends React.Component {
                         <span>Valued:</span> $<span>{valued}</span>
                     </li>
                 </ul>
+                <button className="edit-btn">
+                    <EditIcon />
+                </button>
             </div>
         );
     }

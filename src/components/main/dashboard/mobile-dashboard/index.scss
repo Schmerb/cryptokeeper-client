@@ -86,7 +86,7 @@ $thickness: 1px;
                     height: $length;
                 }
                 &:after {
-                    @include middleR;
+                    @extend %middleR;
                 }
                 &:before {
                     @extend %center;
@@ -105,7 +105,7 @@ $thickness: 1px;
                     height: $length;
                 }
                 &:after {
-                    @include middleL;
+                    @extend %middleL;
                 }
                 &:before {
                     @extend %center;

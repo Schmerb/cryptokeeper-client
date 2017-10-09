@@ -2,16 +2,20 @@ import {
     TOGGLE_MENU, 
     TOGGLE_LINKS, 
     SET_WIDTH,
+    HAS_TOUCH,
     FLASH_MSG_CLASS,
-    DASH_HOVER_VR 
+    DASH_HOVER_VR,
+    SET_BASE_CURRENCY 
 } from 'actions/display'
 
 const initialState = {
     open: false,
     openLinks: false,
     width: window.innerWidth,
+    hasTouch: false,
     flashMsgClass: '',
-    item: ''
+    item: '',
+    currency: 'USD'
 };
 
 //
@@ -33,6 +37,10 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {
                 width: action.width
             });
+        case HAS_TOUCH:
+            return Object.assign({}, state, {
+                hasTouch: action.hasTouch
+            });
         case FLASH_MSG_CLASS:
             return Object.assign({}, state, {
                 flashMsgClass: action.classname
@@ -40,6 +48,10 @@ export default function reducer(state = initialState, action) {
         case DASH_HOVER_VR:
             return Object.assign({}, state, {
                 item: action.item
+            });
+        case SET_BASE_CURRENCY :
+            return Object.assign({}, state, {
+                currency: action.currency
             });
         default:
             return state;

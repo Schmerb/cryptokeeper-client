@@ -17,7 +17,7 @@ import {
 } from 'actions/chat';
 
 const ioClient = require('socket.io-client')  
-const socket   = ioClient('http://localhost:8080');
+const socket   = ioClient('http://192.168.1.112:8080');
 
 export class ChatBoard extends React.Component {
 

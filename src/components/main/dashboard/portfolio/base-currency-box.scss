@@ -9,14 +9,17 @@
     display: inline-block;
     background-color: rgba($red, 0.7);
     width: 100%;
+    max-width: 400px;
     height: 200px;
+    border-radius: 8px;
     
-    @include mediaMin($landscape) {
-        width: 400px;
-    }
     @include mediaMin($collapse) {
         margin-left: 4px;
-        float: left;
+    }
+    @include mediaMin($desktop) {
+        min-width: 280px;
+        width: 25%;
+        margin-top: 38px;
     }
 
     h2 {
@@ -24,31 +27,38 @@
         margin-left: 15px;
         margin-top: 15px;
     }
-    .btc-dollar-icon {
-        position: absolute;
+    .currency-sym {
+        fill: gold;
+        width: 40px;
+        height: 40px;
+        vertical-align: middle;
+    }
+    .conv-sym {
         fill: $offwhite;
+        position: absolute;
         top: 10px;
         right: 10px;
         width: 40px;
         height: 40px;
     }
     .arrow-down-icon {
+        @extend %middleR;
         fill: $offwhite;
-        position: absolute;
         pointer-events: none;
-        right: 0;
+
         width: 30px;
         height: 30px;
     }
     form {
         @extend %abs-middle;
+        font-size: 24px;
+        height: 40px;
+        line-height: 40px;
         select {
             color: $offwhite;
             appearance: none;
             background-color: transparent;
-            height: 30px;
-            width: 100px;
-            line-height: 30px;
+            width: 120px;
             border: none;
             outline: none;
             cursor: pointer;

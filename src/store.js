@@ -33,6 +33,8 @@ const store = createStore(
 // on data received
 cryptoService(store);
 
+// console.log(store);
+
 // Hydrate the authToken from localStorage if it exist
 const authToken = loadAuthToken();
 if (authToken) {
