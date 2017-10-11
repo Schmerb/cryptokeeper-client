@@ -41,13 +41,6 @@
         width: 40px;
         height: 40px;
     }
-    .arrow-down-icon {
-        @include middleR(30px);
-        fill: $offwhite;
-        pointer-events: none;
-        width: 30px;
-        height: 30px;
-    }
     form {
         @extend %abs-middle;
         font-size: 24px;
@@ -55,7 +48,7 @@
         line-height: 40px;
         width: 260px;
         @include mediaMin($collapse) {
-            width: 200px;
+            // width: 200px;
         }
         select {
             color: $offwhite;
@@ -65,6 +58,13 @@
             border: none;
             outline: none;
             cursor: pointer;
+        }
+        .arrow-down-icon {
+            @include middleR(30px);
+            fill: $offwhite;
+            pointer-events: none;
+            width: 30px;
+            height: 30px;
         }
     }
 }

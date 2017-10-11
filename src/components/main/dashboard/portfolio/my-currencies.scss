@@ -23,7 +23,7 @@
         margin-bottom: 10px;
     }
     .add-currency-btn {
-        background-color: rgba(#39386c, 0.7);
+        background-color: rgba($purple, 0.7);
         width: 100%;
         max-width: 400px;
         height: 100px;
@@ -36,7 +36,8 @@
             bottom: 0;
         }
         @include mediaMin($desktop) {
-            width: 100%;
+            width: calc(100% - 8px);
+            margin-left: 8px;
             max-width: initial;
         }
         .circle-plus-icon {

@@ -2,11 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { setCurrentUser, setAuthToken } from 'actions/auth';
 import { toggleMenu } from 'actions/display';
 
-import { clearAuthToken } from 'utils/local-storage';
-
+import { logUserOut } from 'services/user';
 
 
 export class Footer extends React.Component {
@@ -14,9 +12,7 @@ export class Footer extends React.Component {
     // logs user out by removing jwt token
     // * * * * * * * * * * * * * * * * * * * *
     logOut() {
-        this.props.dispatch(setCurrentUser(null));
-        this.props.dispatch(setAuthToken(null));
-        clearAuthToken();
+        logUserOut();
         this.hideMenu();
     }
 
@@ -61,7 +57,7 @@ export class Footer extends React.Component {
                     {links}
                 </nav>
                 <div className="copy">
-                    <span>copyright &copy; 2017</span>
+                    <span>copyright &copy; 2017 Mike Schmerbeck</span>
                 </div>
             </footer>
         );

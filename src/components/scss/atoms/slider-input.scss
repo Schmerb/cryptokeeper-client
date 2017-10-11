@@ -1,0 +1,50 @@
+// // // // // // // // // //
+//
+//       Slider Input
+//
+// // // // // // // // // //
+
+
+.switch {
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    width: 60px;
+    input:checked + .input-slider {
+        background-color: $green;
+        &:before {
+            left: 30px;
+        }
+    }
+    input:focus + .input-slider {
+        box-shadow: 0 0 1px $green;
+    }
+    .input-slider {
+        @include transition(0.4s);
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        vertical-align: middle;
+        background-color: #555;
+        background-color: $third;
+        &.round {
+            border-radius: 30px;
+            &:before {
+                border-radius: 50%;
+            }
+        }
+        &:before {
+            @include transition(0.4s);
+            @extend %middle;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+        }
+    }
+}

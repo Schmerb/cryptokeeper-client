@@ -1,0 +1,121 @@
+.settings {
+    padding-top: 40px;
+    @include mediaMin($collapse) {
+        overflow: hidden;
+    }
+    h2 {
+        text-align: center;
+    }
+}
+
+.settings-box {
+    position: relative;
+    background-color: rgba($secondary, 0.7);
+    width: 95%;
+    // max-width: 800px;
+    min-height: 400px;
+    margin: 0 auto;
+    padding-top: 40px;
+    text-align: center;
+    @include mediaMin($collapse) {
+        text-align: left;
+    }
+    .inner-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    hr {
+        border-color: rgba($offwhite, 0.2);
+        border-width: 0.5px;
+        width: 90%;
+        margin: 20px auto;
+        @include mediaMin($collapse) {
+            margin: 40px auto;
+        }
+    }
+    label { 
+        font-size: 24px;
+        position: relative;
+        display: block;
+        width: 90%;
+        margin: 0 auto 20px;
+        @include mediaMin(550px) {
+            font-size: 28px;
+        }
+        @include mediaMin($collapse) {
+            font-size: 26px;
+            span {
+                display: inline-block;
+                height: 50px;
+                line-height: 50px;
+            }
+        }
+        @include mediaMin($collapse + 100) {
+            font-size: 28px;
+        }
+        // border: 1px solid white;
+        // height: 60px;
+        // line-height: 60px;
+        // overflow: hidden;
+    }
+    input {
+        @include transition(0.3s, font-size);
+        background-color: transparent;
+        color: $offwhite;
+        display: block;
+        font-size: 20px;
+        width: 90%;
+        height: 40px;
+        margin: 0 auto;
+        line-height: 40px;
+        text-align: center;
+        border: none;
+        &:disabled {
+            color: $offwhite;
+        }
+        @include mediaMin(550px) {
+            font-size: 24px;
+        }
+        @include mediaMin($collapse) {
+            @include middleR;
+            width: 70%;
+            height: 50px;
+            text-align: left;
+        }
+        @include mediaMin($collapse + 100) {
+            font-size: 28px;
+        }
+    }
+    button {
+        border: none;
+        width: 40px;
+        height: 40px;
+    }
+    .edit-icon {
+        fill: $offwhite;
+        width: inherit;
+        height: inherit;
+        @include mediaMin($collapse) {
+            @include middleR;
+        }
+    }
+    .confirm-btn {
+        @include center;
+        background-color: rgba($green, 1);
+        color: $offwhite;
+        width: 200px;
+        height: 60px;
+    }
+    .delete-btn {
+        background-color: rgba($red, 0.7);
+        font-size: 13px;
+        width: 120px;
+        height: 40px;
+        @include mediaMin($collapse) {
+            @include center;
+            // position: absolute;
+            // left: 20px;
+            bottom: 10px;
+        }
+    }
+}

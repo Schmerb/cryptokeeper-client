@@ -3,20 +3,29 @@ import {
     TOGGLE_LINKS, 
     SET_WIDTH,
     HAS_TOUCH,
+    CONFIRM_MESSAGE,
+    CONFIRM_CLASS,
+    FLASH_MESSAGE,
+    REMOVE_FLASH_MESSAGE,
     FLASH_MSG_CLASS,
     DASH_HOVER_VR,
     SET_BASE_CURRENCY 
 } from 'actions/display'
 
+import { loadBaseCurrency } from 'utils/local-storage';
+
 const initialState = {
-    open: false,
-    openLinks: false,
-    width: window.innerWidth,
-    hasTouch: false,
-    flashMsgClass: '',
-    item: '',
-    currency: 'USD',
-    currencySym: '$'
+        open: false,
+        openLinks: false,
+        width: window.innerWidth,
+        hasTouch: false,
+        confirmMsg: null,
+        confirmClass: '',
+        flashMsg: null,
+        flashClass: '',
+        item: '',
+        currency: loadBaseCurrency() || 'USD',
+        currencySym: getCurrencySym(loadBaseCurrency()) ||'$'
 };
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -29,8 +38,7 @@ function getCurrencySym(currency) {
         case 'AUD':
             return 'A$';
         case 'EUR':
-            return '\u0024';
-            // return '\u20AC';
+            return '\u20AC';
         case 'GBP':
             return '\xA3';
         default:
@@ -61,9 +69,25 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {
                 hasTouch: action.hasTouch
             });
+        case CONFIRM_MESSAGE:
+            return Object.assign({}, state, {
+                confirmMsg: action.msg
+            });
+        case CONFIRM_CLASS:
+            return Object.assign({}, state, {
+                confirmClass: action.classname
+            });
+        case FLASH_MESSAGE:
+            return Object.assign({}, state, {
+                flashMsg: action.msg
+            });
+        case REMOVE_FLASH_MESSAGE:
+            return Object.assign({}, state, {
+                flashMsg: null
+            });
         case FLASH_MSG_CLASS:
             return Object.assign({}, state, {
-                flashMsgClass: action.classname
+                flashClass: action.classname
             });
         case DASH_HOVER_VR:
             return Object.assign({}, state, {

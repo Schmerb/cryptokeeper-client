@@ -2,19 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
-import { dashHoverVr } from 'actions/display';
-import { setCurrentUser, setAuthToken } from 'actions/auth';
-import { clearAuthToken } from 'utils/local-storage';
+import { dashHoverVr, confirmMessage } from 'actions/display';
+
+// import { logUserOut } from 'services/user';
 
 import PortfolioBag from 'icons/portfolio-bag';
-import EventGraph from 'icons/event-graph';
+import EventGraph   from 'icons/event-graph';
 
 export class SideNav extends React.Component {
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Dispatches action to move vertical positioning bar
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     hover(target) {
         // update the class on dash-vr
-        console.log('target: ', target);
+        // console.log('target: ', target);
         this.props.dashHoverVr(target);
+    }
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Dispatches action to display confirm modal
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    confirmLogOut() {
+        this.props.confirmMsg('Are you sure you want to log out?');
     }
 
     render() {
@@ -60,7 +70,7 @@ export class SideNav extends React.Component {
                     <li className="logout-li five" 
                         onMouseEnter={() => this.hover('five')}
                         onMouseLeave={() => this.hover('')}>
-                        <button onClick={e => this.props.logOut()}>Logout</button>
+                        <button onClick={() => this.confirmLogOut()}>Logout</button>
                     </li>
                 </ul>
             </div>
@@ -73,14 +83,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    logOut: () => {
-        dispatch(setCurrentUser(null));
-        dispatch(setAuthToken(null));
-        clearAuthToken();
-    },
     dashHoverVr: (target) => {
         dispatch(dashHoverVr(target));
-    }
+    },
+    confirmMsg: question => dispatch(confirmMessage(question))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SideNav));

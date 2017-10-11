@@ -1,11 +1,19 @@
-import React from 'react';
+import React     from 'react';
+import { Route } from 'react-router-dom';
 
-export default class Events extends React.Component {
+import Events    from './events';
+import EventForm from './event-form';
+import EditEventForm from './edit-event-form';
+
+export default class EventsPage extends React.Component {
     render() {
+        const path = '/dashboard/events';
         return(
-            <div className="events">
-                <h2>My Events</h2>
-            </div>
+            <section className="events">
+                <Route exact path={path} component={Events} />
+                <Route exact path={`${path}/add-event`} component={EventForm} />
+                <Route exact path={`${path}/edit-event`} component={EditEventForm} />
+            </section>
         );
     }
 }

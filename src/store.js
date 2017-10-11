@@ -14,8 +14,11 @@ import protectedDataReducer from 'reducers/protected-data';
 import displayReducer       from 'reducers/display';
 import chatReducer          from 'reducers/chat';
 import cryptoReducer        from 'reducers/crypto';
+import currencyReducer      from 'reducers/currency';
+import eventsReducer        from 'reducers/events';
 
 import cryptoService from 'services/crypto-stream';
+import persistState  from 'services/persist-state';
 
 const store = createStore(
     combineReducers({
@@ -24,7 +27,9 @@ const store = createStore(
         protectedData: protectedDataReducer,
         display: displayReducer,
         chat: chatReducer,
-        crypto: cryptoReducer
+        crypto: cryptoReducer,
+        currency: currencyReducer,
+        events: eventsReducer   
     }),
     applyMiddleware(thunk)
 );
@@ -33,7 +38,8 @@ const store = createStore(
 // on data received
 cryptoService(store);
 
-// console.log(store);
+// Subscribes to store and saves updated state in localStorage
+persistState(store);
 
 // Hydrate the authToken from localStorage if it exist
 const authToken = loadAuthToken();

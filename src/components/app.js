@@ -6,8 +6,13 @@ import { refreshAuthToken } from 'actions/auth';
 import { setWidth } from 'actions/display';
 import { hasTouch } from 'actions/display';
 
+import { storeURLPath, getURLPath } from 'utils/local-storage';
+
+import FlashMessage   from './services/flash-message';
+import ConfirmMessage from './services/confirmation-message';
+
 import Header from './header/';
-import Main from './main/';
+import Main   from './main/';
 import Footer from './footer/';
 
 export class App extends React.Component {
@@ -19,10 +24,12 @@ export class App extends React.Component {
         if(this.props.hasAuthToken) {
             // Try to get a fresh auth token if we had an existing one in
             // localStorage
-            console.log('hasAuthToken: ', this.props.hasAuthToken);
+            // console.log('hasAuthToken: ', this.props.hasAuthToken);
             this.props.dispatch(refreshAuthToken());
         }
+        this.redirectToPreviousURL();
         this.checkForTouch();
+        this.listenForHistoryChange();
     };
 
     // * * * * * * * * * * * * * * * * * * * *
@@ -60,21 +67,32 @@ export class App extends React.Component {
     // user has touched / can touch. 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     checkForTouch() {
-        window.USER_IS_TOUCHING = false;
         const $this = this;
         window.addEventListener('touchstart', function onFirstTouch() {
-            // we could use a class
-            document.body.classList.add('user-is-touching');
-          
-            // or set some global variable
-            window.USER_IS_TOUCHING = true;
-          
             // or set your app's state however you normally would
             $this.props.dispatch(hasTouch(true));
-          
             // we only need to know once that a human touched the screen, so we can stop listening now
             window.removeEventListener('touchstart', onFirstTouch, false);
-          }, false);
+        }, false);
+    }
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Redirects to previous route stored in localStorage
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    redirectToPreviousURL() {
+        let pathname = getURLPath();
+        if(pathname) {
+            this.props.history.push({ pathname });
+        }
+    }
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Listens for history change and saves in localStorage
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    listenForHistoryChange() {
+        this.props.history.listen((location, action) => {
+            storeURLPath(location.pathname);
+        });
     }
 
     // * * * * * * * * * * * * * * * * * * * *
@@ -82,7 +100,7 @@ export class App extends React.Component {
     // window width in state
     // * * * * * * * * * * * * * * * * * * * *
     handleWindowResize($this) {
-        console.log('innder width:', window.innerWidth);
+        // console.log('innder width:', window.innerWidth);
         this.props.dispatch(setWidth(window.innerWidth));
     }
 
@@ -104,13 +122,21 @@ export class App extends React.Component {
         if(!this.refreshInterval) {
             return;
         }
-
         clearInterval(this.refreshInterval);
     };
 
     render () {
+        let confirmMsg = null,
+            flashMsg   = null;
+        if(this.props.flashMsg) {
+            flashMsg = <FlashMessage delay={200} msg={this.props.flashMsg}/>;
+        } else if(this.props.confirmMsg) {
+            confirmMsg = <ConfirmMessage question={this.props.confirmMsg}/>;
+        }
         return(
             <section className="app">
+                {confirmMsg}
+                {flashMsg}
                 <Header />
                 <Main />
                 <Footer />
@@ -121,7 +147,10 @@ export class App extends React.Component {
 
 const mapStateToProps = state => ({
     hasAuthToken: state.auth.authToken !== null,
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.auth.currentUser !== null,
+    justLoggedOut: state.auth.justLoggedOut,
+    confirmMsg: state.display.confirmMsg,
+    flashMsg: state.display.flashMsg
 });
 
 export default withRouter(connect(mapStateToProps)(App));

@@ -1,6 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React          from 'react';
+import { connect }    from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
+import { flashMessage } from 'actions/display';
 
 import LoginForm from './login-form';
 
@@ -14,9 +16,9 @@ export class LoginPage extends React.Component {
         // If we are logged in redirect straight to the user's dashboard
         if (nextProps.loggedIn) {
             this.props.history.push({
-                pathname: `/dashboard${window.innerWidth >= 800 ? '/portfolio' : ''}`,
-                msg: 'logged in'
+                pathname: `/dashboard${window.innerWidth >= 800 ? '/portfolio' : ''}`
             });
+            this.props.dispatch(flashMessage('Successfully logged in!'));
         }
     }
 

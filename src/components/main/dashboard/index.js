@@ -1,26 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Redirect, withRouter, Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
+
+
 
 import MobileDashboard from './mobile-dashboard/';
 import MobileNav       from './mobile-dashboard/mobile-nav';
 import Portfolio       from './portfolio/';
-import Events          from './events/';
+import EventsPage      from './events/';
 import Avatar          from './account/avatar';
 import Settings        from './account/settings';
 import SideNav         from './side-nav';
-import FlashMessage    from 'components/services/flash-message';
 
 export class Dashboard extends React.Component {
 
     componentDidMount() {
-        console.log('Component just mounted');
-        console.log(this.props);
+        // console.log('Component just mounted');
+        // console.log(this.props);
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("current:", this.props);
-        console.log("next:", nextProps);
+        // console.log("current:", this.props);
+        // console.log("next:", nextProps);
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -43,34 +44,19 @@ export class Dashboard extends React.Component {
         return { nav, mobileDash };
     }
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // Returns flash message if passed as prop, null otherwise
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    checkForFlashMsg() {
-        let msg   = this.props.location.msg;
-        let flash = null;
-        if(msg) {
-            flash = <FlashMessage msg={msg}/>;
-        }
-        return { flash };
-    }
-
-
     render() {
-        console.log('This is the location: ', this.props.location);
+        console.log('This is the location: ', this.props);
         // Only visible to logged in users
         if (!this.props.loggedIn) {
             return <Redirect to="/" />; // Fires when logOut() is dispatched
         }
         const { nav, mobileDash } = this.checkPath();
-        const { flash } = this.checkForFlashMsg();
         return (
             <div className="dashboard">
                 {nav}
                 {mobileDash}
-                {flash}
-                <Route exact path="/dashboard/portfolio" component={Portfolio}/>
-                <Route exact path="/dashboard/events" component={Events}/>
+                <Route path="/dashboard/portfolio" component={Portfolio} />
+                <Route path="/dashboard/events" component={EventsPage} />
                 <Route exact path="/dashboard/avatar" component={Avatar}/>
                 <Route exact path="/dashboard/settings" component={Settings}/>
             </div>
@@ -93,4 +79,4 @@ const mapStateToProps = state => {
 };
 
 
-export default withRouter(connect(mapStateToProps)(Dashboard));
+export default connect(mapStateToProps)(Dashboard);

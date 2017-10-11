@@ -1,11 +1,10 @@
-import React from 'react';
+import React       from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link }    from 'react-router-dom';
 
-import { toggleLinks } from 'actions/display';
-import { toggleMenu } from 'actions/display';
-import { setCurrentUser, setAuthToken } from 'actions/auth';
-import { clearAuthToken } from 'utils/local-storage';
+import { toggleLinks, toggleMenu } from 'actions/display';
+
+import { logUserOut } from 'services/user';
 
 import GearWheel from 'icons/gear-wheel';
 import TieAvatar from 'icons/tie-avatar';
@@ -17,7 +16,7 @@ export class TopNavLinks extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps, nextProps:', nextProps);
+        // console.log('componentWillReceiveProps, nextProps:', nextProps);
         let $this = this;
         let delay = nextProps.open ? 0: 400;
         setTimeout(() => {
@@ -35,13 +34,11 @@ export class TopNavLinks extends React.Component {
         // console.log('just updated, prevProps:', prevProps);
     }
 
-      // * * * * * * * * * * * * * * * * * * * *
+    // * * * * * * * * * * * * * * * * * * * *
     // logs user out by removing jwt token
     // * * * * * * * * * * * * * * * * * * * *
     logOut() {
-        this.props.dispatch(setCurrentUser(null));
-        this.props.dispatch(setAuthToken(null));
-        clearAuthToken();
+        logUserOut();
         this.hideMenu();
     }
 
@@ -100,6 +97,9 @@ export class TopNavLinks extends React.Component {
                         <li className="links-li one">
                             <Link to={'/'} onClick={e => this.hideMenu()}>Home</Link>
                         </li>
+                        {/* <li className="links-li two">
+                            <Link to={'/'} onClick={e => this.hideMenu()}>Dashboard</Link>
+                        </li> */}
                         <li className="links-li two">
                             <Link to={'/chat'} onClick={e => this.hideMenu()}>LiveChat</Link>
                         </li>

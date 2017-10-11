@@ -13,12 +13,17 @@ export const toggleLinks = (open) => ({
     open
 });
 
-// Dashboard Menu 
+//
+// Dashboard 
+//
 export const DASH_HOVER_VR = 'DASH_HOVER_VR';
 export const dashHoverVr = (item) => ({
     type: DASH_HOVER_VR,
     item
 });
+
+
+
 
 //
 // Util Actions
@@ -38,9 +43,32 @@ export const hasTouch = (hasTouch) => ({
 //
 // Flash Message Action
 //
+export const FLASH_MESSAGE = 'FLASH_MESSAGE';
+export const flashMessage = msg => ({
+    type: FLASH_MESSAGE,
+    msg: msg
+});
+
+export const REMOVE_FLASH_MESSAGE = 'REMOVE_FLASH_MESSAGE';
+export const removeFlashMessage = () => ({
+    type: REMOVE_FLASH_MESSAGE
+});
+
 export const FLASH_MSG_CLASS = 'FLASH_MSG_CLASS';
 export const flashMsgClass = (classname) => ({
     type: FLASH_MSG_CLASS,
+    classname
+});
+
+export const CONFIRM_MESSAGE = 'CONFIRM_MESSAGE';
+export const confirmMessage = msg => ({
+    type: CONFIRM_MESSAGE,
+    msg
+});
+
+export const CONFIRM_CLASS = 'CONFIRM_CLASS';
+export const confirmClass = classname => ({
+    type: CONFIRM_CLASS,
     classname
 });
 

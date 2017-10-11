@@ -1,0 +1,57 @@
+// // // // // // // // // //
+//
+//       Event Box
+//
+// // // // // // // // // //
+
+
+.event-box {
+    position: relative;
+    display: inline-block;
+    background-color: rgba($secondary, 0.8);
+    width: 300px;
+    height: 300px;
+    margin: 5px;
+    padding: 0 20px;
+    // border: 1px solid white;
+    @include mediaMin($desktop + 100){
+        float: left;
+    }
+
+    button {
+        border: none;
+    }
+    .edit-btn {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        fill: $offwhite;
+        width: 55px;
+        height: 55px;
+    }
+    .delete-btn {
+        background-color: rgba($red, 0.7);
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        padding: 10px;
+    }
+    &.edit {
+        background-color: rgba($purple, 0.8);
+        cursor: pointer;
+    }
+    .circle-plus-btn {
+        @extend %abs-middle;
+        width: 55px;
+        height: 55px;
+        svg {
+            fill: rgba($offwhite, 0.9);
+        }
+    }
+    span {
+        float: right;
+    }
+    .title {
+        float: left;
+    }
+}

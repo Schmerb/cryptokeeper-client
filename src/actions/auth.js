@@ -1,9 +1,9 @@
 import jwtDecode from 'jwt-decode';
-import {SubmissionError} from 'redux-form';
+import { SubmissionError } from 'redux-form';
 
-import {API_BASE_URL} from '../config';
-import {normalizeResponseErrors} from './utils';
-import {saveAuthToken, clearAuthToken} from 'utils/local-storage';
+import { API_BASE_URL } from '../config';
+import { normalizeResponseErrors } from './utils';
+import { saveAuthToken, clearAuthToken } from 'utils/local-storage';
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
 export const setAuthToken = authToken => ({
@@ -16,6 +16,7 @@ export const setCurrentUser = currentUser => ({
     type: SET_CURRENT_USER,
     currentUser
 });
+
 
 // Stores the auth token in state and localStorage, and decodes and stores
 // the user data stored in the token

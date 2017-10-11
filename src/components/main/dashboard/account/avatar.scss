@@ -1,0 +1,82 @@
+.avatar {
+    padding-top: 40px;
+    overflow: auto;
+    h2 {
+        text-align: center;
+    }
+    .container {
+        position: relative;
+        background-color: rgba($secondary, 0.8);
+        width: 95%;
+        height: 300px;
+        max-width: 800px;
+        margin: 20px auto;
+        text-align: center;
+        @include mediaMin($collapse) {
+            height: 600px;
+        }
+    }
+    form {
+        @extend %abs-middle;
+        width: 90%;
+        max-width: 400px;
+        >label {
+            position: relative;
+            display: block;
+            font-size: 18px;
+            min-height: 60px;
+            overflow: auto;
+            @include mediaMin($iphone6) {
+                font-size: 20px;;
+            }
+            @include mediaMin($tablet) {
+                font-size: 24px;
+            }
+            &:first-of-type {
+                margin-bottom: 30px;
+            }
+            span {
+                @extend %middleL;
+            }
+            input, button {
+                float: right
+            }
+        }
+    }
+    button {
+        position: relative;
+        width: 120px;
+        height: 100px;
+        border: 1px solid white;
+        .tie-avatar {
+            fill: $offwhite;
+            width: 80px;
+            height: 80px;
+        }
+        .arrow-down-icon {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            fill: $offwhite;
+            width: 20px;
+            height: 20px;
+        }
+    }
+    input[type="file"] {
+        display: none;
+    }
+    .custom-file-upload {
+        padding: 6px 12px;
+        width: 120px;
+        height: 100px;
+        float: right;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .image-upload-icon {
+        fill: $offwhite;
+        width: 80px;
+        height: 80px;
+    }
+}

@@ -1,0 +1,29 @@
+// // // // // // // // // //
+//
+//       Events
+//
+// // // // // // // // // //
+
+
+.events {
+    padding-top: 50px;
+    // border: 1px solid white;
+    text-align: center;
+    overflow: hidden;
+
+    h2 {
+        text-align: center;
+    }
+    .events-container {
+        // border: 1px solid limegreen;
+        overflow: auto;
+        @include mediaMin($desktop + 100) {
+            width: 940px;
+            margin: 0 auto;
+        }
+        @include mediaMin(1500px) {
+            width: 1245px;
+            margin: 0 auto;
+        }
+    }
+}

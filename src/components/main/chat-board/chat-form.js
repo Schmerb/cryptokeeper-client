@@ -46,7 +46,7 @@ export class ChatForm extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     userTyping(e) {
         e.preventDefault();
-        console.log(`${this.props.name} is typing . . .`);
+        // console.log(`${this.props.name} is typing . . .`);
         if(this.input.value === '') {
             this.props.socket.emit('user typing', null);
         } else {

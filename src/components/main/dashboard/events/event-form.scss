@@ -1,0 +1,198 @@
+// // // // // // // // // //
+//
+//       Event Form
+//
+// // // // // // // // // //
+
+
+.event-form-container {
+    position: relative;
+    padding-top: 40px;
+    margin: 0 auto;
+    @include mediaMin($tablet) {
+        width: 600px;
+    }
+    h2 {
+        padding-bottom: 20px;
+    }
+    a {
+        position: absolute;
+        right: 15px;
+        top: -40px;
+        width: 55px;
+        height: 55px;
+        // border: 1px solid $green;
+        // border-radius: 30%;
+        svg {
+            fill: $green;
+        }
+    }
+    form {
+        position: relative;
+        color: $offwhite;
+        background-color: rgba($offwhite, 0.2);
+        max-width: 550px;
+        font-size: 18px;
+        padding: 10px 10px 80px;
+        margin: 0 auto;
+        border-radius: 10px;
+        button {
+            @extend %center;
+            color: white;
+            background-color: rgba($green, 0.8);
+            bottom: 10px;
+            width: 160px;
+            height: 50px;
+            border: none;
+
+        }
+        input, select, textarea { 
+            outline: none;
+        }
+        >label {
+            display: block;
+            text-align: left;
+            margin: 25px 0;
+        }
+
+        //
+        // NAME
+        //
+        input[id="event-name"] {
+            color: white;
+            background: transparent;
+            display: block;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 28px;
+            margin: 0 auto;
+            border: none;
+            text-align: center;
+            border-bottom: 1px solid rgba(white, 0.7);
+        }
+        select {
+            appearance: none;
+            background-color: rgba($offwhite, 0.9);
+            width: 70%;
+            height: 40px;
+            padding-left: 10px;
+            float: right;
+            cursor: pointer;
+        }
+
+        //
+        // OPTIONS
+        //
+        label[for="event-currency"],
+        label[for="condition"] {
+            overflow: auto;
+            position: relative;
+            @include mediaMin($iphone6) {
+                // width: 83%;
+            }
+        }
+        .arrow-down-icon {
+            @extend %middle;
+            right: 0;
+            width: 25px;
+            height: 25px;
+            pointer-events: none;
+        }
+
+        //
+        // TYPE CHECKBOX
+        //
+        label[for="event-type-field"] {
+            overflow: auto;
+            display: block;        
+        }
+        fieldset {
+            width: 80%;
+            border-color: rgba($offwhite, 0.4);
+            border-radius: 5px;
+            padding: 0;
+            float: right;
+            @include mediaMin($iphone6) {
+                padding: auto;
+                width: 70%;
+            }
+            @include mediaMin($iphone6P) {
+                padding-left: 20px;
+            }
+            label {
+                display: inline-block;
+                padding: 5px;
+                cursor: pointer;
+            }
+            .type-title {
+                position: relative;
+                bottom: 8px;
+                left: 10px;
+                @include mediaMin($iphone6) {
+                    left: 15px;
+                }
+            }
+        }
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        //
+        // Condition
+        //
+        label[for="condition"] {
+            position: relative;
+            height: 100px;
+            input, select {
+                height: 40px;
+                width: 100%;
+                border-radius: 5px;
+                border: none;
+            }
+            .cond-select-wrap {
+                position: absolute;
+                right: 0;
+                top: 0;
+                overflow: auto;
+                width: 70%;
+                .arrow-down-icon {
+                    
+                }
+            }
+            .cond-value-type {
+                position: absolute;
+                right: 0;
+                top: 45px;
+                width: 70%;
+                // border: 1px solid white; 
+                input, select {
+                    width: 48%;
+                    text-align: center;
+                }
+                input {
+                    float: left;
+                }
+                select {
+                    appearance: initial;
+                    float: right;
+                    padding-left: 60px;
+                }
+            }
+        }
+
+        //
+        // MESSAGE
+        //
+        label[for="event-message"] {
+            overflow: auto;
+            textarea {
+                width: 70%;
+                min-height: 100px;
+                float: right;
+                vertical-align: top;
+            }
+        }
+    }
+    
+}

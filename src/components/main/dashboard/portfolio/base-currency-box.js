@@ -15,7 +15,7 @@ import ArrowDown from 'icons/arrow-down';
 export class BaseCurrencyBox extends React.Component {
 
     setCurrency(e) {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         this.props.dispatch(setBaseCurrency(e.target.value));
     }
 
@@ -49,7 +49,9 @@ export class BaseCurrencyBox extends React.Component {
                 {conversionSym}
                 <form action="#!">
                     {currencySym}
-                    <select name="base-currency" onChange={e => this.setCurrency(e)}>
+                    <select name="base-currency" 
+                            value={this.props.currency}
+                            onChange={e => this.setCurrency(e)}>
                         <option value="USD">Dollar</option>
                         <option value="EUR">Euro</option>
                         <option value="GBP">Pound</option>
