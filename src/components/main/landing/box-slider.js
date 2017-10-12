@@ -35,27 +35,43 @@ export class BoxSlider extends React.Component {
 
 	render() {
 		let settings = this.slickSliderInit();
+		const sym = this.props.currencySym;
 		return (
 			<Slider {...settings}>
 				<div>
 					<Box currency="Bitcoin" 
 						price={this.props.BTC.price} 
-						currencySym={this.props.currencySym} />
+						currencySym={sym} />
 				</div>
 				<div>
 					<Box currency="Ethereum" 
 						price={this.props.ETH.price} 
-						currencySym={this.props.currencySym} />
+						currencySym={sym} />
 				</div>
 				<div>
 					<Box currency="Litecoin" 
 						price={this.props.LTC.price} 
-						currencySym={this.props.currencySym} />
+						currencySym={sym} />
 				</div>
 				<div>
 					<Box currency="Monero" 
 						price={this.props.XMR.price} 
-						currencySym={this.props.currencySym} />
+						currencySym={sym} />
+				</div>
+				<div>
+					<Box currency="Dash" 
+						price={this.props.DASH.price} 
+						currencySym={sym} />
+				</div>
+				<div>
+					<Box currency="Dogecoin" 
+						price={this.props.DOGE.price} 
+						currencySym={sym} />
+				</div>
+				<div>
+					<Box currency="Ripple" 
+						price={this.props.XRP.price} 
+						currencySym={sym} />
 				</div>
 			</Slider>
 		);
@@ -67,6 +83,9 @@ const mapStateToProps = state => ({
 	ETH: state.crypto.ETH,
 	LTC: state.crypto.LTC,
 	XMR: state.crypto.XMR,
+	DASH: state.crypto.DASH,
+	DOGE: state.crypto.DOGE,
+	XRP: state.crypto.XRP,
 	currency: state.display.currency,
 	currencySym: state.display.currencySym
 });

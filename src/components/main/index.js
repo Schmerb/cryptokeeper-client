@@ -35,7 +35,7 @@ export class Main extends React.Component {
                     <Route exact path="/login" component={LoginPage} />
                     <Route exact path="/signup" component={SignupPage} />
                     <Route path="/dashboard" component={Dashboard} />
-                    <Route exact path="/currencies" component={Currencies} />
+                    <Route path="/currencies" component={Currencies} />
                 </div> 
             </main>
         );

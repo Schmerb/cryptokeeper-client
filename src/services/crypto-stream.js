@@ -3,6 +3,9 @@ import {
 	updateETHInfo,
 	updateLTCInfo,
 	updateXMRInfo,
+	updateDASHInfo,
+	updateDOGEInfo,
+	updateXRPInfo
 } from 'actions/crypto';
 
 
@@ -37,7 +40,10 @@ function emitSubscription(type, currency) {
         `5~CCCAGG~BTC~${currency}`,
         `5~CCCAGG~ETH~${currency}`,
         `5~CCCAGG~XMR~${currency}`,
-        `5~CCCAGG~LTC~${currency}`
+        `5~CCCAGG~LTC~${currency}`,
+        `5~CCCAGG~DASH~${currency}`,
+        `5~CCCAGG~DOGE~${currency}`,
+        `5~CCCAGG~XRP~${currency}`
     ];
     socket.emit(type, { subs: subscription });
 }
@@ -54,7 +60,10 @@ export default function(storeObj) {
             BTC: updateBTCInfo,
             ETH: updateETHInfo,
             LTC: updateLTCInfo,
-            XMR: updateXMRInfo
+            XMR: updateXMRInfo,
+            DASH: updateDASHInfo,
+            DOGE: updateDOGEInfo,
+            XRP: updateXRPInfo
         };
 
         let res = {};

@@ -1,18 +1,17 @@
 import React from 'react';
+import { Link, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import CurrencyList from './currency-list';
+import BTC from './pages/btc';
 
 export class Currencies extends React.Component {
     render() {
-        let sym = this.props.currencySym;
+        
         return(
-            <div>
-                <h2>Currencies</h2>
-                <ul>
-                    <li>BTC: {sym}{this.props.BTC.price}</li>
-                    <li>ETH: {sym}{this.props.ETH.price}</li>
-                    <li>LTC: {sym}{this.props.LTC.price}</li>
-                    <li>XMR: {sym}{this.props.XMR.price}</li>
-                </ul>
+            <div className="currency-page">
+                <Route exact path="/currencies" component={CurrencyList}/>
+                <Route exact path="/currencies/btc" component={BTC}/>
             </div>
         );
     }
@@ -23,6 +22,9 @@ const mapStateToProps = state => ({
     ETH: state.crypto.ETH,
     LTC: state.crypto.LTC,
     XMR: state.crypto.XMR,
+    DASH: state.crypto.DASH,
+    DOGE: state.crypto.DOGE,
+    XRP: state.crypto.XRP,
     currencySym: state.display.currencySym
 });
 

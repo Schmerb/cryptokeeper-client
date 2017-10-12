@@ -48,6 +48,9 @@ const mapStateToProps = state => ({
     ETH: state.crypto.ETH,
     LTC: state.crypto.LTC,
     XMR: state.crypto.XMR,
+    DASH: state.crypto.DASH,
+    DOGE: state.crypto.DOGE,
+    XRP: state.crypto.XRP,
     currencySym: state.display.currencySym,
     currencies: state.currency.currencies
 });

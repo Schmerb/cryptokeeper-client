@@ -32,7 +32,6 @@ export class EditEventForm extends React.Component {
                 [field]: e.target.checked
             });
         } else {
-            console.log('setting state', field, e.target.value);
             this.setState({
                 [field]: e.target.value
             });

@@ -45,7 +45,6 @@ export class Dashboard extends React.Component {
     }
 
     render() {
-        console.log('This is the location: ', this.props);
         // Only visible to logged in users
         if (!this.props.loggedIn) {
             return <Redirect to="/" />; // Fires when logOut() is dispatched

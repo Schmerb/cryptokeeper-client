@@ -22,8 +22,20 @@ export const updateXMRInfo = (info) => ({
     info 
 });
 
-export const UPDATE_AUD_INFO = 'UPDATE_AUD_INFO';
-export const updateAUDInfo = (info) => ({
-    type: UPDATE_AUD_INFO,
+export const UPDATE_DASH_INFO = 'UPDATE_DASH_INFO';
+export const updateDASHInfo = (info) => ({
+    type: UPDATE_DASH_INFO,
+    info 
+});
+
+export const UPDATE_DOGE_INFO = 'UPDATE_DOGE_INFO';
+export const updateDOGEInfo = (info) => ({
+    type: UPDATE_DOGE_INFO,
+    info 
+});
+
+export const UPDATE_XRP_INFO = 'UPDATE_XRP_INFO';
+export const updateXRPInfo = (info) => ({
+    type: UPDATE_XRP_INFO,
     info 
 });

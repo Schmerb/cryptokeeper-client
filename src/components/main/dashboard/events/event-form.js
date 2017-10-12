@@ -26,7 +26,6 @@ export class EventForm extends React.Component {
         this.props.history.push({
             pathname: '/dashboard/events'
         });
-        console.log(data);
     }
     
     render() {
