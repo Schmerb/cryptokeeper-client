@@ -44,13 +44,13 @@ export class MyCurrencies extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    BTC: state.crypto.BTC,
-    ETH: state.crypto.ETH,
-    LTC: state.crypto.LTC,
-    XMR: state.crypto.XMR,
-    DASH: state.crypto.DASH,
-    DOGE: state.crypto.DOGE,
-    XRP: state.crypto.XRP,
+    "BTC": state.crypto.BTC,
+    "ETH": state.crypto.ETH,
+    "LTC": state.crypto.LTC,
+    "XMR": state.crypto.XMR,
+    "DASH": state.crypto.DASH,
+    "DOGE": state.crypto.DOGE,
+    "XRP": state.crypto.XRP,
     currencySym: state.display.currencySym,
     currencies: state.currency.currencies
 });
