@@ -1,6 +1,10 @@
 import { 
     TOGGLE_MENU, 
-    TOGGLE_LINKS, 
+    TOGGLE_LINKS,
+    SET_Y_POS, 
+    SET_BASE_Y_POS, 
+    SET_DOWN_BASE_Y_POS,
+    SET_UP_DIRECTION, 
     SET_WIDTH,
     HAS_TOUCH,
     CONFIRM_MESSAGE,
@@ -17,6 +21,10 @@ import { loadBaseCurrency } from 'utils/local-storage';
 const initialState = {
         open: false,
         openLinks: false,
+        yPos: 0,
+        baseYPos: 0,
+        downBaseYPos: 0,
+        up: false,
         width: window.innerWidth,
         hasTouch: false,
         confirmMsg: null,
@@ -60,6 +68,22 @@ export default function reducer(state = initialState, action) {
         case TOGGLE_LINKS:
             return Object.assign({}, state, {
                 openLinks: action.open
+            });
+        case SET_Y_POS:
+            return Object.assign({}, state, {
+                yPos: action.yPos
+            });
+        case SET_BASE_Y_POS:
+            return Object.assign({}, state, {
+                baseYPos: action.baseYPos
+            });
+        case SET_DOWN_BASE_Y_POS:
+            return Object.assign({}, state, {
+                downBaseYPos: action.downBaseYPos
+            });
+        case SET_UP_DIRECTION:
+            return Object.assign({}, state, {
+                up: action.up
             });
         case SET_WIDTH:
             return Object.assign({}, state, {

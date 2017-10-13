@@ -9,22 +9,29 @@
     
     a {
         color: $third;
+        color: $offwhite;
         // display: inline-block;
+    }
+  
+    .arrow-down-icon {
+        display: none;
     }
     > ul {
         @include transitions(left 0.8s cubic-bezier(.41,.29,.45,.97),
                              padding 0s ease 0.3s);
         position: absolute;
         left: -100%;
-        background: palette(third, light);
+        background: palette(third, dark);
         width: 70%;
         min-height: 100vh;
         z-index: 10;
 
         &.openLinks {
             z-index: 1012;
+            .arrow-down-icon {
+                display: none;
+            }
         }
-        
         &.open {
             padding-left: 40px;
             padding-top: 40px;
@@ -32,10 +39,14 @@
             box-shadow: 0 0 25px rgba(0,0,0,0.7);
            .logout-btn {
                 color: $offwhite;
-                width: 100%;
+                // width: 100%;
                 text-align: left;
                 &:hover {
+                    color: $red;
                     color: $primary;
+                    .logout-icon {
+                        fill: $primary;
+                    }
                 }
            }
         }
@@ -51,6 +62,16 @@
                     }
                     @include mediaMin($iphone6P) {
                         padding-left: 40px;
+                    }
+                    .logout-icon {
+                        @extend %transition;
+                        @include transform(rotate(180deg));
+                        position: relative;
+                        fill: $offwhite;
+                        left: 10px;
+                        top: 2px;
+                        width: 20px;
+                        height: 20px;
                     }
                 }
             }
@@ -87,6 +108,7 @@
                 bottom: 35px;
             }
             .username-li {
+                color: #555;
                 position: relative;
                 top: 35px;
             } 
@@ -123,11 +145,22 @@
 }
 // Dropdown Sub-Menu
 .username-li.closed {
+    color: $offwhite;
+    width: 85px;
     cursor: pointer;
     &:hover {
         .sub-menu {
             max-height: 200px;
         }
+    }
+    .arrow-down-icon {
+        position: relative;
+        top: 5px;
+        left: 3px;
+        fill: $offwhite;
+        display: unset;
+        width: 20px;
+        height: 20px;
     }
     .sub-menu {
         @include transition(0.5s);
@@ -149,7 +182,20 @@
             color: $offwhite;
             margin-left: 20px;
             &:hover {
-                color: $primary;
+                // color: $primary;
+                color: $red;
+                svg {
+                    fill: $red;
+                }
+            }
+            svg {
+                @include transition(0.3s);
+                position: relative;
+                fill: $offwhite;
+                left: 10px;
+                top: 5px;
+                width: 20px;
+                height: 20px;
             }
         }
     }

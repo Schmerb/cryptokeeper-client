@@ -5,7 +5,6 @@
 
 main {
     position: relative;
-    
     min-height: 100vh;
     padding-top: $banner;
     overflow: hidden;
@@ -21,17 +20,27 @@ main {
     @include mediaMin($collapse) {
         min-height: 500px;
     }
+    > .container {
+        min-height: calc(100vh - 180px);
+    }
+    
 }
 
 .dashboard-back, 
-.landing-back {
+.landing-back,
+.login-signup-back,
+.live-chat-back,
+.currencies-back,
+.settings-back {
     &:before {
         @extend %cover;
         @include transform(scale(1.1));
+        position: fixed;
         content: '';
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
+        background-position: center;
         -webkit-filter: blur(5px);
         filter: blur(5px);
     }
@@ -41,30 +50,48 @@ main {
         }
     }
 }
-.dashboard-back {
-    &:after {
-        @extend %cover;
-        background-color: rgba(black, 0.5);
-    }
+.live-chat-back {
     &:before {
-        // background-image: url('/assets/images/japan-neon.jpg');
-        background-image: url('/assets/images/city-night-cafe.jpg');
-        background-color: #131c01;
+        background-image: url('/assets/images/times-square-compressor.jpg');
+        -webkit-filter: none;
+        filter: none;
+    }
+}
+.login-signup-back {
+    &:before {
+        @include transform(scale(1));
+        background-image: url('/assets/images/times-square-compressor.jpg');
+        background-image: url('/assets/images/binary-script-compressor.jpg');
+        -webkit-filter: none;
+        filter: none;
+    }
+}
+.dashboard-back {
+    &:before {
+        // background-image: url('/assets/images/japan-neon-compressor.jpg');
+        background-image: url('/assets/images/city-night-cafe-compressor.jpg');
+        background-position: left top;
     }
 }
 .landing-back {
     &:before {
-        background-image: url('/assets/images/city-night-cafe.jpg');
-        background-image: url('/assets/images/japan-neon.jpg');
-        background-color: #022876;
+        background-image: url('/assets/images/city-night-cafe-compressor.jpg');
+        background-image: url('/assets/images/japan-neon-compressor.jpg');
+    }
+}
+.currencies-back{
+    &:before {
+        background-image: url('/assets/images/city-night-cafe-compressor.jpg');
+        background-image: url('/assets/images/japan-neon-compressor.jpg');
+    }
+}
+.settings-back {
+    &:before {
+        background-image: url('/assets/images/blake-connally-373084-compressor.jpg');
+        -webkit-filter: blur(2px);
+        filter: blur(2px);
     }
 }
 
-.container {
-    
-    h2 {
-        // text-align: center;
-    }
-}
 
  

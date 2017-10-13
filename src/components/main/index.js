@@ -16,12 +16,20 @@ export class Main extends React.Component {
     // current url
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     applyBackgroundImg() {
-        let pathname = this.props.location.pathname;
-        if(pathname.includes('dashboard')) {
-            return 'dashboard-back';
-        } else if (pathname === '/') {
+        let path = this.props.location.pathname;
+        if(path === '/') {
             return 'landing-back';
-        }
+        } else if (path === '/dashboard/settings' || path === '/dashboard/avatar') {
+            return 'settings-back';
+        } else if (path === '/login' || path === '/signup') {
+            return 'login-signup-back';
+        } else if (path === '/chat') {
+            return 'live-chat-back';
+        } else if (path === '/currencies') {
+            return 'currencies-back';
+        } else if(path.includes('dashboard')) {
+            return 'dashboard-back';
+        } 
         return '';
     }
 

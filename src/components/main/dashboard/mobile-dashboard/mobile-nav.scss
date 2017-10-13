@@ -9,7 +9,7 @@
 
 .mobile-nav-links {
     li {
-        background-color: rgba($primary, 0.8);
+        background-color: rgba($blue, 0.9);
         float: left;
         width: 25%;
         min-width: 75px;
@@ -18,7 +18,7 @@
         text-align: center;
 
         &.current {
-            background-color: rgba($primary, 0.4);
+            background-color: rgba($primary, 0.9);
         }
     }
     a {

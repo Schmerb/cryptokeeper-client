@@ -15,6 +15,18 @@ import Header from './header/';
 import Main   from './main/';
 import Footer from './footer/';
 
+function hasLoaded() {
+    console.log('has laoded!');
+}
+
+function docHasLoaded() {
+    console.log('DOCUMENT has laoded!');
+}
+
+window.onload = hasLoaded();
+
+document.onload = docHasLoaded();
+
 export class App extends React.Component {
     
     // * * * * * * * * * * * * * * * * * * * *

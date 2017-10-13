@@ -3,14 +3,33 @@
 // ==================================================
 
 header {
+    // @include transition(0.3s, top);
     position: absolute;
     top: 0;
     left: 0;
     background-color: rgba($primary, 0.8);
+    background-color: rgba($blue, 0.8);
     width: 100%;
     height: $banner;
     line-height: $banner;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    z-index: 1010;
+    &.initFixed {
+        @include transition(0s);
+        top: -100px;
+    }
+    &.fixed {
+        @include transition(.3s);
+        // @include transition(0.3s, opacity);
+        position: fixed;
+        background-color: rgba($blue, 0.9);
+        // opacity: 0;
+        top: -100px;
+    }
+    &.show {
+        // opacity: 1;
+        top: 0;
+    }
 
     // Styles for /dashboard MOBILE ONLY
     &.dash {

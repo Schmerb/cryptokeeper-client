@@ -8,12 +8,13 @@
 .event-box {
     position: relative;
     display: inline-block;
-    background-color: rgba($secondary, 0.8);
+    // background-color: rgba($secondary, 0.8);
+    background-color: rgba($green, 0.8);
     width: 300px;
     height: 300px;
     margin: 5px;
     padding: 0 20px;
-    // border: 1px solid white;
+    border-radius: 8px;
     @include mediaMin($desktop + 100){
         float: left;
     }
@@ -39,14 +40,36 @@
     &.edit {
         background-color: rgba($purple, 0.8);
         cursor: pointer;
+        overflow: hidden;
+        &:before {
+            @include benz-transition(0.4s);
+            @extend %cover;
+            content: '';
+            top: -100%;
+            left: -100%;
+            transform: scale(1.4) rotate(45deg);
+            background-color: rgba($purple, 0.8);
+        }
+        &:hover {
+            &:before {
+                @include benz-transition(0.2s);
+                top: 0;
+                left: 0;
+            }
+            svg {
+                fill: rgba($offwhite, 0.8);
+            }
+        }
     }
     .circle-plus-btn {
         @extend %abs-middle;
         width: 55px;
         height: 55px;
         svg {
-            fill: rgba($offwhite, 0.9);
+            @include transition(0.4s);
+            fill: rgba($offwhite, 0.4);
         }
+        
     }
     span {
         float: right;

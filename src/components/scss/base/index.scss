@@ -6,7 +6,7 @@
 
 html {
     box-sizing: border-box;
-    overflow-x: hidden;
+    // overflow: hidden;
     body {
         .hidden {
             display: none;
@@ -22,19 +22,20 @@ html {
 
 body {
     position: relative;
-    background: $offwhite;
+    background-color: $third;
     margin: 0; 
     min-height: 100vh;
     min-width: 320px;
     padding-bottom: 150px;
     overflow-x: hidden;
+    // overflow-y: hidden;
 }
 
 
 .no-scroll {
     position: relative;
     overflow: hidden;
-    // height: 100%;
+    height: 100%;
 }
 
 .hidden {

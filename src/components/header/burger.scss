@@ -25,7 +25,7 @@
             &.open {
                 background: transparent;
                 &:after, &:before {
-                    background: $third;
+                    
                 }
             }
             &:after, &:before {
@@ -46,7 +46,7 @@
 .burger::after,
 .burger::before {
     @include transition(0.35s);
-    background: $third;
+    background: $brown;
     width: 35px;
     height: 4px;
 }
@@ -57,7 +57,7 @@
         background: transparent;
 
         &:before, &:after {
-            background: $offwhite;
+            background: $red;
             top: 0;
         }
         &:before {

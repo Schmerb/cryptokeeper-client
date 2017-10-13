@@ -1,23 +1,36 @@
+// // // // // // // // // //
+//
+//       Login Page
+//
+// // // // // // // // // //
+
 .login {
     position: relative;
-    color: $third;
-    // background: palette(third, vlight);
+    color: black;
+    background-color: rgba($offwhite, 0.6);
     width: 80%;
     max-width: 400px;
+    height: 300px;
     margin: 20px auto;
+    padding-top: 20px;
     text-align: center;
+    border-radius: 10px;
     @include mediaMin($landscape) {
+        margin-top: 100px;
         border: 1px solid rgba(0,0,0,0.3);
-        border-radius: 10px;
     }
 
     h3 {
         color: $primary;
+        color: $third;
+    }
+    img {
+        height: 0;
     }
 }
 
 .login-form {
-    padding: 10px 20px;
+    padding: 40px 20px;
 
     .form-input {
         margin-bottom: 10px;
@@ -44,16 +57,32 @@
     }
   
     button {
-        @include transition(0.2s);
-        color: $primary;
+        position: relative;
+        color: $third;
         width: 200px;
         padding: 10px;
         margin-top: 10px;
         border: 1px solid $third;
         border-radius: 10px;
-
+        overflow: hidden;
+        &:before { 
+            @include benz-transition(0.5s);
+            @include transform(rotate(45deg));
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            background-color: rgba($offwhite,0.3);
+            top: -150%;
+            left: -210%;
+            z-index: -1;
+        }
         &:hover {
             border-color: $primary;
+            &:before {
+                @include benz-transition(0.3s);
+                left: 0;
+            }
         }
     }
 }

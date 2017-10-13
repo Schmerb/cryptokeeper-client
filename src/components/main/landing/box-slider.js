@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import Slider from 'react-slick';
 
 import Box from './box';
+import { NextArrow, PrevArrow } from './slick-arrows';
+
+
 
 import { getCurrencies, getName } from 'utils/crypto-currency-list';
 
@@ -17,14 +20,15 @@ export class BoxSlider extends React.Component {
 	slickSliderInit() {
 		const settings = {
 			dots: true,
-			arrows: true,
 			infinite: false,
 			speed: 500,
 			slidesToShow: 1,
 			slidesToScroll: 1,
+			nextArrow: <NextArrow />,
+			prevArrow: <PrevArrow />,
 			responsive: [
 				{
-					breakpoint: 500,
+					breakpoint: 650,
 					settings: {
 						arrows: false
 					}
@@ -56,13 +60,13 @@ export class BoxSlider extends React.Component {
 }
 
 const mapStateToProps = state => ({
-	"BTC": state.crypto.BTC,
-    "ETH": state.crypto.ETH,
-    "LTC": state.crypto.LTC,
-    "XMR": state.crypto.XMR,
-    "DASH": state.crypto.DASH,
-    "DOGE": state.crypto.DOGE,
-    "XRP": state.crypto.XRP,
+	BTC: state.crypto.BTC,
+    ETH: state.crypto.ETH,
+    LTC: state.crypto.LTC,
+    XMR: state.crypto.XMR,
+    DASH: state.crypto.DASH,
+    DOGE: state.crypto.DOGE,
+    XRP: state.crypto.XRP,
 	baseCurrency: state.display.currency,
 	currencySym: state.display.currencySym
 });

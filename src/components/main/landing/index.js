@@ -10,7 +10,7 @@ import BoxSlider from './box-slider';
 export function Landing(props) {
     return (
         <section id="landing">
-            <h2>Currencies</h2>
+            {/* <h2>Currencies</h2> */}
             {/* <div className="landing-img"></div> */}
             <BoxSlider />
         </section>

@@ -8,6 +8,7 @@ import { dashHoverVr, confirmMessage } from 'actions/display';
 
 import PortfolioBag from 'icons/portfolio-bag';
 import EventGraph   from 'icons/event-graph';
+import LogoutIcon   from 'icons/logout-icon';
 
 export class SideNav extends React.Component {
 
@@ -70,7 +71,10 @@ export class SideNav extends React.Component {
                     <li className="logout-li five" 
                         onMouseEnter={() => this.hover('five')}
                         onMouseLeave={() => this.hover('')}>
-                        <button onClick={() => this.confirmLogOut()}>Logout</button>
+                        <button onClick={() => this.confirmLogOut()}>
+                            Logout
+                            <LogoutIcon />
+                        </button>
                     </li>
                 </ul>
             </div>

@@ -6,8 +6,10 @@ import { toggleLinks, toggleMenu } from 'actions/display';
 
 import { logUserOut } from 'services/user';
 
-import GearWheel from 'icons/gear-wheel';
-import TieAvatar from 'icons/tie-avatar';
+import GearWheel  from 'icons/gear-wheel';
+import TieAvatar  from 'icons/tie-avatar';
+import ArrowDown  from 'icons/arrow-down';
+import LogoutIcon from 'icons/logout-icon';
 
 export class TopNavLinks extends React.Component {
 
@@ -54,10 +56,10 @@ export class TopNavLinks extends React.Component {
     render() {
         let links   = (<ul>
                           <li className="links-li">
-                              <Link to={'/login'} onClick={e => this.hideMenu()}>Login</Link>
+                              <Link to={'/login'} onClick={e => this.hideMenu()}>LOGIN</Link>
                           </li>
                           <li className="links-li">
-                              <Link to={'/signup'} onClick={e => this.hideMenu()}>Signup</Link>
+                              <Link to={'/signup'} onClick={e => this.hideMenu()}>SIGNUP</Link>
                           </li>
                       </ul>);
         if(this.props.loggedIn) {
@@ -69,12 +71,15 @@ export class TopNavLinks extends React.Component {
                         </li>
                         <li className={`username-li ${this.props.open ? '' : 'closed'}`}>
                             {this.props.username}
-                            <a href="#!" className={`${this.props.open ? 'hidden' : ''}`}>
-                                <img src="/assets/icons/arrow-down.png" className="arrow-down" alt="arrow to open profile menu"/> 
-                            </a>
+                                <Link to={"#!"} className={`${this.props.open ? 'hidden' : ''}`}>
+                                    <ArrowDown/>
+                                </Link>
                             <ul className={`sub-menu ${this.props.open ? 'hidden' : ''}`}>
                                 <li>
-                                    <button className="logout-btn" onClick={() => this.logOut()}>Logout</button>
+                                    <button className="logout-btn" onClick={() => this.logOut()}>
+                                        Logout
+                                        <LogoutIcon />
+                                    </button>
                                 </li>
                             </ul>
                         </li>
@@ -84,7 +89,10 @@ export class TopNavLinks extends React.Component {
                             </Link>
                         </li>
                         <li className={`links-li ${!this.props.open ? 'hidden' : ''}`}>
-                            <button className="logout-btn" onClick={() => this.logOut()}>Logout</button>
+                            <button className="logout-btn" onClick={() => this.logOut()}>
+                                Logout
+                                <LogoutIcon />
+                            </button>
                         </li>
                     </ul>);
         }

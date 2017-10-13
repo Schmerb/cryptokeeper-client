@@ -5,14 +5,21 @@
 // // // // // // // // // //
 
 .logo {
+    color: $offwhite;
     position: relative;
     float: left;
+    font-size: 21px;
     padding-left: 20px;
     width: 200px;
     z-index: 1011;
-
+    .fa {
+        color: $brown;
+    }
     &.dash {
         @include mediaMin($collapse) {
+            .fa {
+                color: lighten($third, 2%);
+            }
             background-color: rgba($red, 0.8);
         }
     }

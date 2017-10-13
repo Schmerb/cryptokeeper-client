@@ -9,6 +9,9 @@
 # production
 /build
 
+# domain configuration
+.netlify
+
 # misc
 .DS_Store
 .env.local
@@ -16,7 +19,6 @@
 .env.test.local
 .env.production.local
 
-.netlify
 
 npm-debug.log*
 yarn-debug.log*

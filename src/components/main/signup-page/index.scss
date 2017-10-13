@@ -1,16 +1,23 @@
+// // // // // // // // // //
+//
+//       Signup Page
+//
+// // // // // // // // // //
+
 .signup {
-    color: $third;
-    // background: palette(third, vlight);
+    color: $offwhite;
+    background-color: rgba($offwhite, 0.6);
     width: 300px;
     margin: 20px auto;
     text-align: center;
+    padding: 20px 0;
     @include mediaMin($landscape) {
-        border: 1px solid rgba(0,0,0,0.3);
+        margin-top: 80px;
         border-radius: 10px;
+        border: 1px solid rgba(0,0,0,0.3);
     }
-
     h3 {
-        color: $primary;
+        color: $third;
     }
 }
 
@@ -31,16 +38,33 @@
     }
 
     button {
-        @include transition(0.2s);
-        color: $primary;
+        // @include transition(0.2s);
+        position: relative;
+        color: $third;
         width: 200px;
         padding: 10px;
         margin-top: 10px;
         border: 1px solid $third;
         border-radius: 10px;
-
+        overflow: hidden;
+        &:before { 
+            @include benz-transition(0.5s);
+            @include transform(rotate(45deg));
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            background-color: rgba($offwhite,0.3);
+            top: -150%;
+            left: -210%;
+            z-index: -1;
+        }
         &:hover {
             border-color: $primary;
+            &:before {
+                @include benz-transition(0.3s);
+                left: 0;
+            }
         }
     }
 }

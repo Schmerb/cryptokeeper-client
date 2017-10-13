@@ -1,3 +1,8 @@
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Returns the full name of crypto currency passed in 
+// as argument
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 export function getName(abbrv) {
     switch (abbrv) {
         case "BTC":
@@ -19,7 +24,10 @@ export function getName(abbrv) {
     }
 }
 
-
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Returns the abbreviations for all supported  crypto 
+// currencies
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 export function getCurrencies() {
     return [
         "BTC",

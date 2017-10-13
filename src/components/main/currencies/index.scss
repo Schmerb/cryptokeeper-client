@@ -1,12 +1,53 @@
-.currency-page {
-    ul {
+.currency-list {
+    margin-top: 20px;
+    h2 {
+        color: $offwhite;
         text-align: center;
+        padding: 20px;
     }
-    li {
-        display: inline-block;
+    > ul {
+        text-align: center;
+        > li {
+            width: 95%;
+            display: inline-block;
+            @include mediaMin($tablet) {
+                width: auto;
+                margin: 0 5px;
+            }
+        }
     }
-    .box {
-        background-color: $purple;
-        margin: 10px;
+    .box.full-currency-data {
+        color: $third;
+        background-color: rgba($primary,0.9);
+        font-size: 17px;
+        opacity: 1;
+        border-radius: 8px;
+        ul {
+            pointer-events: none;
+            li {
+                padding: 10px 0;
+                &:not(:last-of-type) {
+                    label {
+                        border-bottom: 1px solid rgba(white,0.3);
+                    }
+                }
+            }
+            label{
+                display: inline-block;
+                width: 80%;
+                padding-bottom: 10px;
+
+                @include mediaMin($tablet) {
+                    text-align: left;
+                }
+            }
+            .value {
+                color: $offwhite;
+                display: block;
+                @include mediaMin($tablet) {
+                    float: right;
+                }
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@
 // // // // // // // // // //
 
 .side-nav {
-    background-color: rgba($darkblue, 0.75);
+    background-color: rgba(darken($darkblue, 5%), 0.75);
     position: relative;
     float: left;
     width: 200px;
@@ -80,13 +80,24 @@
 .logout-li {
     button {
         @include transition(0.2s);
+        position: relative;
         display: block;
         color: $offwhite;
         width: 100%;
+        padding-top: 30px;
         text-align: left;
         border: none;
         &:hover {
             color: rgba($offwhite, 0.5);
+        }
+        svg {
+            @include transform(rotate(180deg));
+            @include transition(0.2s);
+            position: absolute;
+            bottom: 0;
+            left: 60px;
+            width: 20px;
+            height: 20px;
         }
     }
 }
@@ -120,6 +131,6 @@
     }
     &.five {
         opacity: 1;
-        top: 415px;
+        top: 445px;
     }
 }

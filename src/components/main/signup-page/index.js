@@ -16,10 +16,10 @@ export class SignupPage extends React.Component{
         // If we are logged in redirect straight to the user's dashboard
         if (nextProps.loggedIn) {
             this.props.history.push({
-                pathname: `/dashboard${window.innerWidth >= 800 ? '/portfolio' : ''}`
+                pathname: `/dashboard${window.innerWidth >= 805 ? '/portfolio' : ''}`
             });
+            this.props.dispatch(flashMessage('Successfully registered!'));
         }
-        this.props.dispatch(flashMessage('Successfully registered!'));
     }
 
     render() {
