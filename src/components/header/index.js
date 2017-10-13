@@ -56,21 +56,23 @@ export class Header extends React.Component {
     }
 
     render() {
-        const { up, baseYPos } = this.props;
+        const { up, baseYPos, width } = this.props;
         const { pathname }     = this.props.location;
         let current   = window.pageYOffset;
         let fixed     = '',
             initFixed = '',
             show      = '';
-        if(current > 150) {
-            initFixed = 'initFixed';
-            if(current > 200) {
-                fixed = 'fixed';
+        if(width < 805) {
+            if(current > 150) {
+                initFixed = 'initFixed';
+                if(current > 200) {
+                    fixed = 'fixed';
+                }
             }
-        }
-        if(up) {
-            if(baseYPos - current >= 20) {
-                show = 'show';
+            if(up) {
+                if(baseYPos - current >= 20) {
+                    show = 'show';
+                }
             }
         }
         let dash = pathname === '/dashboard' ? 'dash' : '';
@@ -88,6 +90,7 @@ export class Header extends React.Component {
 const mapStateToProps = state => ({
     loggedIn: state.auth.currentUser !== null,
     open: state.display.open,
+    width: state.display.width,
     up: state.display.up,
     yPos: state.display.yPos,
     baseYPos: state.display.baseYPos,

@@ -23,10 +23,11 @@ export class TopNav extends React.Component {
     }
 
     render() {
+        let dim = this.props.open ? <Dim /> : null;
         return (
                 <nav className="m-nav">
                     <Burger />
-                    <Dim />
+                    {dim}
                     <TopNavMenu open={this.props.open} 
                                 openLinks={this.props.openLinks}/>
                 </nav>
