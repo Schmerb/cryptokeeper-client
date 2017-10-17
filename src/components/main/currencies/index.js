@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import CurrencyList from './currency-list';
-import BTC from './pages/btc';
+import CurrencyPage from './currency-page';
 
-export class Currencies extends React.Component {
+export class Currencies extends Component {
     render() {
         
         return(
-            <div className="currency-page">
+            <div className="currencies">
                 <Route exact path="/currencies" component={CurrencyList}/>
-                <Route exact path="/currencies/btc" component={BTC}/>
+                <Route exact path="/currencies/:currency" component={CurrencyPage}/>
             </div>
         );
     }

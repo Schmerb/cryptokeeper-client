@@ -1,24 +1,58 @@
+import React from 'react';
+
+import BtcIcon  from 'icons/currency/btc';
+import EthIcon  from 'icons/currency/eth';
+import LtcIcon  from 'icons/currency/ltc';
+import DashIcon from 'icons/currency/dash';
+import DogeIcon from 'icons/currency/doge';
+import XrpIcon  from 'icons/currency/xrp';
+import XmrIcon  from 'icons/currency/xmr';
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 // Returns the full name of crypto currency passed in 
 // as argument
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 export function getName(abbrv) {
-    switch (abbrv) {
-        case "BTC":
+    switch (abbrv.toLowerCase()) {
+        case "btc":
             return 'Bitcoin'
-        case "ETH":
+        case "eth":
             return 'Etheruem'
-        case "LTC":
+        case "ltc":
             return 'Litecoin'
-        case "XMR":
+        case "xmr":
             return 'Monero'
-        case "DASH":
+        case "dash":
             return 'Dash'
-        case "DOGE":
+        case "doge":
             return 'Dogecoin'
-        case "XRP":
+        case "xrp":
             return 'Ripple'
+        default:
+            return ''
+    }
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Returns the corresponding SVG component for currency
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+export function getIcon(abbrv) {
+    switch (abbrv.toLowerCase()) {
+        case "btc":
+            return <BtcIcon/>
+        case "eth":
+            return <EthIcon className="eth"/>
+        case "ltc":
+            return <LtcIcon/>
+        case "xmr":
+            return <XmrIcon/>
+        case "dash":
+            return <DashIcon/>
+        case "doge":
+            return <DogeIcon className="doge"/>
+        case "xrp":
+            return <XrpIcon/>
         default:
             return ''
     }

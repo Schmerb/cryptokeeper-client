@@ -1,0 +1,23 @@
+.currency-nav {
+    background-color: rgba($third,0.4);
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 10px;
+    ul {
+        font-size: 20px;
+        width: 80%;
+        margin: 0 auto;
+        overflow: auto;
+    }
+    li {
+        // float: left;
+        margin-bottom: 10px;
+        a {
+            @include transition(0.2s);
+            // color: $third;
+            &:hover {
+                color: lighten($third, 5%);
+            }
+        }
+    }
+}

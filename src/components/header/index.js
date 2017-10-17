@@ -19,45 +19,38 @@ export class Header extends React.Component {
         this.listenForScroll();
     }
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Fixes nav bar on upwards scroll
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     listenForScroll() {
-        const $this = this;
         window.addEventListener('scroll', () => {
-            const { yPos, downBaseYPos, up } = $this.props;
+            const { yPos, up } = this.props; //downBaseYPos
             const prevYPos = yPos;
             const current  = window.pageYOffset;
             // if current yPos is less than previous, scrolling upwards
             if(current <= prevYPos) {
-                // ** add show class to banner **
-                console.log('scrolling upwards!');
-
+                // console.log('scrolling upwards!');
                 // just started going up, keep track of beginning of upwards distance
                 if(up === false) {
-                    $this.props.dispatch(setBaseYPos(current));
-                    $this.props.dispatch(setUpDirection(true));
+                    this.props.dispatch(setBaseYPos(current));
+                    this.props.dispatch(setUpDirection(true));
                 }
             } else { // scrolling downwards
-                console.log('scrolling DOWNWARDS!');
-
+                // console.log('scrolling DOWNWARDS!');
                 // just started going dowm, keep track of beginning of downwards distance
                 if(up === true) {
-                    $this.props.dispatch(setDownBaseYPos(current))
+                    this.props.dispatch(setDownBaseYPos(current))
+                    this.props.dispatch(setUpDirection(false));
                 }
-
-                // scrolled downwards for 15 or more px
-                if(current - downBaseYPos >= 35) {
-                    // ** remove show class from banner **
-                }
-                
-                $this.props.dispatch(setUpDirection(false));
-                $this.props.dispatch(setBaseYPos(0));
+                // this.props.dispatch(setBaseYPos(0));
             }
-            $this.props.dispatch(setYPos(current));
+            this.props.dispatch(setYPos(current));
         });
     }
 
     render() {
-        const { up, baseYPos, width } = this.props;
-        const { pathname }     = this.props.location;
+        const { up, baseYPos, width, openLinks } = this.props;
+        const { pathname } = this.props.location;
         let current   = window.pageYOffset;
         let fixed     = '',
             initFixed = '',
@@ -76,7 +69,10 @@ export class Header extends React.Component {
             }
         }
         let dash = pathname === '/dashboard' ? 'dash' : '';
-        let classes = `${initFixed} ${fixed} ${show} ${dash}`;
+        let classes = `${openLinks ? 'open':''} ${initFixed} ${fixed} ${show} ${dash}`;
+        if(pathname === '/chat/room') {
+            classes = `${openLinks ? 'open':''}`;
+        }
         return(
             <header role="banner" className={classes}>
                 <Logo path={pathname}/>
@@ -90,6 +86,7 @@ export class Header extends React.Component {
 const mapStateToProps = state => ({
     loggedIn: state.auth.currentUser !== null,
     open: state.display.open,
+    openLinks: state.display.openLinks,
     width: state.display.width,
     up: state.display.up,
     yPos: state.display.yPos,

@@ -8,9 +8,9 @@
     position: relative;
     color: black;
     background-color: rgba($offwhite, 0.6);
-    width: 80%;
+    width: 90%;
     max-width: 400px;
-    height: 300px;
+    min-height: 300px;
     margin: 20px auto;
     padding-top: 20px;
     text-align: center;
@@ -41,7 +41,7 @@
         max-width: 300px;
         height: 40px;
         line-height: 40px;
-        padding-left: 25px;
+        padding-left: 35px;
         border: none;
         border-bottom: 1px solid lightgrey;
         outline: none;
@@ -49,14 +49,28 @@
         background-repeat: no-repeat;
         background-position: 0 8px;
     }
-    input[name=username] {
-        background-image: url('/assets/icons/person-grey.png');
+    .login-field {
+        position: relative;
+        max-width: 300px;
+        margin: 0 auto;
     }
-    input[name=password] {
-        background-image: url('/assets/icons/lock-grey.png');
+    svg {
+        position: absolute;
+        fill: $darkblue;
+        fill: $grey;
+        left: 0;
+        bottom: 8px;
+        width: 30px;
+        height: 30px;
     }
-  
+    .person-icon {
+    
+    }
+    .lock-icon {
+    }
+
     button {
+        @extend %transition;
         position: relative;
         color: $third;
         width: 200px;
@@ -65,6 +79,7 @@
         border: 1px solid $third;
         border-radius: 10px;
         overflow: hidden;
+        z-index: 1;
         &:before { 
             @include benz-transition(0.5s);
             @include transform(rotate(45deg));

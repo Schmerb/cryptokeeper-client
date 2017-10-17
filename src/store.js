@@ -18,6 +18,7 @@ import currencyReducer      from 'reducers/currency';
 import eventsReducer        from 'reducers/events';
 
 import cryptoService from 'services/crypto-stream';
+import chatService   from 'services/chat-stream';
 import persistState  from 'services/persist-state';
 
 const store = createStore(
@@ -37,6 +38,10 @@ const store = createStore(
 // Opens socket.IO connection and updates store
 // on data received
 cryptoService(store);
+
+// Opens Socket.IO connection and updates store
+// when messages sent/received
+chatService(store);
 
 // Subscribes to store and saves updated state in localStorage
 persistState(store);

@@ -53,6 +53,7 @@
     }
     // delayed class for menu links
     .links-wrap {
+        height: $banner;
         &.openLinks {
             > li {
                 > ul {

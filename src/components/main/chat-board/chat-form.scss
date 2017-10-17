@@ -1,0 +1,19 @@
+.chat-form {
+    margin-top: 50px;
+    input {
+        background-color: #e8eaf6;
+        width: 95%;
+        height: 60px;
+        line-height: 60px;
+        // font-size: 18px;
+        padding-left: 10px;
+        margin: 0 auto;
+        border: none;
+        box-shadow: none;
+        border: 1px solid rgba(black,0.1);
+        border-radius: 10px;
+    }
+    @include mediaMin($tablet) {
+        margin-top: 40px;
+    }
+}

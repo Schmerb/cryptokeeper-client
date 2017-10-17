@@ -1,0 +1,27 @@
+// // // // // // // // // // // // // // 
+//
+//  Inputs / Selects / Textarea
+//
+// // // // // // // // // // // // // //
+
+%autofill {
+    border: 1px solid green;
+    -webkit-text-fill-color: green;
+    // -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    -webkit-box-shadow: 0 0 0px 1000px darken($third, 5%) inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input, select, textarea {
+    outline: none;
+    border-radius: 0px;
+    &:-webkit-autofill {
+        @extend %autofill;
+        &:hover {
+            @extend %autofill;
+        }
+        &:focus {
+            @extend %autofill;
+        }
+    }
+}

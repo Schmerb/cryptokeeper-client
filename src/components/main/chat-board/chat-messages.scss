@@ -1,0 +1,61 @@
+// // // // // // // // //
+//
+//      Chat Messages
+//
+// // // // // // // // //
+
+#messages {
+    background-color: $offwhite;
+    width: 95%;
+    height: 60vh;
+    margin: 0 auto;
+    clear: both;
+    border: 1px solid rgba($grey,0.2);
+    overflow: scroll;
+    @include mediaMin($tablet) {
+        height: 360px;
+    }
+    // ALL MESSAGES
+    li {
+        position: relative;
+        margin: 5px;
+        overflow: auto;
+    }
+    .author {
+        height: 28px;
+        line-height: 28px;
+        vertical-align: top;
+    }
+    .msg-content {
+        max-width:75%;
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 20px;
+    }
+    // MY Message
+    .my-msg {
+        text-align: right;
+        .msg {
+            float: right;
+        }
+        .msg-content {
+            background-color: #81d4fa;
+            text-align: left;
+            margin-right: 10px;
+        }
+        .author {
+            float: right;
+        }
+    }
+    // OTHER USER messages
+    .user-msg {
+        text-align: left;
+        .msg {
+            float: left;
+        }
+        .msg-content {
+            background-color: lighten(#c1d5e0, 5%);
+            margin-left: 10px;
+        }
+    }
+}

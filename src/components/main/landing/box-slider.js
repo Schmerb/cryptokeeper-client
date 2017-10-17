@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Slider from 'react-slick';
 
@@ -43,11 +44,13 @@ export class BoxSlider extends React.Component {
 		const settings = this.slickSliderInit();
 		const sym = this.props.currencySym;
 		const currencies = getCurrencies();
-		const currencySlides = currencies.map((currency, key) => (
+		const currencySlides = currencies.map((coin, key) => (
 			<div key={key}>
-				<Box currency={getName(currency)} 
-					price={this.props[currency].price} 
-					currencySym={sym} />
+				<Link to={`/currencies/${coin.toLowerCase()}`}>
+					<Box currency={getName(coin)} 
+						price={this.props[coin].price} 
+						currencySym={sym} />
+				</Link>
 			</div>
 		));
 

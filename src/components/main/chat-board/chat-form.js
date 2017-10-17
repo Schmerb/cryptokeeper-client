@@ -1,9 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import {
     addNewMessage
 } from 'actions/chat';
+
+import { socketIO } from 'services/chat-stream';
 
 export class ChatForm extends React.Component {
 
@@ -35,10 +37,13 @@ export class ChatForm extends React.Component {
             content: this.input.value,
             user: this.props.name
         };
-        this.props.socket.emit('chat message', msg);
-        this.props.socket.emit('user typing', null);
+        socketIO.emit('chat message', msg);
+        socketIO.emit('user typing', null);
         this.props.dispatch(addNewMessage(msg));
         this.input.value = '';
+        if(this.props.hasTouch) {
+            this.input.blur();
+        }
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -48,23 +53,20 @@ export class ChatForm extends React.Component {
         e.preventDefault();
         // console.log(`${this.props.name} is typing . . .`);
         if(this.input.value === '') {
-            this.props.socket.emit('user typing', null);
+            socketIO.emit('user typing', null);
         } else {
-            this.props.socket.emit('user typing', this.props.name);
+            socketIO.emit('user typing', this.props.name);
         }
     }
 
     render() {
         return(
-            <form onSubmit={e => this.handleSubmit(e)} action="#!">
-                <fieldset>
-                    
-                    <input ref={input => this.input = input} 
-                            id="m" type="text" placeholder="type a message . . ."
-                            onChange={e => this.userTyping(e)}
-                            onFocus={e => this.userTyping(e)}
-                            onBlur={() => this.props.socket.emit('user typing', null)}/>
-                </fieldset>
+            <form className="chat-form" onSubmit={e => this.handleSubmit(e)} action="#!" autoComplete="off">
+                <input ref={input => this.input = input} 
+                        id="m" type="text" placeholder="Type something . . ."
+                        onChange={e => this.userTyping(e)}
+                        onFocus={e => this.userTyping(e)}
+                        onBlur={() => socketIO.emit('user typing', null)}/>
             </form>
         );
     }
@@ -73,7 +75,8 @@ export class ChatForm extends React.Component {
 
 const mapStateToProps = state => ({
     name: state.chat.name,
-    visited: state.chat.visited
+    visited: state.chat.visited,
+    hasTouch: state.display.hasTouch
 });
 
 export default connect(mapStateToProps)(ChatForm);

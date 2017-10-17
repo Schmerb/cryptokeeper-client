@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { toggleMenu } from 'actions/display';
 
@@ -43,16 +43,16 @@ export class Footer extends React.Component {
                             <Link to={'/'}>Home</Link>
                         </li>
                         <li>
-                            <Link to={'/dashboard'}>Dashboard</Link>
+                            <Link to={'/dashboard/portfolio'}>Dashboard</Link>
                         </li>
                         <li>
                             <button className="logout-btn" onClick={() => this.logOut()}>Logout</button>
                         </li>
                     </ul>);
         }
-
+        const classes = this.props.location.pathname.includes('dashboard') ? 'dash': null;
         return(
-            <footer role="contentinfo">
+            <footer role="contentinfo" className={classes}>
                 <nav className="f-nav">
                     {links}
                 </nav>
@@ -69,4 +69,4 @@ const mapStateToPRops = state => ({
     loggedIn: state.auth.currentUser !== null
 });
 
-export default connect(mapStateToPRops)(Footer);
+export default withRouter(connect(mapStateToPRops)(Footer));

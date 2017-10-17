@@ -1,0 +1,20 @@
+// // // // // // // // // //
+//
+//       Currency Price
+//
+// // // // // // // // // //
+
+.currency-page {
+    .price {
+        // border: 1px solid white;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        @include mediaMin($tablet) {
+            display: inline-block;
+        }
+    }
+    .current {
+        font-size: 28px;
+    }
+}

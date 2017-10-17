@@ -3,10 +3,16 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { refreshAuthToken } from 'actions/auth';
-import { setWidth } from 'actions/display';
-import { hasTouch } from 'actions/display';
+import { 
+    setWidth,
+    hasTouch,
+    setCurrentPath
+ } from 'actions/display';
 
-import { storeURLPath, getURLPath } from 'utils/local-storage';
+import { 
+    storeURLPath, 
+    getURLPath
+} from 'utils/local-storage';
 
 import FlashMessage   from './services/flash-message';
 import ConfirmMessage from './services/confirmation-message';
@@ -104,6 +110,7 @@ export class App extends React.Component {
     listenForHistoryChange() {
         this.props.history.listen((location, action) => {
             storeURLPath(location.pathname);
+            this.props.dispatch(setCurrentPath(location.pathname));
         });
     }
 

@@ -1,8 +1,14 @@
 import React from 'react';
-import {Field, reduxForm, focus} from 'redux-form';
+import { Field, reduxForm, focus } from 'redux-form';
+
+import { login } from 'actions/auth';
+import { required, nonEmpty } from 'utils/validators';
+
 import Input from '../input';
-import {login} from 'actions/auth';
-import {required, nonEmpty} from 'utils/validators';
+
+import PersonIcon from 'icons/person';
+import LockIcon from 'icons/lock';
+
 
 export class LoginForm extends React.Component {
 
@@ -32,22 +38,28 @@ export class LoginForm extends React.Component {
                 )}>
                 {error}
                 {/* <label htmlFor="username">Username</label> */}
-                <Field
-                    component={Input}
-                    type="text"
-                    name="username"
-                    placeholder="Your username"
-                    autoFocus
-                    validate={[required, nonEmpty]}
-                />
+                <div className="login-field">
+                    <PersonIcon className="person-icon"/>
+                    <Field
+                        component={Input}
+                        type="text"
+                        name="username"
+                        placeholder="Your username"
+                        autoFocus
+                        validate={[required, nonEmpty]}
+                    />
+                </div>
                 {/* <label htmlFor="password">Password</label> */}
-                <Field
-                    component={Input}
-                    type="password"
-                    name="password"
-                    placeholder="Your password"
-                    validate={[required, nonEmpty]}
-                />
+                <div className="login-field">
+                    <LockIcon className="lock-icon"/>
+                    <Field
+                        component={Input}
+                        type="password"
+                        name="password"
+                        placeholder="Your password"
+                        validate={[required, nonEmpty]}
+                    />
+                </div>
                 <button disabled={this.props.pristine || this.props.submitting}>
                     Log in
                 </button>

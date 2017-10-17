@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 
 export class ChatMessages extends React.Component {
@@ -24,13 +24,14 @@ export class ChatMessages extends React.Component {
     render() {
         const messages = this.props.msgs.map((msg, index) => {
             if(typeof(msg) === 'object') {
-                return <li key={index}>
-                            <span>{ msg.user }</span>
-                            { msg.content } 
+                return <li key={index} className={this.props.name === msg.user ? 'my-msg' : 'user-msg'}>
+                            <div className="msg">
+                                <label className="author">{ msg.user }</label>
+                                <span className="msg-content">{ msg.content } </span>
+                            </div>
                        </li>
-            } else {
-                return <li key={index}>{ msg }</li>
-            }
+            } 
+            return <li key={index}>{ msg }</li>
         });
         return(
             <div id="messages">
@@ -46,7 +47,8 @@ export class ChatMessages extends React.Component {
 
 const mapStateToProps = state => ({
     msgs: state.chat.msgs,
-    visited: state.chat.visited
+    visited: state.chat.visited,
+    name: state.chat.name
 });
 
 export default connect(mapStateToProps)(ChatMessages);

@@ -1,0 +1,39 @@
+// // // // // // // // //
+//
+//      Chat Name Box
+//
+// // // // // // // // //
+
+.name-box {
+    background-color: rgba($third,0.9);
+    color: $offwhite;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    padding-top: 30px;
+    margin: 30px auto 0;
+    text-align: center;
+    border-radius: 8px;
+    .chat-icon {
+        @extend %center;
+        top: 80px;
+        fill: $offwhite;
+        width: 40px;
+        height: 40px;
+    }
+    form {
+        margin-top: 100px;
+        // border: 1px solid white;
+        input {
+            background: transparent;
+            color: white;
+            width: 60%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: none;
+            border-bottom: 1px solid $offwhite;
+        }
+    }
+}

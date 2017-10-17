@@ -21,14 +21,14 @@ export default class Box extends React.Component {
                         </li>
                         <li>
                             <label>
-                                Volume (24HR)
-                                <span className="value">{sym}{parseFloat(fullData.VOLUME24HOUR).toFixed(5)}</span>
+                                Volume (HR)
+                                <span className="value">{sym}{parseFloat(fullData.VOLUMEHOURTO).toFixed(2)}</span>
                             </label>
                         </li>
                         <li>
                             <label>
                                 Volume Total (24HR)
-                                <span className="value">{sym}{parseFloat(fullData.VOLUME24HOURTO).toFixed(5)}</span>
+                                <span className="value">{sym}{parseFloat(fullData.VOLUME24HOURTO).toFixed(2)}</span>
                             </label>
                         </li>
                     </ul>

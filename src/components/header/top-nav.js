@@ -11,6 +11,21 @@ import TopNavMenu from './top-nav-menu';
 
 export class TopNav extends React.Component {
 
+    componentDidMount() {
+        window.addEventListener('click', e => {
+            // console.log('clicked:', e.target);
+            if(this.props.openLinks && e.target.id === "dim") {
+                this.props.dispatch(toggleMenu());
+            }
+        });
+        window.addEventListener('touchstart', e => {
+            // console.log('clicked:', e.target);
+            if(this.props.openLinks && e.target.id === "dim") {
+                this.props.dispatch(toggleMenu());
+            }
+        });
+    }
+
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Fires when component is about to receive new props
     // i.e. variable in state has been updated 

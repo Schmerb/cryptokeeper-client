@@ -13,17 +13,21 @@
 
     h2 {
         text-align: center;
+        margin-bottom: 20px;
     }
     .events-container {
+        // width: 80%;
+        margin: 0 auto;
         // border: 1px solid limegreen;
         overflow: auto;
+        @include mediaMin(877px) {
+            width: 665px;
+        }
         @include mediaMin($desktop + 100) {
             width: 940px;
-            margin: 0 auto;
         }
         @include mediaMin(1500px) {
             width: 1245px;
-            margin: 0 auto;
         }
     }
 }

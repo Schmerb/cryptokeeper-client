@@ -17,27 +17,29 @@ const initialState = {
 
 
 export default function reducer(state = initialState, action) {
-    if(action.type === LOG_USER_IN) {
-        return Object.assign({}, state, {
-            loggedUserIn: true
-        });
-    } else if(action.type === ADD_NEW_MESSAGE) {
-        return Object.assign({}, state, {
-            msgs: [...state.msgs, action.msg]
-        });
-    } else if(action.type === UPDATE_USERS_LIST) {
-        return Object.assign({}, state, {
-            users: action.users
-        });
-    } else if(action.type === SET_USER_NAME) {
-        return Object.assign({}, state, {
-            name: action.name,
-            visited: true
-        });
-    } else if(action.type === USER_TYPING) {
-        return Object.assign({}, state, {
-            userTyping: action.userTyping
-        });
+    switch(action.type) {
+        case LOG_USER_IN:
+            return Object.assign({}, state, {
+                loggedUserIn: true
+            });
+        case ADD_NEW_MESSAGE:
+            return Object.assign({}, state, {
+                msgs: [...state.msgs, action.msg]
+            });
+        case UPDATE_USERS_LIST:
+            return Object.assign({}, state, {
+                users: action.users
+            });
+        case SET_USER_NAME:
+            return Object.assign({}, state, {
+                name: action.name,
+                visited: true
+            });
+        case USER_TYPING:
+            return Object.assign({}, state, {
+                userTyping: action.userTyping
+            });
+        default:
+            return state;
     }
-    return state;
 }

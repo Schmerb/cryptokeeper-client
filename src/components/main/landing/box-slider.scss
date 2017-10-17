@@ -7,12 +7,9 @@
 .slick-slider {
     margin-top: 20px;
 }
-
-
 .slick-slide {
     text-align: center;
 }
-
 
 .slick-next,
 .slick-prev {
@@ -33,15 +30,12 @@
         height: 60px;
     }
 }
-
 .slick-next {
     right: 50px;
 }
-
 .slick-prev {
     left: 50px;
 }
-
 
 .slick-dots {
     li {
@@ -52,10 +46,9 @@
                 }
             }
         }
-
         button {
             &:before {
-                color: $offwhite;
+                color: $third;
                 font-size: 14px;
             }
         }

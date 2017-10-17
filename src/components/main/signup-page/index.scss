@@ -5,6 +5,7 @@
 // // // // // // // // // //
 
 .signup {
+    position: relative;
     color: $offwhite;
     background-color: rgba($offwhite, 0.6);
     width: 300px;
@@ -38,7 +39,7 @@
     }
 
     button {
-        // @include transition(0.2s);
+        @extend %transition;
         position: relative;
         color: $third;
         width: 200px;
@@ -47,6 +48,7 @@
         border: 1px solid $third;
         border-radius: 10px;
         overflow: hidden;
+        z-index: 1;
         &:before { 
             @include benz-transition(0.5s);
             @include transform(rotate(45deg));

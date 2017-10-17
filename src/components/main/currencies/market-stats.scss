@@ -1,0 +1,38 @@
+// // // // // // // // // //
+//
+//       Market Stats
+//
+// // // // // // // // // //
+
+
+.market-stats {
+    max-width: 300px;
+    margin: 20px auto;
+    overflow: auto;
+    // border: 1px solid white;
+    li {
+        display: block;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        span {
+            float: right;
+        }
+    }
+    @include mediaMin($tablet) {
+        max-width: unset;
+        li {
+            float: left;
+            text-align: center;
+            width: 20%;
+            label {
+                display: block;
+                margin-bottom: 15px;
+            }
+            span {
+                float: none;
+            }
+        }
+    }
+}

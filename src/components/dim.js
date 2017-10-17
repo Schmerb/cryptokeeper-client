@@ -2,11 +2,26 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 export class Dim extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            fadeIn: ''
+        };
+    }
+
+    componentDidMount() {
+        const $this = this;
+        setTimeout(function() {
+            $this.setState({
+                fadeIn: 'fadeIn'
+            });
+        }, 100);
+    }
 
     render() {
-        let classes = `${this.props.open ? 'open': ''}`;
+        let classes = `${this.state.fadeIn} ${this.props.open ? 'open': ''}`;
         return (
-            <div className={`dim ${classes}`} ref="dim"></div>
+            <div id="dim" className={`dim ${classes}`} ref="dim"></div>
         );
     };
 }

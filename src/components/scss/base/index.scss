@@ -37,6 +37,10 @@ body {
     overflow: hidden;
     height: 100%;
 }
+.no-scroll-html {
+    position: relative;
+    overflow: hidden;
+}
 
 .hidden {
     display: none;
@@ -56,7 +60,7 @@ body {
     opacity: 0;
     z-index: -4;
 
-    &.open {
+    &.fadeIn {
         opacity: 1;
         z-index: 4;
     }

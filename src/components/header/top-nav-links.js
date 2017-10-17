@@ -1,6 +1,6 @@
 import React       from 'react';
 import { connect } from 'react-redux';
-import { Link }    from 'react-router-dom';
+import { Link, withRouter }    from 'react-router-dom';
 
 import { toggleLinks, toggleMenu } from 'actions/display';
 
@@ -53,17 +53,13 @@ export class TopNavLinks extends React.Component {
         }
     }
 
-    render() {
-        let links   = (<ul>
-                          <li className="links-li">
-                              <Link to={'/login'} onClick={e => this.hideMenu()}>LOGIN</Link>
-                          </li>
-                          <li className="links-li">
-                              <Link to={'/signup'} onClick={e => this.hideMenu()}>SIGNUP</Link>
-                          </li>
-                      </ul>);
+    // * * * * * * * * * * * * * * * * * * * *
+    // returns appropriate links depending on 
+    // user state
+    // * * * * * * * * * * * * * * * * * * * *
+    getLinks() {
         if(this.props.loggedIn) {
-            links = (<ul>
+            return (<ul>
                         <li className="gear-item">
                             <Link to={'/dashboard/settings'} onClick={e => this.hideMenu()}>
                                 <GearWheel />
@@ -96,7 +92,36 @@ export class TopNavLinks extends React.Component {
                         </li>
                     </ul>);
         }
+        return  (<ul>
+                    <li className="links-li">
+                        <Link to={'/login'} onClick={e => this.hideMenu()}>LOGIN</Link>
+                    </li>
+                    <li className="links-li">
+                        <Link to={'/signup'} onClick={e => this.hideMenu()}>SIGNUP</Link>
+                    </li>
+                </ul>);
+    }
 
+    // * * * * * * * * * * * * * * * * * * * *
+    // returns current page pathname
+    // * * * * * * * * * * * * * * * * * * * *
+    getCurrentPage() {
+        const path = this.props.currentPath;
+        switch(path) {
+            case '/':
+                return 'home';
+            case '/chat':
+                return 'chat';
+            case '/currencies':
+                return 'currencies';
+            default:
+                return '';
+        }
+    }
+
+    render() {
+        const links = this.getLinks();
+        const currentPage = this.getCurrentPage();
         return(
             <div className={`links-wrap ${this.props.openLinks ? 'openLinks': ''}`}>
                 <li>
@@ -114,7 +139,7 @@ export class TopNavLinks extends React.Component {
                         <li className="links-li three">
                             <Link to={'/currencies'} onClick={e => this.hideMenu()}>Currencies</Link>
                         </li>
-                        <hr className={this.props.openLinks ? 'hidden': ''}/>
+                        <hr className={`${currentPage}${this.props.openLinks ? ' hidden': ''}`}/>
                     </ul>
                 </li>
                 <li className="user-links">
@@ -132,8 +157,9 @@ const mapStateToProps = state => {
         loggedIn: state.auth.currentUser !== null,
         username: currentUser ? state.auth.currentUser.username : '',
         open: state.display.open,
-        openLinks: state.display.openLinks
+        openLinks: state.display.openLinks,
+        currentPath: state.display.currentPath
     };
 };
 
-export default connect(mapStateToProps)(TopNavLinks);
+export default withRouter(connect(mapStateToProps)(TopNavLinks));

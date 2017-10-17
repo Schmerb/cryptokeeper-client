@@ -1,0 +1,41 @@
+// // // // // // // // // //
+//
+//       Currency Title
+//
+// // // // // // // // // //
+
+
+.currency-page {
+    @include mediaMin($tablet) {
+        text-align: center;
+    }
+    .title {
+        position: relative;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        margin: 0 auto;
+        text-align: center;
+        // border: 1px solid white;
+        @include mediaMin($landscape) {
+            width: 320px;
+        }
+        @include mediaMin($tablet) {
+            display: inline-block;
+            margin-right: 100px;
+        }
+        h2 {
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+            vertical-align: top;
+        }
+        svg, img {
+            @extend %transition;
+            fill: $offwhite;
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+    }
+}

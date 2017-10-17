@@ -1,0 +1,19 @@
+// // // // // // // // // //
+//
+//       Currency Page
+//
+// // // // // // // // // //
+
+
+.currency-page {
+    position: relative;
+    color: $third;
+    color: $offwhite;
+    .container {
+        clear: both;
+        background-color: rgba($third,0.7);
+        max-width: 900px;
+        margin: 30px auto;
+        padding: 10px;
+    }  
+}

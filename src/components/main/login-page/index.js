@@ -32,23 +32,26 @@ export class LoginPage extends React.Component {
     }
 
     imgLoad(e) {
-        console.log('image has loaded!!!!');
-        this.setState({
-            loaded: true
-        });
+        // console.log('image has loaded!!!!');
+        const $this = this;
+        setTimeout(function() {
+            $this.setState({
+                loaded: true
+            });
+        }, 100);
     }
 
     render() {
         if(this.state.loaded) {
             return  (
-                <div className={`login ${this.state.loaded ? '' : 'not-loaded'}`}>
+                <div className="login">
                     <h3>Login</h3>
                     <LoginForm />
                 </div>
             );
         }
         return(
-            <div className={` ${this.state.loaded ? '' : 'not-loaded'}`}>
+            <div>
                 <img src="/assets/images/binary-script-compressor.jpg" alt="" onLoad={e => this.imgLoad(e)}/>
                 <Spinner name="circle" fadeIn="none" />
             </div>

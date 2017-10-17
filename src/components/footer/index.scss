@@ -12,6 +12,14 @@ footer {
     height: 150px;
     left: 0;
     bottom: 0; 
+    &.dash {
+        @include mediaMax($collapse) {
+            height: 200px;
+            .copy {
+                bottom: 100px;
+            }
+        }
+    }
 }
 
 .f-nav {

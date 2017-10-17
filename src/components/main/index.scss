@@ -4,26 +4,22 @@
 
 
 main {
+    background-color: $offwhite;
+    background-color: $grey;
     position: relative;
     min-height: 100vh;
     padding-top: $banner;
+    padding-bottom: 200px;
     overflow: hidden;
-
-    &:before {
-        z-index: -1;
-    }
-    &:after {
-        @extend %cover;
-        background-color: rgba(black, 0.5);
-    }
-
     @include mediaMin($collapse) {
         min-height: 500px;
     }
     > .container {
         min-height: calc(100vh - 180px);
     }
-    
+    >img {
+        height: 0;
+    }
 }
 
 .dashboard-back, 
@@ -31,67 +27,62 @@ main {
 .login-signup-back,
 .live-chat-back,
 .currencies-back,
+.currency-page-back,
 .settings-back {
-    &:before {
-        @extend %cover;
-        @include transform(scale(1.1));
-        position: fixed;
-        content: '';
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-position: center;
-        -webkit-filter: blur(5px);
-        filter: blur(5px);
-    }
-    &.hasTouch {
-        &:before {
-            background-attachment: scroll;
-        }
-    }
+	// @extend %transition;
+	@extend %cover;
+	@include transform(scale(1.1));
+	content: '';
+	position: fixed;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	-webkit-filter: blur(5px);
+	filter: blur(5px);
+	&.hasTouch {
+		background-attachment: scroll;
+	}
 }
 .live-chat-back {
-    &:before {
-        background-image: url('/assets/images/times-square-compressor.jpg');
-        -webkit-filter: none;
-        filter: none;
-    }
+	background-image: url('/assets/images/times-square-compressor.jpg');
+	-webkit-filter: none;
+	filter: none;
 }
 .login-signup-back {
-    &:before {
-        @include transform(scale(1));
-        background-image: url('/assets/images/times-square-compressor.jpg');
-        background-image: url('/assets/images/binary-script-compressor.jpg');
-        -webkit-filter: none;
-        filter: none;
-    }
+	@include transform(scale(1));
+	background-image: url('/assets/images/binary-script-compressor.jpg');
+	-webkit-filter: none;
+	filter: none;
 }
 .dashboard-back {
-    &:before {
-        // background-image: url('/assets/images/japan-neon-compressor.jpg');
-        background-image: url('/assets/images/city-night-cafe-compressor.jpg');
-        background-position: left top;
-    }
+	background-image: url('/assets/images/city-night-cafe-compressor.jpg');
+	background-position: left top;
 }
 .landing-back {
-    &:before {
-        background-image: url('/assets/images/city-night-cafe-compressor.jpg');
-        background-image: url('/assets/images/japan-neon-compressor.jpg');
-    }
+	background-image: url('/assets/images/japan-neon-compressor.jpg');
 }
 .currencies-back{
-    &:before {
-        background-image: url('/assets/images/city-night-cafe-compressor.jpg');
-        background-image: url('/assets/images/japan-neon-compressor.jpg');
-    }
+	// background-image: url('/assets/images/japan-neon-compressor.jpg');
+	background-color: #70A3CC;
 }
 .settings-back {
-    &:before {
-        background-image: url('/assets/images/blake-connally-373084-compressor.jpg');
-        -webkit-filter: blur(2px);
-        filter: blur(2px);
-    }
+	background-image: url('/assets/images/blake-connally-373084-compressor.jpg');
+	-webkit-filter: blur(2px);
+	filter: blur(2px);
+	@include mediaMin($collapse) {
+			background-position-x: 20%;
+	}
+	@include mediaMin(1250px) {
+			background-position-x: 50px;
+	}
 }
+.currency-page-back {
+	background-image: url('/assets/images/william-bout-264826-compressor.jpg');
+	-webkit-filter: blur(1px);
+	filter: blur(1px);
+}
+
 
 
  

@@ -48,10 +48,20 @@ export const dashHoverVr = (item) => ({
 //
 // Util Actions
 //
+export const SET_CURRENT_PATH = 'SET_CURRENT_PATH';
+export const setCurrentPath = (path) => ({
+    type: SET_CURRENT_PATH,
+    path
+});
 export const SET_WIDTH = 'SET_WIDTH';
 export const setWidth = (width) => ({
     type: SET_WIDTH,
     width
+});
+export const SET_HEIGHT = 'SET_HEIGHT';
+export const setHeight = (height) => ({
+    type: SET_HEIGHT,
+    height
 });
 export const HAS_TOUCH = 'HAS_TOUCH';
 export const hasTouch = (hasTouch) => ({

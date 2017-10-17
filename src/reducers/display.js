@@ -5,7 +5,9 @@ import {
     SET_BASE_Y_POS, 
     SET_DOWN_BASE_Y_POS,
     SET_UP_DIRECTION, 
+    SET_CURRENT_PATH,
     SET_WIDTH,
+    SET_HEIGHT,
     HAS_TOUCH,
     CONFIRM_MESSAGE,
     CONFIRM_CLASS,
@@ -25,7 +27,9 @@ const initialState = {
         baseYPos: 0,
         downBaseYPos: 0,
         up: false,
+        currentPath: '/',
         width: window.innerWidth,
+        height: window.innerHeight,
         hasTouch: false,
         confirmMsg: null,
         confirmClass: '',
@@ -61,7 +65,7 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case TOGGLE_MENU:
             document.body.classList.toggle('no-scroll', !state.open);
-            document.getElementsByTagName('html')[0].classList.toggle('no-scroll', !state.open);
+            document.getElementsByTagName('html')[0].classList.toggle('no-scroll-html', !state.open);
             return Object.assign({}, state, {
                 open: !state.open
             });
@@ -88,6 +92,15 @@ export default function reducer(state = initialState, action) {
         case SET_WIDTH:
             return Object.assign({}, state, {
                 width: action.width
+            });
+        case SET_HEIGHT:
+            return Object.assign({}, state, {
+                height: action.height
+            });
+        case SET_CURRENT_PATH:
+            console.log('in reducer, current path = ', action.path);
+            return Object.assign({}, state, {
+                currentPath: action.path
             });
         case HAS_TOUCH:
             return Object.assign({}, state, {
