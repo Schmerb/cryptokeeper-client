@@ -21,7 +21,7 @@ export class ChatNameBox extends Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // handles nickname form submit
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    handleNameSubmit(e) {
+    handleNameSubmit = (e) => {
         e.preventDefault();
         this.props.dispatch(setUserName(this.nInput.value));
         this.props.history.push({
@@ -37,7 +37,7 @@ export class ChatNameBox extends Component {
             <div className="name-box">
                 <h2>Enter a nickname</h2>
                 <ChatIcon className="chat-icon"/>
-                <form action="#!" onSubmit={e => this.handleNameSubmit(e)} autoComplete="off">
+                <form action="#!" onSubmit={this.handleNameSubmit} autoComplete="off">
                     <input ref={input => this.nInput = input} type="text"/>
                 </form>
             </div>

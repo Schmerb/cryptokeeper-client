@@ -1,0 +1,33 @@
+// // // // // // // // // //
+//
+//       Comments
+//
+// // // // // // // // // //
+
+.comments-container {
+    position: relative;
+    width: 100%;
+    min-height: 300px;
+    padding-top: 30px;
+    // border: 1px solid white;
+    text-align: left;
+    h2 {
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 30px;
+    }
+    .inner-container {
+        width: 95%;
+        margin: 0 auto;
+    }
+    .loading-icon {
+        @extend %abs-middle;
+    }
+    .comments-list {
+        li {
+            margin: 5px 0;
+            padding: 5px;
+            border: 1px solid black;
+        }
+    }
+}

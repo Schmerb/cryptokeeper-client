@@ -1,0 +1,14 @@
+.reply-comments-list {
+    @include transition(0.2s);
+    width: 95%;
+    max-height: 0;
+    float: right;
+    overflow: hidden;
+    &.open {
+        @include transition(0.5s);
+        max-height: 2000px;
+    }
+    .comment.reply {
+
+    }
+}

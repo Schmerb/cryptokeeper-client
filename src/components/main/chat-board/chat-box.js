@@ -14,7 +14,7 @@ export class ChatBox extends Component {
     // * * * * * * * * * * * * * * * 
     // Returns user to homepage
     // * * * * * * * * * * * * * * * 
-    goBack() {
+    goBack = () => {
         this.props.history.push({
             pathname: '/'
         });
@@ -26,7 +26,7 @@ export class ChatBox extends Component {
         }
         return(
             <div className={`chat-box ${this.props.hasTouch ? 'mobile' : ''}`}>
-                <BackBtn onClick={() => this.goBack()}/>
+                <BackBtn onClick={this.goBack}/>
                 <ChatIcon className="chat-icon"/>
                 <h2>Live Chat Room</h2>
                 <ChatUserList />

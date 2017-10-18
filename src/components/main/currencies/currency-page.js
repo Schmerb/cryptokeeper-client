@@ -7,6 +7,7 @@ import MarketGraph   from './market-graph';
 import CurrencyTitle from './currency-title';
 import CurrencyPrice from './currency-price';
 import CurrencyNav   from './currency-nav';
+import Comments      from './comments/';
 
 export class CurrencyPage extends Component {
     componentDidMount() {
@@ -26,6 +27,7 @@ export class CurrencyPage extends Component {
                     <CurrencyPrice sym={sym} currency={abbrv} data={data.info}/>
                     <MarketStats sym={sym} data={data.info}/>
                     <MarketGraph sym={sym} currency={abbrv} data={data.info}/>
+                    <Comments />
                 </div>
             </section>
         );

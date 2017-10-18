@@ -31,7 +31,7 @@ export class ChatForm extends React.Component {
     // Handles form submit, emits socket.io 
     // chat message event to server 
     // * * * * * * * * * * * * * * * * * * * * 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault()
         let msg = {
             content: this.input.value,
@@ -49,7 +49,7 @@ export class ChatForm extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // handles user is typing message 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    userTyping(e) {
+    userTyping = (e) => {
         e.preventDefault();
         // console.log(`${this.props.name} is typing . . .`);
         if(this.input.value === '') {
@@ -61,11 +61,11 @@ export class ChatForm extends React.Component {
 
     render() {
         return(
-            <form className="chat-form" onSubmit={e => this.handleSubmit(e)} action="#!" autoComplete="off">
+            <form className="chat-form" onSubmit={this.handleSubmit} action="#!" autoComplete="off">
                 <input ref={input => this.input = input} 
                         id="m" type="text" placeholder="Type something . . ."
-                        onChange={e => this.userTyping(e)}
-                        onFocus={e => this.userTyping(e)}
+                        onChange={this.userTyping}
+                        onFocus={this.userTyping}
                         onBlur={() => socketIO.emit('user typing', null)}/>
             </form>
         );

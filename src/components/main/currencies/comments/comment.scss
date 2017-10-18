@@ -1,0 +1,81 @@
+// // // // // // // // // //
+//
+//       Comment
+//
+// // // // // // // // // //
+
+.comment {
+    overflow: auto;
+    .description {
+        height: 50px;
+        // border: 1px solid white;
+    }
+    .avatar {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        border: 1px solid white;
+        overflow: hidden;
+        svg {
+            @extend %abs-middle;
+            fill: cyan;
+            width: 45px;
+            height: 45px;
+            top: 55%;
+        }
+    }
+    .metadata {
+        display: inline-block;
+        height: inherit;
+        vertical-align: top;
+        padding-left: 10px;
+        // border: 1px solid blue;
+        span {
+            display: block;
+        }
+    }
+    .content {
+        padding: 15px 0;
+    }
+}
+
+.interactions {
+    height: 40px;
+    border-top: 1px solid rgba(white,0.2);
+    label {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 30px;
+        span {
+            @extend %middleL;
+            left: 5px;
+        }
+        // border: 1px solid white;
+    }
+    .thumb {
+        @extend %abs-middle;
+        fill: lightgrey;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        &.down {
+            @include transform(translate(-50%, -50%) rotate(180deg));
+        }
+    }
+    button {
+        @include transition(0.2s);
+        color: silver;
+        height: 80%;
+        padding: 0 10px;
+        margin-top: 5px;
+        float: right;
+        border: 1px solid rgba(white,0.2);
+        &:hover {
+            color: $offwhite;
+            border: 1px solid rgba(white,0.6);
+        }
+    }
+}

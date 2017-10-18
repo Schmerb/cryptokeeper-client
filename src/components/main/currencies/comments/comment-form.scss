@@ -1,0 +1,28 @@
+.comments-form {
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    textarea {
+        display: inline-block;
+        width: 95%;
+        height: 80px;
+        resize: vertical;
+    }
+    button {
+        color: $offwhite;
+        background-color: $secondary;
+        display: inline-block;
+        width: 200px;
+        height: 50px;
+        margin-top: 10px;
+        border: none;
+    }
+}
+
+.reply-comments-list {
+    .comments-form  {
+        button {
+            width: 120px;
+        }
+    }
+}
