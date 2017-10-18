@@ -7,7 +7,7 @@ import {
 const ioClient = require('socket.io-client')  
 // const socket   = ioClient('http://localhost:8080');
 // const socket   = ioClient('http://192.168.1.112:8080');
-const socket   = ioClient('https://cryptokeeper.netlify.com/');
+const socket   = ioClient('https://cryptocoinkeeper.herokuapp.com/');
 
 let store = null;
 
