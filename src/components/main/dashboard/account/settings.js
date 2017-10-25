@@ -8,15 +8,11 @@ import EditIcon from 'icons/edit-icon';
 export class Settings extends React.Component {
     constructor(props){
         super(props);
-        console.log('PROPSSS', props);
-        if(props.phoneNumber === '' || props.email === '') {
-            props.dispatch(getUser());
-        }
         this.state = {
             tel: {
                 disabled: true,
                 value: props.phoneNumber
-            },
+            }, 
             email: {
                 disabled: true,
                 value: props.email
@@ -24,27 +20,27 @@ export class Settings extends React.Component {
         };
     }
 
-    componentDidMount() {
-        console.log('getting user');
-        this.props.dispatch(getUser());
-    }
-
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // sets the local state when receiving non-empty email
+    // and phoneNumber props
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     componentWillReceiveProps(nextProps) {
-        console.log('\n\n\n');
-        console.log('nextProps: ', nextProps);
-        console.log('\n\n\n');
-        if(nextProps.email === '' || nextProps.tel === '' ) {
+        if(nextProps.email !== '') {
             this.setState({
-                tel: {
-                    disabled: true,
-                    value: nextProps.tel
-                },
                 email: {
                     disabled: true,
                     value: nextProps.email
                 }
             });
         }
+        if(nextProps.phoneNumber !== '' ) {
+            this.setState({
+                tel: {
+                    disabled: true,
+                    value: nextProps.phoneNumber
+                }
+            });
+        } 
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

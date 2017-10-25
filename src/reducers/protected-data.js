@@ -21,7 +21,6 @@ export default function reducer(state = initialState, action) {
         case FETCH_PROTECTED_DATA_ERROR:
             return {...state, error: action.error};
         case GET_USER_SUCCESS:
-        console.log('reducer GET USER');
             return {
                 ...state, 
                 email: action.user.email, 

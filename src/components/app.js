@@ -25,13 +25,10 @@ import Footer from './footer/';
 function hasLoaded() {
     console.log('has laoded!');
 }
-
 function docHasLoaded() {
     console.log('DOCUMENT has laoded!');
 }
-
 window.onload = hasLoaded();
-
 document.onload = docHasLoaded();
 
 export class App extends React.Component {
@@ -99,9 +96,6 @@ export class App extends React.Component {
     // Redirects to previous route stored in localStorage
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     redirectToPreviousURL() {
-        if(this.props.hasAuthToken) {
-            getUser(); //makes sure store is hydrated on page refresh
-        }
         let pathname = getURLPath();
         if(pathname) {
             this.props.history.push({ pathname });
