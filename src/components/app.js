@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { refreshAuthToken } from 'actions/auth';
+import { getUser } from 'actions/protected-data';
 import { 
     setWidth,
     hasTouch,
@@ -98,6 +99,9 @@ export class App extends React.Component {
     // Redirects to previous route stored in localStorage
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     redirectToPreviousURL() {
+        if(this.props.hasAuthToken) {
+            getUser(); //makes sure store is hydrated on page refresh
+        }
         let pathname = getURLPath();
         if(pathname) {
             this.props.history.push({ pathname });

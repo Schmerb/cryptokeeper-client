@@ -1,5 +1,6 @@
 import store from 'store';
 
+import { clearState } from 'services/hydrate-state';
 import { clearAuthToken } from 'utils/local-storage';
 import { 
     setCurrentUser, 
@@ -13,4 +14,5 @@ export function logUserOut() {
     store.dispatch(setAuthToken(null));
     store.dispatch(flashMessage('Successfully logged out!'));
     clearAuthToken();
+    clearState();
 }

@@ -70,8 +70,8 @@ const mapStateToProps = state => ({
     DASH: state.crypto.DASH,
     DOGE: state.crypto.DOGE,
     XRP: state.crypto.XRP,
-	baseCurrency: state.display.currency,
-	currencySym: state.display.currencySym
+	baseCurrency: state.currency.currency,
+	currencySym: state.currency.currencySym
 });
 
 export default connect(mapStateToProps)(BoxSlider);

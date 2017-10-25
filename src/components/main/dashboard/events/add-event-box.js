@@ -15,8 +15,9 @@ export default class AddEventBox extends React.Component {
     }
 
     render() {
+        
         return(
-            <div className="event-box edit" onClick={e => this.addEvent(e)}>
+            <div className={`event-box edit ${this.props.className}`} onClick={e => this.addEvent(e)}>
                 <button type="button" className="circle-plus-btn">
                     <CirclePlus />
                 </button>

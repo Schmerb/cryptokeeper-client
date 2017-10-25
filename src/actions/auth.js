@@ -1,8 +1,9 @@
 import jwtDecode from 'jwt-decode';
 import { SubmissionError } from 'redux-form';
 
-import { API_BASE_URL } from '../config';
-import { normalizeResponseErrors } from './utils';
+import { API_BASE_URL } from 'config';
+import { hydrateState } from 'services/hydrate-state';
+import { normalizeResponseErrors }       from './utils';
 import { saveAuthToken, clearAuthToken } from 'utils/local-storage';
 
 export const SET_AUTH_TOKEN = 'SET_AUTH_TOKEN';
@@ -43,7 +44,10 @@ export const login = (username, password) => dispatch => {
             // errors which follow a consistent format
             .then(res => normalizeResponseErrors(res))
             .then(res => res.json())
-            .then(({authToken}) => storeAuthInfo(authToken, dispatch))
+            .then(({authToken}) => {
+                storeAuthInfo(authToken, dispatch);
+                hydrateState();
+            })
             .catch(err => {
                 const {code} = err;
                 if (code === 401) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { addCurrency } from 'actions/currency';
+import { updateCurrency, deleteCurrency } from 'actions/currency';
 
 import BackBtn from 'icons/back-btn';
 
@@ -12,51 +12,67 @@ export class EditCurrencyForm extends React.Component {
         this.state = {
             value: {
                 select: '',
-                input: ''
+                input: '',
+                buyInput: '',
+                id: ''
             }
         };
     }
     componentDidMount() {
-        const location = this.props.location;
-        // console.log(location);
-        const kind   = location.state.type;
-        const amount = location.state.owned;
+        const location  = this.props.location,
+               kind     = location.state.type,
+               amount   = location.state.amount,
+               buyPrice = location.state.buyPrice,
+               id       = location.state.id;
         this.setState({
-            value: {
-                select: kind,
-                input: amount
-            }
+            select: kind,
+            input: amount,
+            buyInput: buyPrice,
+            id
         });
     }
     // * * * * * * * * * * * * * * * * * * * *
     // Handles form submit and adds 
     // card with input data
     // * * * * * * * * * * * * * * * * * * * *
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
-        let currency = this.refs.select.value;
-        let quantity = this.refs.input.value;
+        let currency = this.refs.select.value,
+            quantity = this.refs.input.value,
+            buyPrice = this.refs.buyInput.value,
+            id       = this.state.id;
         let data = {
+            buyPrice,
             type: currency,
-            name: 'BTC',
-            // name: this.getName(currency),
-            owned: quantity
+            amount: quantity,
+            id
         };
-        this.props.addCurrency(data);
+        this.props.updateCurrency(data);
         this.props.history.push({
             pathname: "/dashboard/portfolio"
         });
     }
 
     // * * * * * * * * * * * * * * * * * * * *
+    // Deletes currency
+    // * * * * * * * * * * * * * * * * * * * *
+    deleteCurrency = () => {
+        let id = this.state.id;
+        this.props.deleteCurrency(id);
+        this.props.history.push({
+            pathname: "/dashboard/portfolio"
+        });
+    };
+
+
+    // * * * * * * * * * * * * * * * * * * * *
     // Updates changes in form fields
     // * * * * * * * * * * * * * * * * * * * *
-    handleChange(e) {
+    handleChange = (e) => {
         this.setState({
-            value: {
-                select: this.refs.select.value,
-                input: this.refs.input.value
-            }
+            select: this.refs.select.value,
+            input: this.refs.input.value,
+            buyInput: this.refs.buyInput.value
         });
     }
 
@@ -67,19 +83,26 @@ export class EditCurrencyForm extends React.Component {
                     <BackBtn />
                 </Link>
                 <form action="#!" className="edit-currency-form" 
-                      onSubmit={e => this.handleSubmit(e)}>
+                      onSubmit={this.handleSubmit}>
                     <h2>Edit Your Currency</h2>
-                    <select ref="select" value={this.state.value.select} onChange={e => this.handleChange(e)}>
+
+                    <select ref="select" value={this.state.select} onChange={this.handleChange}>
                         <option value="BTC">Bitcoin (BTC)</option>
                         <option value="ETH">Etheruem (ETH)</option>
                         <option value="LTC">Litecoin (LTC)</option>
                         <option value="XMR">Monero (XMR)</option>
                     </select>
-                    <input type="number" ref="input" value={this.state.value.input} onChange={e => this.handleChange(e)} required
+
+                    <input type="number" ref="input" min="0" required 
+                           value={this.state.input} onChange={this.handleChange}
                            placeholder="How many coins do you hold?"/>
+                    <input type="number" ref="buyInput" name="buyPrice" min="0" required
+                           value={this.state.buyInput} onChange={this.handleChange}
+                           placeholder="How much was a coin worth at the time?"/>
+
                     <div className="edit-btns">
                         <button type="submit">Update</button>
-                        <button type="button">Remove</button>
+                        <button type="button" onClick={this.deleteCurrency}>Remove</button>
                     </div>
                 </form>
             </div>
@@ -88,7 +111,8 @@ export class EditCurrencyForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addCurrency: data => dispatch(addCurrency(data))
+    updateCurrency: data => dispatch(updateCurrency(data)),
+    deleteCurrency: currencyId => dispatch(deleteCurrency(currencyId))
 });
 
 export default connect(null, mapDispatchToProps)(EditCurrencyForm);

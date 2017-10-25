@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { addCurrency } from 'actions/currency';
+import { addCurrency, getCurrencies } from 'actions/currency';
 
 import BackBtn from 'icons/back-btn';
 
@@ -13,13 +13,13 @@ export class CurrencyForm extends React.Component {
     // * * * * * * * * * * * * * * * 
     handleSubmit(e) {
         e.preventDefault();
-        let currency = e.target.selectCurrency.value;
-        let quantity = e.target.coins.value;
+        let currency = e.target.selectCurrency.value,
+            buyPrice = parseFloat(e.target.buyPrice.value),
+            quantity = parseFloat(e.target.coins.value);
         let data = {
             type: currency,
-            name: 'BTC',
-            // name: this.getName(currency),
-            owned: quantity
+            amount: quantity,
+            buyPrice
         };
         this.props.addCurrency(data);
         this.props.history.push({
@@ -42,8 +42,10 @@ export class CurrencyForm extends React.Component {
                         <option value="LTC">Litecoin (LTC)</option>
                         <option value="XMR">Monero (XMR)</option>
                     </select>
-                    <input type="number" name="coins" required
+                    <input type="number" name="coins" required min="0"
                            placeholder="How many coins do you hold?"/>
+                    <input type="number" name="buyPrice" required min="0"
+                           placeholder="How much was a coin worth at the time?"/>
                     <button type="submit">ADD</button>
                 </form>
             </div>
@@ -52,7 +54,8 @@ export class CurrencyForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addCurrency: data => dispatch(addCurrency(data))
+    addCurrency: data => dispatch(addCurrency(data)),
+    getCurrencies: () => dispatch(getCurrencies())
 });
 
 export default connect(null, mapDispatchToProps)(CurrencyForm);

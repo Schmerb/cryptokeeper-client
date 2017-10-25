@@ -7,15 +7,18 @@ import AddEventBox from './add-event-box';
 
 export class Events extends React.Component {
     render() {
-        let events = this.props.events.map((data, index) => (
-            <EventBox key={index} data={data} history={this.props.history}/>
-        ));
-        
+        let events = this.props.events.map((data, index) => {
+            return <EventBox key={index} data={data} history={this.props.history}/>;
+        });
+        let classes = '';
+        if(events.length === 0) {
+            classes = 'center';
+        }
         return(
             <div className="events-container">
                 <h2>My Events</h2>
                 {events}
-                <AddEventBox history={this.props.history}/>
+                <AddEventBox className={classes} history={this.props.history}/>
             </div>
         );
     }

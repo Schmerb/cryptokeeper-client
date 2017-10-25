@@ -1,6 +1,9 @@
+
+// // // // // // // // // //
 //
 // Banner actions
 //
+// // // // // // // // // //
 export const SET_Y_POS = 'SET_Y_POS';
 export const setYPos = yPos => ({
     type: SET_Y_POS,
@@ -23,9 +26,11 @@ export const setUpDirection = up => ({
 });
 
 
+// // // // // // // // // //
 //
 // Side Menu Actions
 //
+// // // // // // // // // //
 export const TOGGLE_MENU = 'TOGGLE_MENU';
 export const toggleMenu = () => ({
     type: TOGGLE_MENU
@@ -36,18 +41,24 @@ export const toggleLinks = (open) => ({
     open
 });
 
+
+// // // // // // // // // //
 //
-// Dashboard 
+// Dashboard
 //
+// // // // // // // // // //
 export const DASH_HOVER_VR = 'DASH_HOVER_VR';
 export const dashHoverVr = (item) => ({
     type: DASH_HOVER_VR,
     item
 });
 
+
+// // // // // // // // // //
 //
 // Util Actions
 //
+// // // // // // // // // //
 export const SET_CURRENT_PATH = 'SET_CURRENT_PATH';
 export const setCurrentPath = (path) => ({
     type: SET_CURRENT_PATH,
@@ -69,9 +80,12 @@ export const hasTouch = (hasTouch) => ({
     hasTouch
 });
 
+
+// // // // // // // // // //
 //
 // Flash Message Action
 //
+// // // // // // // // // //
 export const FLASH_MESSAGE = 'FLASH_MESSAGE';
 export const flashMessage = msg => ({
     type: FLASH_MESSAGE,
@@ -97,12 +111,4 @@ export const confirmClass = classname => ({
     classname
 });
 
-//
-// App actions
-//
-export const SET_BASE_CURRENCY = 'SET_BASE_CURRENCY';
-export const setBaseCurrency = (currency) => ({
-    type: SET_BASE_CURRENCY,
-    currency
-});
 

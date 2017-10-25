@@ -2,7 +2,7 @@ import React       from 'react';
 import { connect } from 'react-redux';
 import { Link }    from 'react-router-dom';
 
-import { addEvent } from 'actions/events';
+import { updateEvent } from 'actions/events';
 
 import ArrowDown from 'icons/arrow-down';
 import BackBtn   from 'icons/back-btn';
@@ -10,16 +10,17 @@ import BackBtn   from 'icons/back-btn';
 export class EditEventForm extends React.Component {
     constructor(props) {
         super(props);
-        const data = props.location.data;
+        const { name, currency, type, condition, value, valueType, message, _id: id } = props.location.data;
         this.state = {
-            name :      data.name,
-            currency :  data.currency,
-            sms :       data.sms,
-            email :     data.email,
-            condition : data.condition,
-            value :     data.value,
-            valueType : data.valueType,
-            message :   data.message
+            name,   
+            currency,
+            condition,
+            sms: type.sms,
+            email: type.email,
+            value,    
+            valueType,
+            message,
+            id  
         };
     }
 
@@ -50,9 +51,10 @@ export class EditEventForm extends React.Component {
             condition = this.refs.condition.value,
             value     = this.refs.value.value,
             valueType = this.refs.valueType.value,
-            message   = this.refs.message.value;
-        let data = {name, currency, sms, email, condition, value, valueType, message};
-        this.props.addEvent(data);
+            message   = this.refs.message.value,
+            id        = this.state.id;
+        let data = {name, currency, type: {sms, email}, condition, value, valueType, message, id};
+        this.props.updateEvent(data); 
         this.props.history.push({
             pathname: '/dashboard/events'
         });
@@ -122,7 +124,7 @@ export class EditEventForm extends React.Component {
                             <ArrowDown />
                         </div>
                         <div className="cond-value-type">
-                            <input type="number" id="condition-value" min="0" placeholder="value" ref="value"
+                            <input type="number" id="condition-value" ref="value" min="0" placeholder="value" 
                                    value={this.state.value} onChange={e => this.handleChange(e, 'value')}/>
                             <select name="" id="value-type" ref="valueType"
                                     value={this.state.valueType} onChange={e => this.handleChange(e, 'valueType')}>
@@ -148,7 +150,7 @@ export class EditEventForm extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addEvent: (data) => dispatch(addEvent(data))
+    updateEvent: (data) => dispatch(updateEvent(data))
 });
 
 export default connect(null, mapDispatchToProps)(EditEventForm);

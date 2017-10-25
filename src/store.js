@@ -6,6 +6,7 @@ import {
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
 
+
 import { setAuthToken }  from 'actions/auth';
 import { loadAuthToken } from 'utils/local-storage';
 
@@ -17,9 +18,9 @@ import cryptoReducer        from 'reducers/crypto';
 import currencyReducer      from 'reducers/currency';
 import eventsReducer        from 'reducers/events';
 
-import cryptoService from 'services/crypto-stream';
-import chatService   from 'services/chat-stream';
-import persistState  from 'services/persist-state';
+import hydrateService from 'services/hydrate-state';
+import cryptoService  from 'services/crypto-stream';
+import chatService    from 'services/chat-stream';
 
 const store = createStore(
     combineReducers({
@@ -43,8 +44,6 @@ cryptoService(store);
 // when messages sent/received
 chatService(store);
 
-// Subscribes to store and saves updated state in localStorage
-persistState(store);
 
 // Hydrate the authToken from localStorage if it exist
 const authToken = loadAuthToken();
@@ -54,8 +53,7 @@ if (authToken) {
     store.dispatch(setAuthToken(token));
 }
 
-// FETCH PREV STATE FROM LocalStorage
-
-// Eventually, hydrate state based off of user account MongoDB data!!!!
+// Hydrate stores from MongoDB
+hydrateService(store, authToken);
 
 export default store;

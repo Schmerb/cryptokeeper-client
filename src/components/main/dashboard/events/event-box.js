@@ -1,15 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { deleteEvent } from 'actions/events';
 
 import EditIcon from 'icons/edit-icon';
 
-export default class EventBox extends React.Component {
+export class EventBox extends React.Component {
 
-    editEvent(e, data) {
+    // * * * * * * * * * * * * * * * 
+    // Opens up edit form
+    // * * * * * * * * * * * * * * * 
+    editEvent = (e, data) => {
         e.preventDefault();
         this.props.history.push({
             pathname: '/dashboard/events/edit-event',
             data: data
         });
+    }
+
+    // * * * * * * * * * * * * * * * 
+    // Removes event from db
+    // * * * * * * * * * * * * * * * 
+    removeEvent = (e, id) => {
+        this.props.deleteEvent(id);
     }
 
     render() {
@@ -30,14 +43,14 @@ export default class EventBox extends React.Component {
                         </li>   
         }
         return(
-            <div className="event-box">
+            <div className="event-box" data-id={data._id}>
                 <h2>{data.name}</h2>
                 <ul>
                     <li>
                         <span className="title">Type:</span>
-                        {data.sms ? 'SMS Text Message' : ''}
-                        {data.sms && data.email ? ' / ' : ''}
-                        {data.email ? 'Email' : ''}
+                        {data.type.sms ? 'SMS Text Message' : ''}
+                        {data.type.sms && data.type.email ? ' / ' : ''}
+                        {data.type.email ? 'Email' : ''}
                     </li>
                     {condition}
                     <li className="title">Message: {data.message}</li>
@@ -46,8 +59,15 @@ export default class EventBox extends React.Component {
                 <button className="edit-btn" type="button" onClick={e => this.editEvent(e, data)}>
                     <EditIcon />
                 </button>
-                <button className="delete-btn" type="button">DELETE</button>
+                <button className="delete-btn" type="button" onClick={e => this.removeEvent(e, data._id)}>DELETE</button>
             </div>
         );
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    deleteEvent: (eventId) => dispatch(deleteEvent(eventId))
+});
+
+export default connect(null, mapDispatchToProps)(EventBox);
+

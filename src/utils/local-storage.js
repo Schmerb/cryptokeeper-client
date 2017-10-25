@@ -30,31 +30,6 @@ export const loadEvents = eventData => {
     return JSON.parse(localStorage.getItem('eventData'));
 };
 
-// * * * * * * * * * * * * * * * 
-//      Currency State
-// * * * * * * * * * * * * * * * 
-
-export const storeBaseCurrency = currency => {
-    localStorage.setItem('displayState', currency);
-};
-
-export const loadBaseCurrency = () => {
-    return localStorage.getItem('displayState');
-};
-
-// * * * * * * * * * * * * * * * 
-//      Currencies
-// * * * * * * * * * * * * * * * 
-export const storeCurrencies = currency => {
-    // console.log(currency);
-    localStorage.setItem('currencies', JSON.stringify(currency));
-};
-
-export const loadCurrencies = () => {
-    const c = localStorage.getItem('currencies');
-    // console.log(c);
-    return c;
-};
 
 // * * * * * * * * * * * * * * * 
 //      URL History

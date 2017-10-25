@@ -10,16 +10,20 @@ export default class CurrencyBox extends React.Component {
             pathname: "/dashboard/portfolio/edit-currency-form",
             state: {
                 type: data.type,
-                owned: data.owned
+                amount: data.amount,
+                buyPrice: data.buyPrice,
+                id: data._id
             }
         });
     }
     
     render() {
         const { data } = this.props;
-        const valued = (data.price * data.owned).toFixed(2);
+        // console.log(data);
+        const valued = (data.price * data.amount).toFixed(2);
+        const profit = (valued - data.buyPrice * data.amount).toFixed(2);
         return(
-            <div className="c-box">
+            <div className="c-box" data-id={data._id}>
                 <h2>{data.type}</h2>
                 <ul>
                     <li>
@@ -27,12 +31,20 @@ export default class CurrencyBox extends React.Component {
                         <span className="value">{this.props.currencySym}{data.price}</span>
                     </li>
                     <li>
-                        <span className="type">Owned:</span> 
-                        <span className="value">{data.owned}</span>
+                        <span className="type">Buy Price:</span> 
+                        <span className="value">{this.props.currencySym}{data.buyPrice}</span>
+                    </li>
+                    <li>
+                        <span className="type">amount:</span> 
+                        <span className="value">{data.amount}</span>
                     </li>
                     <li>
                         <span className="type">Valued:</span> 
                         <span className="value">{this.props.currencySym}{valued}</span>
+                    </li>
+                    <li>
+                        <span className="type">Profit:</span> 
+                        <span className="value">{this.props.currencySym}{profit}</span>
                     </li>
                 </ul>
                 <button className="edit-btn" onClick={e => this.editForm(e, data)}>

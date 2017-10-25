@@ -16,6 +16,9 @@
     border-radius: 8px;
     @include mediaMin(877px) {
         float: left;
+        &.center {
+            float: none;
+        }
     }
     @include mediaMin($desktop + 100) {
         margin-left: 5px; 

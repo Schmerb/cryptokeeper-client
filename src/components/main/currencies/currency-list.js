@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
     DASH: state.crypto.DASH,
     DOGE: state.crypto.DOGE,
     XRP: state.crypto.XRP,
-    currencySym: state.display.currencySym
+    currencySym: state.currency.currencySym
 });
 
 export default connect(mapStateToProps)(CurrencyList);

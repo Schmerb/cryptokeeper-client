@@ -14,11 +14,8 @@ import {
     FLASH_MESSAGE,
     REMOVE_FLASH_MESSAGE,
     FLASH_MSG_CLASS,
-    DASH_HOVER_VR,
-    SET_BASE_CURRENCY 
+    DASH_HOVER_VR
 } from 'actions/display'
-
-import { loadBaseCurrency } from 'utils/local-storage';
 
 const initialState = {
         open: false,
@@ -35,28 +32,8 @@ const initialState = {
         confirmClass: '',
         flashMsg: null,
         flashClass: '',
-        item: '',
-        currency: loadBaseCurrency() || 'USD',
-        currencySym: getCurrencySym(loadBaseCurrency()) ||'$'
+        item: ''
 };
-
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// Returns appropriate currency symbol
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-function getCurrencySym(currency) {
-    switch (currency) {
-        case 'USD':
-            return '$';
-        case 'AUD':
-            return 'A$';
-        case 'EUR':
-            return '\u20AC';
-        case 'GBP':
-            return '\xA3';
-        default:
-            return currency;
-    }
-}
 
 //
 // Display Reducer
@@ -129,11 +106,6 @@ export default function reducer(state = initialState, action) {
         case DASH_HOVER_VR:
             return Object.assign({}, state, {
                 item: action.item
-            });
-        case SET_BASE_CURRENCY :
-            return Object.assign({}, state, {
-                currency: action.currency,
-                currencySym: getCurrencySym(action.currency)
             });
         default:
             return state;

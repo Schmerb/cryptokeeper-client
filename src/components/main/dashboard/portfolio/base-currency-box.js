@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setBaseCurrency } from 'actions/display';
+import { setBaseCurrency } from 'actions/currency';
 
 import BtcDollar  from 'icons/currency/btc-dollar';
 import BtcEuro    from 'icons/currency/btc-euro';
@@ -49,7 +49,7 @@ export class BaseCurrencyBox extends React.Component {
                 {conversionSym}
                 <form action="#!">
                     {currencySym}
-                    <select name="base-currency" 
+                    <select name="baseCurrency" 
                             value={this.props.currency}
                             onChange={e => this.setCurrency(e)}>
                         <option value="USD">Dollar</option>
@@ -66,7 +66,7 @@ export class BaseCurrencyBox extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    currency: state.display.currency
+    currency: state.currency.currency
 });
 
 export default connect(mapStateToProps)(BaseCurrencyBox);

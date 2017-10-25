@@ -21,7 +21,7 @@ let currency = 'USD';
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function handleChange() {
     const state = store.getState();
-    const newCurrency = state.display.currency;
+    const newCurrency = state.currency.currency;
     // console.log('currency: ', currency);
     // console.log('newCurrency: ', newCurrency);
     if(newCurrency !== currency) {

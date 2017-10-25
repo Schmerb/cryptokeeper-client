@@ -21,7 +21,7 @@ export class EventForm extends React.Component {
             value     = this.refs.value.value,
             valueType = this.refs.valueType.value,
             message   = this.refs.message.value;
-        let data = {name, currency, sms, email, condition, value, valueType, message};
+        let data = {name, currency, type: {sms, email}, condition, value, valueType, message};
         this.props.addEvent(data);
         this.props.history.push({
             pathname: '/dashboard/events'

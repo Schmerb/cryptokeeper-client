@@ -22,17 +22,22 @@ export class MyCurrencies extends React.Component {
     }
 
     render() {
-        const c_data = this.props.currencies;
+        const coins = this.props.currencies;
         let boxes = null;
-        if(c_data && c_data.length > 0) {
-            boxes = c_data.map((data, index) => {
+        let center = '';
+        if(coins && coins.length > 0) {
+            boxes = coins.map((data, index) => {
                 data.price = this.props[data.type].price;
                 return <CurrencyBox key={index} history={this.props.history}
                                     data={data} currencySym={this.props.currencySym}/>
             });
+        } 
+        console.log(coins);
+        if(coins.length <= 1) {
+            center = 'center';
         }
         return(
-            <section className="my-currencies">
+            <section className={`my-currencies ${center}`}>
                 <h2>My Currencies</h2>
                 {boxes}
                 <button className="add-currency-btn" onClick={e => this.openForm()}>
@@ -44,14 +49,14 @@ export class MyCurrencies extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    "BTC": state.crypto.BTC,
-    "ETH": state.crypto.ETH,
-    "LTC": state.crypto.LTC,
-    "XMR": state.crypto.XMR,
-    "DASH": state.crypto.DASH,
-    "DOGE": state.crypto.DOGE,
-    "XRP": state.crypto.XRP,
-    currencySym: state.display.currencySym,
+    BTC: state.crypto.BTC,
+    ETH: state.crypto.ETH,
+    LTC: state.crypto.LTC,
+    XMR: state.crypto.XMR,
+    DASH: state.crypto.DASH,
+    DOGE: state.crypto.DOGE,
+    XRP: state.crypto.XRP,
+    currencySym: state.currency.currencySym,
     currencies: state.currency.currencies
 });
 
