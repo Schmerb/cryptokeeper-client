@@ -37,7 +37,7 @@ export const fetchProtectedData = () => (dispatch, getState) => {
 // // // // // // // // // //
 
 //
-// Email
+// Updates Users email/phonenumber
 //
 export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
 export const updateUserSuccess = (data) => ({
@@ -54,7 +54,7 @@ export const updateUserError = (error) => ({
 export const updateUser = (updateData) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     console.log("UpdateData", updateData);
-    return fetch(`${API_BASE_URL}/users/me/`, {
+    return fetch(`${API_BASE_URL}/users/me/settings`, {
         method: 'PUT',
         body: JSON.stringify(updateData),
         headers: {
