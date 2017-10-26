@@ -1,7 +1,9 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
+
 import { registerUser } from 'actions/users';
-import { login } from 'actions/auth';
+import { login }        from 'actions/auth';
+import { flashMessage } from 'actions/display';
 import Input from '../input';
 import { required, nonEmpty, matches, length, isTrimmed, email } from 'utils/validators';
 
@@ -11,12 +13,17 @@ export class SignupForm extends React.Component {
     componentDidMount() {
     }
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Dispatches action to reigster user, log user in, and
+    // then flash success message
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     onSubmit(values) {
         const {email, username, password, firstName, lastName} = values;
         const user = {email, username, password, firstName, lastName};
         return this.props
             .dispatch(registerUser(user))
-            .then(() => this.props.dispatch(login(username, password)));
+            .then(() => this.props.dispatch(login(username, password)))
+            .then(() => this.props.dispatch(flashMessage('Successfully registered!')));
     }
 
     render() {

@@ -29,6 +29,8 @@ const initialState = {
         height: window.innerHeight,
         hasTouch: false,
         confirmMsg: null,
+        confirmAction: null,
+        confirmActionMsg: null,
         confirmClass: '',
         flashMsg: null,
         flashClass: '',
@@ -85,7 +87,9 @@ export default function reducer(state = initialState, action) {
             });
         case CONFIRM_MESSAGE:
             return Object.assign({}, state, {
-                confirmMsg: action.msg
+                confirmMsg: action.msg,
+                confirmAction: action.action,
+                confirmActionMsg: action.actionMsg
             });
         case CONFIRM_CLASS:
             return Object.assign({}, state, {

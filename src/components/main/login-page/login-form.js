@@ -1,9 +1,10 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 
-import { login } from 'actions/auth';
-import { required, nonEmpty } from 'utils/validators';
+import { login }        from 'actions/auth';
+import { flashMessage } from 'actions/display';
 
+import { required, nonEmpty } from 'utils/validators';
 import Input from '../input';
 
 import PersonIcon from 'icons/person';
@@ -16,7 +17,9 @@ export class LoginForm extends React.Component {
     }
 
     onSubmit(values) {
-        return this.props.dispatch(login(values.username, values.password));
+        return this.props
+            .dispatch(login(values.username, values.password))
+            .then(() => this.props.dispatch(flashMessage('Successfully logged in!')));
     }
 
     render() {

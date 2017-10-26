@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import { refreshAuthToken } from 'actions/auth';
-import { getUser } from 'actions/protected-data';
 import { 
     setWidth,
     hasTouch,
@@ -22,14 +21,12 @@ import Header from './header/';
 import Main   from './main/';
 import Footer from './footer/';
 
-function hasLoaded() {
+window.onload = () => {
     console.log('has laoded!');
 }
-function docHasLoaded() {
+document.onload = () => {
     console.log('DOCUMENT has laoded!');
 }
-window.onload = hasLoaded();
-document.onload = docHasLoaded();
 
 export class App extends React.Component {
     
@@ -148,7 +145,7 @@ export class App extends React.Component {
         if(this.props.flashMsg) {
             flashMsg = <FlashMessage delay={200} msg={this.props.flashMsg}/>;
         } else if(this.props.confirmMsg) {
-            confirmMsg = <ConfirmMessage question={this.props.confirmMsg}/>;
+            confirmMsg = <ConfirmMessage />;
         }
         return(
             <section className="app">

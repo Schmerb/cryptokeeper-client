@@ -101,9 +101,11 @@ export const flashMsgClass = (classname) => ({
     classname
 });
 export const CONFIRM_MESSAGE = 'CONFIRM_MESSAGE';
-export const confirmMessage = msg => ({
+export const confirmMessage = (msg, action, actionMsg) => ({
     type: CONFIRM_MESSAGE,
-    msg
+    msg, 
+    action,
+    actionMsg
 });
 export const CONFIRM_CLASS = 'CONFIRM_CLASS';
 export const confirmClass = classname => ({

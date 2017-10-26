@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import { confirmMessage, confirmClass } from 'actions/display';
 
-import { logUserOut } from 'services/user';
 
 export class ConfirmMessage extends React.Component {
 
@@ -44,17 +43,18 @@ export class ConfirmMessage extends React.Component {
         this.props.dispatch(confirmClass(''));
         setTimeout(function() {
             $this.props.dispatch(confirmMessage(null));
-            logUserOut();
+            $this.props.confirmAction();
         }, 500);
     }
 
     render() {
+        console.log(this.props);
         return(
             <div id="confirm-window" className={`confirmation ${this.props.confirmClass}`} onClick={e => this.handleWindowClick(e)}>
                 <div className="confirmation-modal">
-                    <h2>{this.props.question}</h2>
+                    <h2>{this.props.confirmMsg}</h2>
                     <div className="btn-group">
-                        <button type="button" onClick={() => this.confirm()}>LogOut</button>
+                        <button type="button" onClick={() => this.confirm()}>{this.props.confirmActionMsg}</button>
                         <button type="button" onClick={() => this.cancel()}>Nevermind</button>
                     </div>
                 </div>
@@ -64,7 +64,10 @@ export class ConfirmMessage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-        confirmClass: state.display.confirmClass
+        confirmClass: state.display.confirmClass,
+        confirmMsg: state.display.confirmMsg,
+        confirmAction: state.display.confirmAction,
+        confirmActionMsg: state.display.confirmActionMsg
 });
 
 export default connect(mapStateToProps)(ConfirmMessage);

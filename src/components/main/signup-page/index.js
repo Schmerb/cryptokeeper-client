@@ -2,8 +2,6 @@ import React        from 'react';
 import { connect }  from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { flashMessage } from 'actions/display';
-
 import SignupForm from './signup-form';
 
 export class SignupPage extends React.Component{
@@ -15,10 +13,13 @@ export class SignupPage extends React.Component{
     componentWillReceiveProps(nextProps) {
         // If we are logged in redirect straight to the user's dashboard
         if (nextProps.loggedIn) {
+            let path = '';
+            if(window.innerWidth >= 805 && !this.props.hasTouch) {
+                path = '/portfolio';
+            }
             this.props.history.push({
-                pathname: `/dashboard${window.innerWidth >= 805 ? '/portfolio' : ''}`
+                pathname: `/dashboard${path}` // goes right to portfolio on larger screens
             });
-            this.props.dispatch(flashMessage('Successfully registered!'));
         }
     }
 
@@ -33,7 +34,8 @@ export class SignupPage extends React.Component{
 }
 
 const mapStateToProps = state => ({
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.auth.currentUser !== null,
+    hasTouch: state.display.hasTouch
 });
 
 export default withRouter(connect(mapStateToProps)(SignupPage));

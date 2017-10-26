@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { dashHoverVr, confirmMessage } from 'actions/display';
 
-// import { logUserOut } from 'services/user';
+import { logUserOut } from 'services/user';
 
 import PortfolioBag from 'icons/portfolio-bag';
 import EventGraph   from 'icons/event-graph';
@@ -18,14 +18,14 @@ export class SideNav extends React.Component {
     hover(target) {
         // update the class on dash-vr
         // console.log('target: ', target);
-        this.props.dashHoverVr(target);
+        this.props.dispatch(dashHoverVr(target));
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Dispatches action to display confirm modal
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     confirmLogOut() {
-        this.props.confirmMsg('Are you sure you want to log out?');
+        this.props.dispatch(confirmMessage('Are you sure you want to log out?', logUserOut, 'LogOut'));
     }
 
     render() {
@@ -86,11 +86,5 @@ const mapStateToProps = state => ({
     item: state.display.item
 });
 
-const mapDispatchToProps = dispatch => ({
-    dashHoverVr: (target) => {
-        dispatch(dashHoverVr(target));
-    },
-    confirmMsg: question => dispatch(confirmMessage(question))
-});
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SideNav));
+export default withRouter(connect(mapStateToProps)(SideNav));

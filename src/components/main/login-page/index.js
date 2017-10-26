@@ -2,8 +2,6 @@ import React          from 'react';
 import { connect }    from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import { flashMessage } from 'actions/display';
-
 import LoginForm from './login-form';
 
 import Spinner from 'react-spinkit';
@@ -24,10 +22,13 @@ export class LoginPage extends React.Component {
     componentWillReceiveProps(nextProps) {
         // If we are logged in redirect straight to the user's dashboard
         if (nextProps.loggedIn) {
+            let path = '';
+            if(window.innerWidth >= 805 && !this.props.hasTouch) {
+                path = '/portfolio';
+            }
             this.props.history.push({
-                pathname: `/dashboard${window.innerWidth >= 805 ? '/portfolio' : ''}`
+                pathname: `/dashboard${path}` // goes right to portfolio on larger screens
             });
-            this.props.dispatch(flashMessage('Successfully logged in!'));
         }
     }
 

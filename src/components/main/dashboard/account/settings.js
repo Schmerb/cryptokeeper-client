@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { updateUser, getUser } from 'actions/protected-data';
+import { updateUser } from 'actions/protected-data';
+import { confirmMessage } from 'actions/display';
+
+import { deleteCurrentUser } from 'services/user';
 
 import EditIcon from 'icons/edit-icon';
 
@@ -79,6 +82,13 @@ export class Settings extends React.Component {
         }, 100);
     }
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Displays confirmation msg to delete account
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    deleteAccount = () => {
+        this.props.dispatch(confirmMessage('Are you sure you want to close your account?', deleteCurrentUser, 'DELETE ACCOUNT'));
+    }
+
     render() {
         return(
             <div className="settings">
@@ -108,7 +118,7 @@ export class Settings extends React.Component {
                             <button className="confirm-btn" type="submit">Confirm Changes</button>
                         </form>
 
-                        <button className="delete-btn" type="button">Delete Account</button>
+                        <button className="delete-btn" type="button" onClick={this.deleteAccount}>Delete Account</button>
                     </div>
                 </div>
             </div>
