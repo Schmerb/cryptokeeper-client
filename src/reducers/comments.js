@@ -30,9 +30,16 @@ export default function reducer(state = initialState, action) {
         case ADD_COMMENT_ERROR:
             return {...state, error: action.error};
         case ADD_REPLY_COMMENT_SUCCESS: {
+            const comments = state.comments.map(comment => {
+                if(comment.id === action.commentID) {
+                    comment.replyComments = [...comment.replyComments, action.replyComment];
+                }
+                console.log('comment: ', comment);
+                return comment;
+            });
             return {
                 ...state,
-                comments: [...state.comments, action.replyComment],
+                comments,
                 error: null
             };
         }

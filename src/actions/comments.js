@@ -72,9 +72,10 @@ export const addComment = (content, currency) => (dispatch, getState) => {
 // ADD REPLY COMMENT
 //
 export const ADD_REPLY_COMMENT_SUCCESS = 'ADD_REPLY_COMMENT_SUCCESS';
-export const addReplyCommentSuccess = replyComment => ({
+export const addReplyCommentSuccess = (replyComment, commentID) => ({
     type: ADD_REPLY_COMMENT_SUCCESS,
-    replyComment
+    replyComment,
+    commentID
 });
 export const ADD_REPLY_COMMENT_ERROR = 'ADD_REPLY_COMMENT_ERROR';
 export const addReplyCommentError = error => ({
@@ -101,7 +102,7 @@ export const addReplyComment = (content, commentID, currency) => (dispatch, getS
     .then(replyComment => {
         replyComment.author = getState().auth.currentUser;
         console.log(replyComment);
-        dispatch(addReplyCommentSuccess(replyComment));
+        dispatch(addReplyCommentSuccess(replyComment, commentID));
     });
 };
 
