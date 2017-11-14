@@ -21,6 +21,13 @@ export default class Comment extends Component {
     };
     
     render() {
+        const { author, content, created, id, replyComments } = this.props.data;
+
+        let username = 'Account Deactivated';
+        if(author) {
+            username = author.username;
+        }
+
         return(
             <div className="comment">
 
@@ -29,13 +36,13 @@ export default class Comment extends Component {
                         <TieAvatar />
                     </div>
                     <div className="metadata">
-                        <span className="author">{this.props.author}</span>
-                        <span className="timestamp">posted 3 hours ago</span>
+                        <span className="author">{username}</span>
+                        <span className="timestamp">{created}</span>
                     </div>
                 </div>
 
                 <div className="content">
-                    <p>{this.props.content}</p>
+                    <p>{content}</p>
                 </div>
 
                 <div className="interactions">
@@ -50,7 +57,9 @@ export default class Comment extends Component {
                     <button onClick={this.openReplyComments}>{this.state.open?'hide':'view'} comments</button>
                 </div>
 
-                <ReplyComments className={`reply-comments-list ${this.state.open?'open':''}`}/>
+                <ReplyComments className={`reply-comments-list ${this.state.open?'open':''}`} 
+                               replyComments={replyComments} 
+                               commentId={id}/>
             </div>
         );
     }

@@ -14,19 +14,46 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 export class BoxSlider extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			animating: false
+		};
+	}
+
+	// determines if slides should update or not depending if slider is currently animating
+	shouldComponentUpdate(nextProps, nextState) {
+		return !nextState.animating
+	}
+
+	// Fired right before slide animation begins
+	beforeChange = e => {
+		this.setState({
+			animating: true
+		});
+	};
+
+	// Fired after slide animation completes
+	afterChange = e => {
+		this.setState({
+			animating: false
+		});
+	};
 
 	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	// Slick-slider settings object
 	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 	slickSliderInit() {
-		const settings = {
+		return {
 			dots: true,
 			infinite: false,
-			speed: 500,
+			speed: 1500,
 			slidesToShow: 1,
 			slidesToScroll: 1,
 			nextArrow: <NextArrow />,
 			prevArrow: <PrevArrow />,
+			beforeChange: this.beforeChange,
+			afterChange: this.afterChange,
 			responsive: [
 				{
 					breakpoint: 650,
@@ -36,7 +63,6 @@ export class BoxSlider extends React.Component {
 				}
 			]
 		};
-		return settings;
 	}
 
 
@@ -55,7 +81,7 @@ export class BoxSlider extends React.Component {
 		));
 
 		return (
-			<Slider {...settings}>
+			<Slider {...settings} >
 				{currencySlides}
 			</Slider>
 		);

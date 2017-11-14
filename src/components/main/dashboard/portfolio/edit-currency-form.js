@@ -64,7 +64,6 @@ export class EditCurrencyForm extends React.Component {
         });
     };
 
-
     // * * * * * * * * * * * * * * * * * * * *
     // Updates changes in form fields
     // * * * * * * * * * * * * * * * * * * * *
@@ -85,21 +84,21 @@ export class EditCurrencyForm extends React.Component {
                 <form action="#!" className="edit-currency-form" 
                       onSubmit={this.handleSubmit}>
                     <h2>Edit Your Currency</h2>
-
                     <select ref="select" value={this.state.select} onChange={this.handleChange}>
                         <option value="BTC">Bitcoin (BTC)</option>
-                        <option value="ETH">Etheruem (ETH)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
                         <option value="LTC">Litecoin (LTC)</option>
                         <option value="XMR">Monero (XMR)</option>
+                        <option value="XRP">Ripple (XRP)</option>
+                        <option value="DASH">DASH (DASH)</option>
+                        <option value="DOGE">Dogecoin (DOGE)</option>
                     </select>
-
                     <input type="number" ref="input" min="0" required 
                            value={this.state.input} onChange={this.handleChange}
                            placeholder="How many coins do you hold?"/>
                     <input type="number" ref="buyInput" name="buyPrice" min="0" required
                            value={this.state.buyInput} onChange={this.handleChange}
                            placeholder="How much was a coin worth at the time?"/>
-
                     <div className="edit-btns">
                         <button type="submit">Update</button>
                         <button type="button" onClick={this.deleteCurrency}>Remove</button>

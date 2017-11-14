@@ -83,6 +83,9 @@ export class EditEventForm extends React.Component {
                             <option value="ETH">ETH (Ethereum)</option>
                             <option value="LTC">LTC (Litecoin)</option>
                             <option value="XMR">XMR (Monero)</option>
+                            <option value="XRP">XRP (Ripple)</option>
+                            <option value="DASH">DASH (DASH)</option>
+                            <option value="DOGE">DOGE (Dogecoin)</option>
                         </select>
                         <ArrowDown />
                     </label>
@@ -118,6 +121,7 @@ export class EditEventForm extends React.Component {
                             <select name="" id="condition" ref="condition"
                                     value={this.state.condition} onChange={e => this.handleChange(e, 'condition')}>
                                 <option value="reach">Reached value</option>
+                                <option value="dropTo">Dropped to value</option>
                                 <option value="increase">Increased By</option>
                                 <option value="decrease">Decreased By</option>
                             </select>

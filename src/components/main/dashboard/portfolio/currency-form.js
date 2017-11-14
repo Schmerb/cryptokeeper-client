@@ -38,9 +38,12 @@ export class CurrencyForm extends React.Component {
                     <h2>Add Your Currency</h2>
                     <select name="selectCurrency">
                         <option value="BTC">Bitcoin (BTC)</option>
-                        <option value="ETH">Etheruem (ETH)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
                         <option value="LTC">Litecoin (LTC)</option>
                         <option value="XMR">Monero (XMR)</option>
+                        <option value="XRP">Ripple (XRP)</option>
+                        <option value="DASH">DASH (DASH)</option>
+                        <option value="DOGE">Dogecoin (DOGE)</option>
                     </select>
                     <input type="number" name="coins" required min="0"
                            placeholder="How many coins do you hold?"/>

@@ -6,7 +6,6 @@ export const fetchProtectedDataSuccess = data => ({
     type: FETCH_PROTECTED_DATA_SUCCESS,
     data
 });
-
 export const FETCH_PROTECTED_DATA_ERROR = 'FETCH_PROTECTED_DATA_ERROR';
 export const fetchProtectedDataError = error => ({
     type: FETCH_PROTECTED_DATA_ERROR,
@@ -68,6 +67,45 @@ export const updateUser = (updateData) => (dispatch, getState) => {
         .then((data) => dispatch(updateUserSuccess(data)))
         .catch(err => {
             dispatch(updateUserError(err));
+        });
+};
+
+//
+// Uploads user's image for profile avatar
+//
+export const UPLOAD_IMAGE_SUCCESS = 'UPLOAD_IMAGE_SUCCESS';
+export const updateImageSuccess = (image) => ({
+    type: UPLOAD_IMAGE_SUCCESS,
+    image
+});
+export const UPLOAD_IMAGE_ERROR = 'UPLOAD_IMAGE_ERROR';
+export const updateImageError = (error) => ({
+    type: UPLOAD_IMAGE_ERROR,
+    error
+});
+export const uploadImage = (image) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    console.log("image", image);
+    console.log("typeof(image)", typeof(image));
+    let img = image;
+    return fetch(`${API_BASE_URL}/users/me/avatar`, {
+        method: 'POST',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`,
+            "Content-Type": "multipart/form-data; boundary=data.boundary"
+        },
+        body: img
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then((data) => {
+            console.log('IMAGE RES: ', data);
+            // dispatch(updateImageSuccess(data));
+        })
+        .catch(err => {
+            console.log(err);
+            dispatch(updateImageError(err));
         });
 };
 

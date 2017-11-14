@@ -24,9 +24,11 @@
         margin-left: 5px; 
         margin-right: 5px; 
     }
-
     button {
         border: none;
+    }
+    ul {
+        overflow: auto;
     }
     .edit-btn {
         position: absolute;
@@ -67,6 +69,9 @@
             }
         }
     }
+    &.successful {
+        background-color: $darkblue;
+    }
     .circle-plus-btn {
         @extend %abs-middle;
         width: 55px;
@@ -83,4 +88,9 @@
     .title {
         float: left;
     }
+}
+
+.success-msg {
+    color: lightgreen;
+    font-size: 26px;
 }

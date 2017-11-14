@@ -25,9 +25,9 @@ export class CurrencyPage extends Component {
                 <div className="container">
                     <CurrencyTitle currency={abbrv} />
                     <CurrencyPrice sym={sym} currency={abbrv} data={data.info}/>
-                    <MarketStats sym={sym} data={data.info}/>
+                    <MarketStats sym={sym} data={data.info} pathname={this.props.pathname}/>
                     <MarketGraph sym={sym} currency={abbrv} data={data.info}/>
-                    <Comments />
+                    <Comments currency={abbrv}/>
                 </div>
             </section>
         );
@@ -43,7 +43,8 @@ const mapStateToProps = state => ({
     DOGE: state.crypto.DOGE,
     XRP: state.crypto.XRP,
     currency: state.currency.currency,
-    currencySym: state.currency.currencySym
+    currencySym: state.currency.currencySym,
+    pathname: state.display.currentPath
 });
 
 export default connect(mapStateToProps)(CurrencyPage);

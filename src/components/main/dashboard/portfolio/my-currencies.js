@@ -32,7 +32,6 @@ export class MyCurrencies extends React.Component {
                                     data={data} currencySym={this.props.currencySym}/>
             });
         } 
-        console.log(coins);
         if(coins.length <= 1) {
             center = 'center';
         }

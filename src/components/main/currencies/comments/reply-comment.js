@@ -8,6 +8,8 @@ import ThumbsUpOutline from 'icons/thumbs-up-outline';
 export default class ReplyComment extends Component {
 
     render() {
+        const { author, content, created } = this.props.replyComment;
+        console.log('ReplyComment PROPS', this.props);
         return(
             <div className="comment reply">
 
@@ -16,13 +18,13 @@ export default class ReplyComment extends Component {
                         <TieAvatar />
                     </div>
                     <div className="metadata">
-                        <span className="author">{this.props.author}</span>
-                        <span className="timestamp">posted 3 hours ago</span>
+                        <span className="author">{author.username}</span>
+                        <span className="timestamp">{created}</span>
                     </div>
                 </div>
 
                 <div className="content">
-                    <p>{this.props.content}</p>
+                    <p>{content}</p>
                 </div>
 
                 <div className="interactions">

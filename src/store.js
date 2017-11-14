@@ -16,6 +16,7 @@ import displayReducer       from 'reducers/display';
 import chatReducer          from 'reducers/chat';
 import cryptoReducer        from 'reducers/crypto';
 import currencyReducer      from 'reducers/currency';
+import commentsReducer      from 'reducers/comments';
 import eventsReducer        from 'reducers/events';
 
 import hydrateService from 'services/hydrate-state';
@@ -31,6 +32,7 @@ const store = createStore(
         chat: chatReducer,
         crypto: cryptoReducer,
         currency: currencyReducer,
+        comments: commentsReducer,
         events: eventsReducer   
     }),
     applyMiddleware(thunk)

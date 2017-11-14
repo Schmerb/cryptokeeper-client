@@ -20,8 +20,10 @@ export class EventForm extends React.Component {
             condition = this.refs.condition.value,
             value     = this.refs.value.value,
             valueType = this.refs.valueType.value,
-            message   = this.refs.message.value;
-        let data = {name, currency, type: {sms, email}, condition, value, valueType, message};
+            message   = this.refs.message.value,
+            basePrice = this.props[currency].price;
+        console.log('basePrice: ', basePrice);
+        let data = {name, currency, basePrice, type: {sms, email}, condition, value, valueType, message};
         this.props.addEvent(data);
         this.props.history.push({
             pathname: '/dashboard/events'
@@ -49,6 +51,9 @@ export class EventForm extends React.Component {
                             <option value="ETH">ETH (Ethereum)</option>
                             <option value="LTC">LTC (Litecoin)</option>
                             <option value="XMR">XMR (Monero)</option>
+                            <option value="XRP">XRP (Ripple)</option>
+                            <option value="DASH">DASH (DASH)</option>
+                            <option value="DOGE">DOGE (Dogecoin)</option>
                         </select>
                         <ArrowDown />
                     </label>
@@ -81,6 +86,7 @@ export class EventForm extends React.Component {
                         <div className="cond-select-wrap">
                             <select name="" id="condition" ref="condition">
                                 <option value="reach">Reached value</option>
+                                <option value="dropTo">Dropped to value</option>
                                 <option value="increase">Increased By</option>
                                 <option value="decrease">Decreased By</option>
                             </select>
@@ -108,8 +114,20 @@ export class EventForm extends React.Component {
     }
 }
 
+
+const mapStateToProps = state => ({
+    BTC: state.crypto.BTC,
+    ETH: state.crypto.ETH,
+    LTC: state.crypto.LTC,
+    XMR: state.crypto.XMR,
+    DASH: state.crypto.DASH,
+    DOGE: state.crypto.DOGE,
+    XRP: state.crypto.XRP,
+    currencySym: state.currency.currencySym
+});
+
 const mapDispatchToProps = dispatch => ({
     addEvent: (data) => dispatch(addEvent(data))
 });
 
-export default connect(null, mapDispatchToProps)(EventForm);
+export default connect(mapStateToProps, mapDispatchToProps)(EventForm);

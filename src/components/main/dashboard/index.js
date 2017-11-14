@@ -6,11 +6,11 @@ import { Redirect, Route } from 'react-router-dom';
 
 import MobileDashboard from './mobile-dashboard/';
 import MobileNav       from './mobile-dashboard/mobile-nav';
+import SideNav         from './side-nav';
 import Portfolio       from './portfolio/';
 import EventsPage      from './events/';
 import Avatar          from './account/avatar';
 import Settings        from './account/settings';
-import SideNav         from './side-nav';
 
 export class Dashboard extends React.Component {
 

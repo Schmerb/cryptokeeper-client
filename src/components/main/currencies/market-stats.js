@@ -28,6 +28,16 @@ export default class MarketStats extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        // console.log(this.props.pathname, nextProps.pathname);
+        if(this.props.pathname !== nextProps.pathname) {
+            this.setState({
+                VOL24TO: 'N/A',
+                VOLHRTO: 'N/A',
+                HIGH24: 'N/A',
+                LOW24: 'N/A',
+                OPEN24: 'N/A'
+            });
+        }
         if(nextProps.data.VOLUME24HOURTO) {
             this.setState({
                 VOL24TO:  nextProps.data.VOLUME24HOURTO.toFixed(2),
@@ -56,7 +66,7 @@ export default class MarketStats extends Component {
     }
 
     render() {
-        console.log(this.props.data);
+        // console.log(this.props.data);
         return(
             <div className="market-stats">
                 <ul>

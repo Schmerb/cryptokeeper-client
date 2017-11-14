@@ -27,6 +27,7 @@ export class EventBox extends React.Component {
 
     render() {
         const data = this.props.data;
+        let classes = data.successful ? 'successful': null;
         let condition = null;
         if(data.condition === 'reach') {
             condition = <li> 
@@ -42,8 +43,12 @@ export class EventBox extends React.Component {
                             </span>
                         </li>   
         }
+        let success = null;
+        if(data.successful) {
+            success = <p className="success-msg">Successful Event!</p>;
+        }
         return(
-            <div className="event-box" data-id={data._id}>
+            <div className={`event-box ${classes}`} data-id={data._id}>
                 <h2>{data.name}</h2>
                 <ul>
                     <li>
@@ -55,7 +60,7 @@ export class EventBox extends React.Component {
                     {condition}
                     <li className="title">Message: {data.message}</li>
                 </ul>
-                
+                {success}    
                 <button className="edit-btn" type="button" onClick={e => this.editEvent(e, data)}>
                     <EditIcon />
                 </button>
