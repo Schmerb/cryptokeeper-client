@@ -19,7 +19,6 @@ export class Comments extends Component {
     }
 
     componentDidMount() {
-        const $this = this;
         this.props.getComments(this.props.currency);
     }
 
