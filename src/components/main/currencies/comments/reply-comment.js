@@ -1,15 +1,50 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
+import { likeReplyComment, dislikeReplyComment } from 'actions/comments';
+
+import getTimeElapsed from './elapsed-time';
 
 import TieAvatar       from 'icons/tie-avatar';
 import ThumbsUpOutline from 'icons/thumbs-up-outline';
-// import ThumbsUpFilled  from 'icons/thumbs-up-filled';
+import ThumbsUpFilled  from 'icons/thumbs-up-filled';
 
-export default class ReplyComment extends Component {
+export class ReplyComment extends Component {
 
+    likeReplyComment = (e, commentID, replyCommentID) => {
+        this.props.likeReplyComment(commentID, replyCommentID);
+    };
+
+    dislikeReplyComment = (e, commentID, replyCommentID) => {
+        this.props.dislikeReplyComment(commentID, replyCommentID);
+    };
+    
     render() {
-        const { author, content, created } = this.props.replyComment;
-        console.log('ReplyComment PROPS', this.props);
+        const { author, content, createdAt, usersLiked, usersDisliked,
+            id: replyCommentID, parentComment: commentID } = this.props.replyComment;
+
+        let username = 'Account Deactivated'; // fallback for comments whos author removed their account
+        if(author) {
+            username = author.username;
+        }
+        const likes = usersLiked.length;
+        const dislikes = usersDisliked.length;
+        let thisUserLiked = false;
+        let thisUserDisliked = false;
+        for(let user of usersLiked) {
+            if(this.props.currentUser && user.username === this.props.currentUser.username) {
+                thisUserLiked = true;
+                break;
+            }
+        }
+        for(let user of usersDisliked) {
+            if(this.props.currentUser && user.username === this.props.currentUser.username) {
+                thisUserDisliked = true;
+                break;
+            }
+        }
+        const timeElapsed = getTimeElapsed(new Date(createdAt));
+        console.log('THIS USER LIKED', thisUserLiked);
         return(
             <div className="comment reply">
 
@@ -18,8 +53,8 @@ export default class ReplyComment extends Component {
                         <TieAvatar />
                     </div>
                     <div className="metadata">
-                        <span className="author">{author.username}</span>
-                        <span className="timestamp">{created}</span>
+                        <span className="author">{username}</span>
+                        <span className="timestamp">posted {timeElapsed}</span>
                     </div>
                 </div>
 
@@ -29,15 +64,28 @@ export default class ReplyComment extends Component {
 
                 <div className="interactions">
                     <label htmlFor="">
-                        <span>5</span>
-                        <ThumbsUpOutline className="thumb up"/>
+                        <span>{likes}</span>
+                        <ThumbsUpOutline className="thumb up" clickHandler={e => this.likeReplyComment(e, commentID, replyCommentID)}/>
+                        {thisUserLiked ? <ThumbsUpFilled className="thumb up" /> : null}
                     </label>
                     <label>
-                        <span>2</span>
-                        <ThumbsUpOutline className="thumb down"/>
+                        <span>{dislikes}</span>
+                        <ThumbsUpOutline className="thumb down" clickHandler={e => this.dislikeReplyComment(e, commentID, replyCommentID)}/>
+                        {thisUserDisliked ? <ThumbsUpFilled className="thumb down" /> : null}
                     </label>
                 </div>
             </div>
         );
     }
 }
+
+const mapStateToProps = state => ({
+    currentUser: state.auth.currentUser
+});
+
+const mapDispatchToProps = dispatch => ({
+    likeReplyComment: (commentID, replyCommentID) => dispatch(likeReplyComment(commentID, replyCommentID)),
+    dislikeReplyComment: (commentID, replyCommentID) => dispatch(dislikeReplyComment(commentID, replyCommentID))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReplyComment);
