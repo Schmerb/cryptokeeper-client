@@ -29,19 +29,15 @@ export default function reducer(state = initialState, action) {
         }
         case ADD_COMMENT_ERROR:
             return {...state, error: action.error};
-        case ADD_REPLY_COMMENT_SUCCESS: {
-            const comments = state.comments.map(comment => {
-                if(comment.id === action.commentID) {
-                    comment.replyComments = [...comment.replyComments, action.replyComment];
-                }
-                console.log('comment: ', comment);
-                return comment;
-            });
+        case ADD_REPLY_COMMENT_SUCCESS: 
             return {
-                ...state,
-                comments,
-                error: null
-            };
+            ...state,
+            comments: state.comments.map(comment => 
+                comment.id === action.comment.id ? 
+                    action.comment : 
+                    comment
+            ),
+            error: null
         }
         case ADD_REPLY_COMMENT_ERROR:
             return {...state, error: action.error};
@@ -53,3 +49,19 @@ export default function reducer(state = initialState, action) {
             return state;
     }
 };
+
+// case ADD_REPLY_COMMENT_SUCCESS: 
+// return {
+// ...state,
+// comments: state.comments.map(comment => 
+//     comment.id === action.commentID ? {
+//         ...comment,
+//         replyComments: [
+//             ...comment.replyComments,
+//             action.replyComment
+//         ]
+//     } : 
+//     comment
+// ),
+// error: null
+// }

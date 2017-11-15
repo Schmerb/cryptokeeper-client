@@ -23,6 +23,8 @@ export default class Comment extends Component {
     render() {
         const { author, content, created, id, replyComments } = this.props.data;
 
+        console.log('\n\nRENDERING COMMENT ', this.props.data, '\n\n');
+
         let username = 'Account Deactivated';
         if(author) {
             username = author.username;

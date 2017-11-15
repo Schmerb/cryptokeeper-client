@@ -22,10 +22,10 @@ import Main   from './main/';
 import Footer from './footer/';
 
 window.onload = () => {
-    console.log('has laoded!');
+    console.log('has loaded!');
 }
 document.onload = () => {
-    console.log('DOCUMENT has laoded!');
+    console.log('DOCUMENT has loaded!');
 }
 
 export class App extends React.Component {

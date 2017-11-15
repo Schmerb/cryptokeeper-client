@@ -15,7 +15,6 @@ export class CommentForm extends Component {
         const pathname = this.props.location.pathname;
         // dispatch an action to make fetch to db and update state
         
-        console.log(this.props.location);
         let coin = [];
         for(let i=pathname.length - 1; i > 0; i--) {
             // console.log(pathname[i]);
@@ -26,12 +25,12 @@ export class CommentForm extends Component {
             }
         }
         let currency = coin.reverse().join('');
-        console.log('this.props.reply', this.props.reply);
         if(this.props.reply) {
-            console.log('currency: ', currency);
-            return this.props.addReplyComment(value, this.props.reply, currency);
+            this.props.addReplyComment(value, this.props.reply, currency);
+        } else {
+            this.props.addComment(value, currency);
         }
-        this.props.addComment(value, currency);
+        this.refs.textarea.value = ''; // resets form textareas
     }
 
     render() {
