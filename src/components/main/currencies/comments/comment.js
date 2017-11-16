@@ -19,20 +19,54 @@ export class Comment extends Component {
         };
     }
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // toggles reply comments to open/close
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     openReplyComments = () => {
         this.setState({
             open: !this.state.open
         });
     };
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Dispatches action to like comment
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     likeComment = (e, commentID) => {
-        this.props.likeComment(commentID);
+        // checks if user already liked it
+        //    a) --> dispatch --> removeUserLike
+        // OR
+        //    b)  checks if user dislikes comment
+        //            a) --> dispatch --> removeUserDislike --> likeComment
+        //         OR
+        //            b) --> dispatch --> likeComment 
+
+        console.log('click');
+
+        this.props.likeComment(commentID)
+            .then((res) => {
+                console.log('likeComment.then() res: ', res);
+            });
     };
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Dispatches action to dislike comment
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     dislikeComment = (e, commentID) => {
+        // checks if user already disliked it
+        //    a) --> dispatch --> removeUserDislike
+        // OR
+        //    b)  checks if user likes comment
+        //            a) --> dispatch --> removeUserLike --> dislikeComment
+        //         OR
+        //            b) --> dispatch --> dislikeComment 
         this.props.dislikeComment(commentID);
     };
     
+    // // // // // //
+    //
+    // Render
+    //
+    // // // // // //
     render() {
         const { author, content, createdAt, id, 
                 replyComments, usersLiked, usersDisliked} = this.props.data;
@@ -80,13 +114,20 @@ export class Comment extends Component {
                 <div className="interactions">
                     <label htmlFor="">
                         <span>{likes}</span>
-                        <ThumbsUpOutline className="thumb up" clickHandler={e => this.likeComment(e, id)}/>
-                        {thisUserLiked ? <ThumbsUpFilled className="thumb up" /> : null}
+                        
+                        {thisUserLiked ? 
+                            <ThumbsUpFilled className="thumb up" clickHandler={e => this.likeComment(e, id)} /> 
+                            : 
+                            <ThumbsUpOutline className="thumb up" clickHandler={e => this.likeComment(e, id)}/>
+                        }
                     </label>
                     <label>
                         <span>{dislikes}</span>
-                        <ThumbsUpOutline className="thumb down" clickHandler={e => this.dislikeComment(e, id)}/>
-                        {thisUserDisliked ? <ThumbsUpFilled className="thumb down" /> : null}
+                        
+                        {thisUserDisliked ? 
+                            <ThumbsUpFilled className="thumb down" clickHandler={e => this.dislikeComment(e, id)} /> 
+                            :
+                            <ThumbsUpOutline className="thumb down" clickHandler={e => this.dislikeComment(e, id)}/>}
                     </label>
                     <button onClick={this.openReplyComments}>{this.state.open?'hide':'view'} comments</button>
                 </div>

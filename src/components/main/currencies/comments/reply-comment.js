@@ -11,14 +11,25 @@ import ThumbsUpFilled  from 'icons/thumbs-up-filled';
 
 export class ReplyComment extends Component {
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Dispatches action to like comment
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     likeReplyComment = (e, commentID, replyCommentID) => {
         this.props.likeReplyComment(commentID, replyCommentID);
     };
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Dispatches action to dislike comment
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     dislikeReplyComment = (e, commentID, replyCommentID) => {
         this.props.dislikeReplyComment(commentID, replyCommentID);
     };
     
+    // // // // // //
+    //
+    // Render
+    //
+    // // // // // //
     render() {
         const { author, content, createdAt, usersLiked, usersDisliked,
             id: replyCommentID, parentComment: commentID } = this.props.replyComment;
@@ -27,9 +38,9 @@ export class ReplyComment extends Component {
         if(author) {
             username = author.username;
         }
-        const likes = usersLiked.length;
+        const likes    = usersLiked.length;
         const dislikes = usersDisliked.length;
-        let thisUserLiked = false;
+        let thisUserLiked    = false;
         let thisUserDisliked = false;
         for(let user of usersLiked) {
             if(this.props.currentUser && user.username === this.props.currentUser.username) {
@@ -65,13 +76,21 @@ export class ReplyComment extends Component {
                 <div className="interactions">
                     <label htmlFor="">
                         <span>{likes}</span>
-                        <ThumbsUpOutline className="thumb up" clickHandler={e => this.likeReplyComment(e, commentID, replyCommentID)}/>
-                        {thisUserLiked ? <ThumbsUpFilled className="thumb up" /> : null}
+                        
+                        {thisUserLiked ? 
+                            <ThumbsUpFilled className="thumb up" clickHandler={e => this.likeReplyComment(e, commentID, replyCommentID)}/> 
+                            : 
+                            <ThumbsUpOutline className="thumb up" clickHandler={e => this.likeReplyComment(e, commentID, replyCommentID)}/>
+                        }
                     </label>
                     <label>
                         <span>{dislikes}</span>
-                        <ThumbsUpOutline className="thumb down" clickHandler={e => this.dislikeReplyComment(e, commentID, replyCommentID)}/>
-                        {thisUserDisliked ? <ThumbsUpFilled className="thumb down" /> : null}
+                        
+                        {thisUserDisliked ? 
+                            <ThumbsUpFilled className="thumb down" clickHandler={e => this.dislikeReplyComment(e, commentID, replyCommentID)}/> 
+                            : 
+                            <ThumbsUpOutline className="thumb down" clickHandler={e => this.dislikeReplyComment(e, commentID, replyCommentID)}/>
+                        }
                     </label>
                 </div>
             </div>
