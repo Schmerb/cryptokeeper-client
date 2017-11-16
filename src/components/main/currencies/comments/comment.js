@@ -19,6 +19,15 @@ export class Comment extends Component {
         };
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log('NextProps: ', nextProps);
+        if(this.props.data.currency !== nextProps.data.currency) {
+            this.setState({
+                open: false
+            });
+        }
+    }
+
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // toggles reply comments to open/close
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
