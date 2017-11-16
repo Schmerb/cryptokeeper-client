@@ -11,34 +11,33 @@ export default class CurrencyPrice extends Component {
 
     componentWillReceiveProps(nextProps) {
         let currentPrice = this.props.data.PRICE;
-        let nextPrice = nextProps.data.PRICE;
-        console.log(currentPrice);
-        console.log(nextPrice);
+        let nextPrice    = nextProps.data.PRICE;
         if(nextPrice > currentPrice) {
             // increase --> green
-            this.setState({
-                incDecrClass: 'increase'
-            });
-            setTimeout(() => {
-                this.setState({
-                    incDecrClass: ''
-                });
-            }, 2000);
+            this.setPriceClass('increase');
         } else if (nextPrice < currentPrice) {
             // decrease --> red
-            this.setState({
-                incDecrClass: 'decrease'
-            });
-            setTimeout(() => {
-                this.setState({
-                    incDecrClass: ''
-                });
-            }, 2000);
+            this.setPriceClass('decrease');
         } else {
             this.setState({
                 incDecrClass: ''
             });
         }
+    }
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Updates state with className passed in, waits 2s then 
+    // removes the class from state
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    setPriceClass(className) {
+        this.setState({
+            incDecrClass: className
+        });
+        setTimeout(() => {
+            this.setState({
+                incDecrClass: ''
+            });
+        }, 2000);
     }
 
     render() {
