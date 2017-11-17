@@ -7,7 +7,6 @@ import CurrencyPage from './currency-page';
 
 export class Currencies extends Component {
     render() {
-        
         return(
             <div className="currencies">
                 <Route exact path="/currencies" component={CurrencyList}/>

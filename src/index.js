@@ -15,3 +15,8 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
+
+
+// API endpoints
+// http://api.cryptokeeper.co/
+// https://cryptocoinkeeper.herokuapp.com/api
