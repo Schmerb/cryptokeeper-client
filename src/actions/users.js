@@ -12,6 +12,7 @@ export const registerUser = user => dispatch => {
         headers: {
             'content-type': 'application/json'
         },
+        mode: 'cors',
         body: JSON.stringify(user)
     })
         .then(res => normalizeResponseErrors(res))
@@ -29,6 +30,9 @@ export const registerUser = user => dispatch => {
         });
 };
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Deletes user's account
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 export const deleteUser = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/users/me`, {

@@ -48,7 +48,7 @@ export class ConfirmMessage extends React.Component {
     }
 
     render() {
-        console.log(this.props);
+        // console.log(this.props);
         return(
             <div id="confirm-window" className={`confirmation ${this.props.confirmClass}`} onClick={e => this.handleWindowClick(e)}>
                 <div className="confirmation-modal">

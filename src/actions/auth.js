@@ -28,6 +28,9 @@ const storeAuthInfo = (authToken, dispatch) => {
     saveAuthToken(authToken);
 };
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Logs user in
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 export const login = (username, password) => dispatch => {
     // Base64 encode the string username:password, used in the basic
     // auth field
@@ -63,6 +66,9 @@ export const login = (username, password) => dispatch => {
     );
 };
 
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Refreshes JWT auth token
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 export const refreshAuthToken = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/auth/refresh`, {
