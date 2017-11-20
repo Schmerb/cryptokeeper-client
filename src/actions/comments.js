@@ -47,7 +47,7 @@ export const addCommentError = error => ({
 });
 export const addComment = (content, currency) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    console.log({content, currency});
+    // console.log({content, currency});
     const commentObj = {
         currency,
         content,
@@ -65,7 +65,7 @@ export const addComment = (content, currency) => (dispatch, getState) => {
     .then(res => res.json())
     .then(comment => {
         comment.author = getState().auth.currentUser;
-        console.log('ADD COMMENT RES', comment);
+        // console.log('ADD COMMENT RES', comment);
         dispatch(addCommentSuccess(comment));
     });
 };
@@ -85,7 +85,7 @@ export const addReplyCommentError = error => ({
 });
 export const addReplyComment = (content, commentID, currency) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    console.log({content, commentID, currency});
+    // console.log({content, commentID, currency});
     const commentObj = {
         content,
         currency,
@@ -101,11 +101,7 @@ export const addReplyComment = (content, commentID, currency) => (dispatch, getS
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(comment => {
-        // replyComment.author = getState().auth.currentUser;
-        console.log('ADD REPLY RES: ', comment);
-        dispatch(addReplyCommentSuccess(comment));
-    });
+    .then(comment => dispatch(addReplyCommentSuccess(comment)));
 };
 
 
@@ -132,11 +128,7 @@ export const likeComment = (commentID) => (dispatch, getState) => {
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(comment => {
-        // replyComment.author = getState().auth.currentUser;
-        console.log('Like Comment RES', comment);
-        dispatch(likeCommentSuccess(comment));
-    });
+    .then(comment => dispatch(likeCommentSuccess(comment)));
 };
 //
 // DISLIKE COMMENTS
@@ -161,10 +153,7 @@ export const dislikeComment = (commentID) => (dispatch, getState) => {
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(comment => {
-        console.log('Dislike Comment RES', comment);
-        dispatch(dislikeCommentSuccess(comment));
-    });
+    .then(comment => dispatch(dislikeCommentSuccess(comment)));
 };
 
 //
@@ -190,11 +179,7 @@ export const likeReplyComment = (commentID, replyCommentID) => (dispatch, getSta
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(comment => {
-        // replyComment.author = getState().auth.currentUser;
-        console.log('Like Reply Comment RES', comment);
-        dispatch(likeReplyCommentSuccess(comment));
-    });
+    .then(comment => dispatch(likeReplyCommentSuccess(comment)));
 };
 //
 //  DISLIKE  ~ REPLY ~ COMMENTS
@@ -219,11 +204,7 @@ export const dislikeReplyComment = (commentID, replyCommentID) => (dispatch, get
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(comment => {
-        // replyComment.author = getState().auth.currentUser;
-        console.log('DISLIKE Reply Comment RES', comment);
-        dispatch(dislikeReplyCommentSuccess(comment));
-    });
+    .then(comment => dispatch(dislikeReplyCommentSuccess(comment)));
 };
 
 
