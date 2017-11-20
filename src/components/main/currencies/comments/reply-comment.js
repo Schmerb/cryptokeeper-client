@@ -55,7 +55,7 @@ export class ReplyComment extends Component {
             }
         }
         const timeElapsed = getTimeElapsed(new Date(createdAt));
-        console.log('THIS USER LIKED', thisUserLiked);
+        // console.log('THIS USER LIKED', thisUserLiked);
         return(
             <div className="comment reply">
 

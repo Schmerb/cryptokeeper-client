@@ -40,7 +40,7 @@ export class Comments extends Component {
     }
 
     render() {
-        console.log('CURRENCY', this.props.currency);
+        // console.log('CURRENCY', this.props.currency);
         if(this.state.loading) {
             return(
                 <div className="comments-container">

@@ -20,7 +20,7 @@ export class Comment extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('NextProps: ', nextProps);
+        // console.log('NextProps: ', nextProps);
         if(this.props.data.currency !== nextProps.data.currency) {
             this.setState({
                 open: false
@@ -49,7 +49,6 @@ export class Comment extends Component {
         //         OR
         //            b) --> dispatch --> likeComment 
 
-        console.log('click');
 
         this.props.likeComment(commentID)
             .then((res) => {
@@ -100,7 +99,7 @@ export class Comment extends Component {
                 break;
             }
         }
-        console.log({thisUserLiked, thisUserDisliked});
+        // console.log({thisUserLiked, thisUserDisliked});
         const timeElapsed = getTimeElapsed(new Date(createdAt));
 
         return(

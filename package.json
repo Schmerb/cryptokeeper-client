@@ -3,12 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "d3": "^4.11.0",
-    "google-charts": "^1.0.0",
     "jwt-decode": "^2.2.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-faux-dom": "^4.1.0",
     "react-google-charts": "^1.5.5",
     "react-particles-js": "^2.0.0",
     "react-redux": "^5.0.6",

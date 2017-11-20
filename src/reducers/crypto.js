@@ -5,7 +5,8 @@ import {
     UPDATE_XMR_INFO,
     UPDATE_DASH_INFO,
     UPDATE_DOGE_INFO,
-    UPDATE_XRP_INFO
+    UPDATE_XRP_INFO,
+    GET_HISTO_DATA_SUCCESS
 } from 'actions/crypto';
 
 const initialState = {
@@ -36,60 +37,49 @@ const initialState = {
     XRP: {
         price: 0,
         info: {}
-    }
+    },
+    histoData: []
 };
 
 export default function reducer(state=initialState, action) {
     switch(action.type) {
         case UPDATE_BTC_INFO:
-            return Object.assign({}, state, {
-                BTC: {
-                    price: action.info.PRICE,
-                    info: action.info
-                }
-            }); 
+            return {...state, BTC: {
+                price: action.info.PRICE,
+                info: action.info
+            }};
         case UPDATE_ETH_INFO:
-            return Object.assign({}, state, {
-                ETH: {
-                    price: action.info.PRICE,
-                    info: action.info
-                }
-            });
+            return {...state, ETH: {
+                price: action.info.PRICE,
+                info: action.info
+            }};
         case UPDATE_LTC_INFO:
-            return Object.assign({}, state, {
-                LTC: {
-                    price: action.info.PRICE,
-                    info: action.info
-                }
-            }); 
+            return {...state, LTC: {
+                price: action.info.PRICE,
+                info: action.info
+            }};
         case UPDATE_XMR_INFO:
-            return Object.assign({}, state, {
-                XMR: {
-                    price: action.info.PRICE,
-                    info: action.info
-                }
-            }); 
+            return {...state, XMR: {
+                price: action.info.PRICE,
+                info: action.info
+            }};
         case UPDATE_DASH_INFO:
-            return Object.assign({}, state, {
-                DASH: {
-                    price: action.info.PRICE,
-                    info: action.info
-                }
-            }); 
+            return {...state, DASH: {
+                price: action.info.PRICE,
+                info: action.info
+            }};
         case UPDATE_DOGE_INFO:
-            return Object.assign({}, state, {
-                DOGE: {
-                    price: action.info.PRICE,
-                    info: action.info
-                }
-            }); 
+            return {...state, DOGE: {
+                price: action.info.PRICE,
+                info: action.info
+            }};
         case UPDATE_XRP_INFO:
-            return Object.assign({}, state, {
-                XRP: {
-                    price: action.info.PRICE,
-                    info: action.info
-                }
-            }); 
+            return {...state, XRP: {
+                price: action.info.PRICE,
+                info: action.info
+            }};
+        case GET_HISTO_DATA_SUCCESS:
+            return {...state, histoData: action.data};
         default:
             return state;
 
