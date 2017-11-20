@@ -24,10 +24,15 @@ export class EventForm extends React.Component {
             basePrice = this.props[currency].price;
         console.log('basePrice: ', basePrice);
         let data = {name, currency, basePrice, type: {sms, email}, condition, value, valueType, message};
-        this.props.addEvent(data);
-        this.props.history.push({
-            pathname: '/dashboard/events'
-        });
+        if(!sms && !email) {
+            // alert must pick either sms or email
+            alert('You must choose an event type, SMS and/or Email');
+        } else {
+            this.props.addEvent(data);
+            this.props.history.push({
+                pathname: '/dashboard/events'
+            });
+        }
     }
     
     render() {
@@ -41,7 +46,7 @@ export class EventForm extends React.Component {
                 
                     <label htmlFor="event-name">
                         Event Name:
-                        <input id="event-name" type="text" ref="name"/>
+                        <input id="event-name" type="text" ref="name" required/>
                     </label>
 
                     <label htmlFor="event-currency">
@@ -93,7 +98,7 @@ export class EventForm extends React.Component {
                             <ArrowDown />
                         </div>
                         <div className="cond-value-type">
-                            <input type="number" id="condition-value" min="0" placeholder="value" ref="value"/>
+                            <input type="number" id="condition-value" min="0" placeholder="value" ref="value" required/>
                             <select name="" id="value-type" ref="valueType">
                                 <option value="$">$</option>
                                 <option value="%">%</option>
@@ -103,7 +108,7 @@ export class EventForm extends React.Component {
 
                     <label htmlFor="event-message">
                         Message:
-                        <textarea ref="message" id="event-message" placeholder="Enter a message to notify yourself with when this event occurs..."></textarea>
+                        <textarea ref="message" id="event-message" placeholder="Enter a message to notify yourself with when this event occurs..." required></textarea>
                     </label>
                 
                     <button type="submit">ADD</button>

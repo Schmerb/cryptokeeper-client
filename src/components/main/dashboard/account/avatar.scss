@@ -64,8 +64,9 @@
     }
     .user-avatar-img {
         @extend %abs-middle;
-        width: 100px;
-        height: 100px;
+        width: 92px;
+        height: 92px;
+        margin-left: 2px;
         border-radius: 50%;
         pointer-events: none;
     }
@@ -107,6 +108,15 @@
         &:hover {
             border-color: lighten($grey, 40%);
         }
+    }
+    .remove-avatar-btn {
+        color: #f97d7d;
+        position: absolute;
+        bottom: -30px;
+        right: 0;
+        border: 1px solid white;
+        width: 70px;
+        height: 50px;
     }
 }
 

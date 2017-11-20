@@ -54,10 +54,15 @@ export class EditEventForm extends React.Component {
             message   = this.refs.message.value,
             id        = this.state.id;
         let data = {name, currency, type: {sms, email}, condition, value, valueType, message, id};
-        this.props.updateEvent(data); 
-        this.props.history.push({
-            pathname: '/dashboard/events'
-        });
+        if(!sms && !email) {
+            // alert must pick either sms or email
+            alert('You must choose an event type, SMS and/or Email');
+        } else {
+            this.props.addEvent(data);
+            this.props.history.push({
+                pathname: '/dashboard/events'
+            });
+        }
     }
 
     render() {
@@ -71,7 +76,7 @@ export class EditEventForm extends React.Component {
                 
                     <label htmlFor="event-name">
                         Event Name:
-                        <input id="event-name" type="text" ref="name"  
+                        <input id="event-name" type="text" ref="name" required 
                                value={this.state.name} onChange={e => this.handleChange(e, 'name')}/>
                     </label>
 
@@ -129,7 +134,7 @@ export class EditEventForm extends React.Component {
                         </div>
                         <div className="cond-value-type">
                             <input type="number" id="condition-value" ref="value" min="0" placeholder="value" 
-                                   value={this.state.value} onChange={e => this.handleChange(e, 'value')}/>
+                                   value={this.state.value} onChange={e => this.handleChange(e, 'value')} required/>
                             <select name="" id="value-type" ref="valueType"
                                     value={this.state.valueType} onChange={e => this.handleChange(e, 'valueType')}>
                                 <option value="$">$</option>
@@ -141,7 +146,7 @@ export class EditEventForm extends React.Component {
                     <label htmlFor="event-message">
                         Message:
                         <textarea ref="message" id="event-message" placeholder="Enter a message to notify yourself with when this event occurs..."
-                                 value={this.state.message} onChange={e => this.handleChange(e, 'message')}
+                                 value={this.state.message} onChange={e => this.handleChange(e, 'message')} required
                         ></textarea>
                     </label>
                 

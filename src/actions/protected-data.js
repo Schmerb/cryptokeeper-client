@@ -163,12 +163,12 @@ export const getUserAvatar = () => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then((data) => {
-        // console.log('SUCCESS: ', data);
+        console.log('SUCCESS: ', data);
         dispatch(getUserAvatarSuccess(data));
     })
     .catch(err => {
         console.log(err);
-        // dispatch(getUserError(err));
+        dispatch(getUserAvatarSuccess(null));
     });
 }
 
@@ -192,11 +192,27 @@ export const getAvatar = (imgId) => (dispatch, getState) => {
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then((data) => {
-        // console.log('comment avatar: ', data);
-        dispatch(getAvatarSuccess(data));
-    })
+    .then((data) => dispatch(getAvatarSuccess(data)))
     .catch(err => {
+        console.log(err);
+        // dispatch(getUserError(err));
+    });
+}
+
+// removes avatar image from users account 
+export const removeAvatar = (imgId) => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    return fetch(`${API_BASE_URL}/users/me/avatar/${imgId}`, {
+        method: 'DELETE',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`,
+            "Content-Type": "application/json"
+        }
+    })
+    .then((res) => dispatch(getUserAvatar())) // refreshes state with users current avatar, in this case it removes it
+    .catch(err => {
+        console.log('ERROR:');
         console.log(err);
         // dispatch(getUserError(err));
     });

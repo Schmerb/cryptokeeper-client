@@ -24,7 +24,7 @@
             width: 665px;
         }
         @include mediaMin($desktop + 100) {
-            width: 940px;
+            width: 850px;
         }
         @include mediaMin(1500px) {
             width: 1245px;

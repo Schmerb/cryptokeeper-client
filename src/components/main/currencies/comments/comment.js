@@ -101,8 +101,8 @@ export class Comment extends Component {
 
                 <div className="description">
                     <div className="avatar">
-                        {this.props.data.avatarUrl ?
-                            <img className="user-avatar-img" src={this.props.data.avatarUrl} alt="User avatar"/>
+                        {avatarUrl ?
+                            <img className="user-avatar-img" src={avatarUrl} alt="User avatar"/>
                             :
                             <TieAvatar />
                         }

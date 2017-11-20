@@ -95,8 +95,6 @@ function findAndUpdateCommentInState(state, action) {
 // Finds the comment the avatar image belongs to
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function findAndUpdateCommentWithAvatar(state, action) {
-    // console.log('\n\nComments REDUCER: ');
-    // console.log(state, action);
     let newState = {
             ...state,
             comments: state.comments.map(comment => {

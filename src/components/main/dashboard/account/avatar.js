@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { uploadImage, removeAvatar } from 'actions/protected-data';
 
-import { uploadImage } from 'actions/protected-data';
 
 import ArrowDown from 'icons/arrow-down';
 import TieAvatar from 'icons/tie-avatar';
@@ -57,8 +57,19 @@ export class Avatar extends React.Component {
         }
     };
 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Handles removal of profile image
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    handleDeleteClick = (e, avatarId) => {
+        e.preventDefault();
+        console.log('DELETE CLICKED --> ', avatarId);
+        this.props.removeUserAvatar(avatarId);
+        // this.props.confirmDelete('Are you sure you want to remove your avatar image?', removeUserAvatar(avatarId), 'Yes, remove it');
+    }
+
     render() {
-        let fileName, button;
+        console.log(this.props);
+        let fileName, button, deleteBtn;
         if(this.state.fileName) {
             fileName = <label className="file-name">File: {this.state.fileName}</label>;
             button = <button className="upload-btn" type="submit">Upload</button>;
@@ -66,6 +77,7 @@ export class Avatar extends React.Component {
         let avatarImg = null;
         if(this.props.avatar) {
             avatarImg = <img className="user-avatar-img" src={this.props.avatar.url} alt="User avatar profile"/>;
+            deleteBtn = <button type="button" onClick={e => this.handleDeleteClick(e, this.props.avatar.avatarId)} className="remove-avatar-btn">Remove</button>
         }
         return(
             <div className="avatar">
@@ -91,6 +103,7 @@ export class Avatar extends React.Component {
                             </label>
                         </div>
                         {button}
+                        {deleteBtn}
                     </form>
                 </div>
             </div>
@@ -103,7 +116,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    uploadFile: data => dispatch(uploadImage(data))
+    uploadFile: data => dispatch(uploadImage(data)),
+    removeUserAvatar: avatarId => dispatch(removeAvatar(avatarId))
 });
 
 
