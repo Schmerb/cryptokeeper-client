@@ -53,12 +53,19 @@ export class EventBox extends React.Component {
                 <ul>
                     <li>
                         <span className="title">Type:</span>
-                        {data.type.sms ? 'SMS Text Message' : ''}
-                        {data.type.sms && data.type.email ? ' / ' : ''}
-                        {data.type.email ? 'Email' : ''}
+                        <span>
+                            {data.type.sms ? 'SMS Text Message' : ''}
+                            {data.type.sms && data.type.email ? ' / ' : ''}
+                            {data.type.email ? 'Email' : ''}
+                        </span>
                     </li>
                     {condition}
-                    <li className="title">Message: {data.message}</li>
+                    <li>
+                        <span className="title">Message:</span> 
+                        <span>
+                            {data.message}
+                        </span>
+                    </li>
                 </ul>
                 {success}    
                 <button className="edit-btn" type="button" onClick={e => this.editEvent(e, data)}>

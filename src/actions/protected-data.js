@@ -85,17 +85,14 @@ export const updateImageError = (error) => ({
 });
 export const uploadImage = (image) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    console.log("image", image);
-    console.log("typeof(image)", typeof(image));
-    let img = image;
     return fetch(`${API_BASE_URL}/users/me/avatar`, {
         method: 'POST',
         headers: {
             // Provide our auth token as credentials
             Authorization: `Bearer ${authToken}`,
-            "Content-Type": "multipart/form-data; boundary=data.boundary"
+            mimeType: 'multipart/form-data'
         },
-        body: img
+        body: image
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())

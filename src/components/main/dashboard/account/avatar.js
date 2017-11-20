@@ -45,27 +45,9 @@ export class Avatar extends React.Component {
                 error: true
             });
         } else {
-
-            // this.props.uploadFile(this.refs.form);
-
-            // let formData = new FormData();
-            // formData.append('file', this.refs.fileInput.files[0]);
-            // console.log(formData.entries());
-            // this.props.uploadFile(formData);
-            // for (var p of formData) {
-            //     console.log('yee', p);
-            //     console.log('0', p[0]);
-            //     console.log('1', p[1]);
-            //     console.log(typeof(p));
-            // }
-
-
-            const reader = new FileReader();
-            // const $this = this;
-            reader.onload = e => this.props.uploadFile({file: e.target.result});
-            
-            const file = this.refs.fileInput.files[0];
-            reader.readAsBinaryString(file);
+            let formData = new FormData();
+            formData.append('file', this.refs.fileInput.files[0]);
+            this.props.uploadFile(formData);
         }
     };
 
