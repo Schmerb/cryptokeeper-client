@@ -98,6 +98,7 @@ export const uploadImage = (image) => (dispatch, getState) => {
         .then(res => res.json())
         .then((data) => {
             console.log('IMAGE RES: ', data);
+            dispatch(getUserAvatar());
             // dispatch(updateImageSuccess(data));
         })
         .catch(err => {
@@ -138,3 +139,70 @@ export const getUser = () => (dispatch, getState) => {
             // dispatch(getUserError(err));
         });
 };
+
+export const GET_USER_AVATAR_SUCCESS = 'GET_USER_AVATAR_SUCCESS';
+export const getUserAvatarSuccess = (avatar) => ({
+    type: GET_USER_AVATAR_SUCCESS,
+    avatar
+});
+export const GET_USER_AVATAR_ERROR = 'GET_USER_AVATAR_ERROR';
+export const getUserAvatarError = (error) => ({
+    type: GET_USER_AVATAR_ERROR,
+    error
+});
+export const getUserAvatar = () => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    return fetch(`${API_BASE_URL}/users/me/avatar`, {
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`,
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then((data) => {
+        // console.log('SUCCESS: ', data);
+        dispatch(getUserAvatarSuccess(data));
+    })
+    .catch(err => {
+        console.log(err);
+        // dispatch(getUserError(err));
+    });
+}
+
+// For fetching all avatar images to be displayed publicly 
+export const GET_AVATAR_SUCCESS = 'GET_AVATAR_SUCCESS';
+export const getAvatarSuccess = (data) => ({
+    type: GET_AVATAR_SUCCESS,
+    data
+});
+export const GET_AVATAR_ERROR = 'GET_AVATAR_ERROR';
+export const getAvatarError = (error) => ({
+    type: GET_AVATAR_ERROR,
+    error
+});
+export const getAvatar = (imgId) => (dispatch, getState) => {
+    return fetch(`${API_BASE_URL}/users/me/avatar/${imgId}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then((data) => {
+        // console.log('comment avatar: ', data);
+        dispatch(getAvatarSuccess(data));
+    })
+    .catch(err => {
+        console.log(err);
+        // dispatch(getUserError(err));
+    });
+}
+
+export const CLEAR_USER_DATA = 'CLEAR_USER_DATA';
+export const clearUserData = () => ({
+    type: CLEAR_USER_DATA
+});

@@ -14,7 +14,9 @@ export class CommentList extends Component {
     }
 
     render() {
+        console.log(this.props.comments);
         const comments = this.getComments();
+        console.log('\n\n\nRENDERING COMMENT LIST\n\n\n');
         return(
             <ul className="comments-list">
                 {comments}

@@ -11,6 +11,9 @@ import ThumbsUpFilled  from 'icons/thumbs-up-filled';
 
 export class ReplyComment extends Component {
 
+    componentDidMount() {
+    }
+
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Dispatches action to like comment
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -31,6 +34,7 @@ export class ReplyComment extends Component {
     //
     // // // // // //
     render() {
+        // console.log('\n\n\n\nREPLY COMMENTS, ', this.props.replyComment);
         const { author, content, createdAt, usersLiked, usersDisliked,
             id: replyCommentID, parentComment: commentID } = this.props.replyComment;
 
@@ -61,7 +65,11 @@ export class ReplyComment extends Component {
 
                 <div className="description">
                     <div className="avatar">
-                        <TieAvatar />
+                        {this.props.replyComment.avatarUrl ?
+                            <img className="user-avatar-img" src={this.props.replyComment.avatarUrl} alt="User avatar"/>
+                            :
+                            <TieAvatar />
+                        }
                     </div>
                     <div className="metadata">
                         <span className="author">{username}</span>

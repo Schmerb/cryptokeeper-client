@@ -7,7 +7,7 @@ import{
     clearEventState,
     getEvents
 } from 'actions/events';
-import { getUser } from 'actions/protected-data';
+import { getUser, getUserAvatar } from 'actions/protected-data';
 
 let store;
 
@@ -27,6 +27,7 @@ export function hydrateState() {
     store.dispatch(getCurrencies());
     store.dispatch(getEvents());
     store.dispatch(getUser());
+    store.dispatch(getUserAvatar());
 }
 
 export default function(storeObj, authToken) {

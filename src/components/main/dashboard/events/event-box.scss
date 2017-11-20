@@ -23,6 +23,9 @@
     @include mediaMin($desktop + 100) {
         margin-left: 5px; 
         margin-right: 5px; 
+        font-size: 20px;
+        width: 380px;
+        height: 380px;
     }
     button {
         border: none;
@@ -39,6 +42,7 @@
     }
     .title {
         // float: left;
+        color: #b9c6cc;
         display: block;
     }
     .edit-btn {

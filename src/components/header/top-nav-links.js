@@ -58,6 +58,10 @@ export class TopNavLinks extends React.Component {
     // user state
     // * * * * * * * * * * * * * * * * * * * *
     getLinks() {
+        let avatarImg = <TieAvatar />;
+        if(this.props.avatar) {
+            avatarImg = <img className="user-avatar-img" src={this.props.avatar.url} alt="User avatar profile"/>;
+        }
         if(this.props.loggedIn) {
             return (<ul>
                         <li className="gear-item">
@@ -81,7 +85,7 @@ export class TopNavLinks extends React.Component {
                         </li>
                         <li>
                             <Link className="avatar-link" to="/dashboard/portfolio" onClick={e => this.hideMenu()}>
-                                <TieAvatar />
+                                {avatarImg}
                             </Link>
                         </li>
                         <li className={`links-li ${!this.props.open ? 'hidden' : ''}`}>
@@ -158,7 +162,8 @@ const mapStateToProps = state => {
         username: currentUser ? state.auth.currentUser.username : '',
         open: state.display.open,
         openLinks: state.display.openLinks,
-        currentPath: state.display.currentPath
+        currentPath: state.display.currentPath,
+        avatar: state.protectedData.avatar
     };
 };
 

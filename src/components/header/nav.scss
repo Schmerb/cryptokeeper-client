@@ -8,7 +8,6 @@
 nav {
     position: relative;
     height: 100%;
-
     ul {
         list-style: none;
         margin: 0;
@@ -33,6 +32,12 @@ nav {
         width: 50px;
         height: 50px;
         vertical-align: middle;
+    }
+    .user-avatar-img {
+        width: 50px;
+        height: 50px;
+        vertical-align: middle;
+        border-radius: 50%;
     }
 }
 // sliding underline effect

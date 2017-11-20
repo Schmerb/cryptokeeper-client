@@ -18,6 +18,12 @@ export class Avatar extends React.Component {
         };
     }
 
+    componentDidMount() {
+    }
+
+    componentWillReceiveProps(nextProps) {
+    }
+
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -57,6 +63,10 @@ export class Avatar extends React.Component {
             fileName = <label className="file-name">File: {this.state.fileName}</label>;
             button = <button className="upload-btn" type="submit">Upload</button>;
         } 
+        let avatarImg = null;
+        if(this.props.avatar) {
+            avatarImg = <img className="user-avatar-img" src={this.props.avatar.url} alt="User avatar profile"/>;
+        }
         return(
             <div className="avatar">
                 <h2>Avatar Settings</h2>
@@ -74,6 +84,7 @@ export class Avatar extends React.Component {
                             <span>Upload an Image:</span>
                             {fileName}
                             <label className="custom-file-upload">
+                                {avatarImg}
                                 <ImageUploadIcon />
                                 <input id="file-input" name="imgFIle" type="file" ref="fileInput" accept=".jpg,.jpeg,.png"  
                                        onChange={this.handleChange}/>
@@ -87,9 +98,13 @@ export class Avatar extends React.Component {
     }
 }
 
+const mapStateToProps = state => ({
+    avatar: state.protectedData.avatar
+});
+
 const mapDispatchToProps = dispatch => ({
     uploadFile: data => dispatch(uploadImage(data))
 });
 
 
-export default connect(null, mapDispatchToProps)(Avatar);
+export default connect(mapStateToProps, mapDispatchToProps)(Avatar);

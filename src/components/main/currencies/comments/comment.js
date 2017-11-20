@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { likeComment, dislikeComment } from 'actions/comments';
+import { getAvatar } from 'actions/protected-data';
 
 import ReplyComments from './reply-comments';
 
@@ -19,8 +20,16 @@ export class Comment extends Component {
         };
     }
 
+    componentDidMount() {
+        // dispatch action to fetch user avatar if it exists
+        const { avatar } = this.props.data.author;
+        if(avatar.length > 0) {
+            console.log('\n\nAVATAR', avatar);
+            this.props.getAvatar(avatar);
+        }
+    }
+
     componentWillReceiveProps(nextProps) {
-        // console.log('NextProps: ', nextProps);
         if(this.props.data.currency !== nextProps.data.currency) {
             this.setState({
                 open: false
@@ -41,15 +50,6 @@ export class Comment extends Component {
     // Dispatches action to like comment
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     likeComment = (e, commentID) => {
-        // checks if user already liked it
-        //    a) --> dispatch --> removeUserLike
-        // OR
-        //    b)  checks if user dislikes comment
-        //            a) --> dispatch --> removeUserDislike --> likeComment
-        //         OR
-        //            b) --> dispatch --> likeComment 
-
-
         this.props.likeComment(commentID)
             .then((res) => {
                 console.log('likeComment.then() res: ', res);
@@ -60,24 +60,18 @@ export class Comment extends Component {
     // Dispatches action to dislike comment
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     dislikeComment = (e, commentID) => {
-        // checks if user already disliked it
-        //    a) --> dispatch --> removeUserDislike
-        // OR
-        //    b)  checks if user likes comment
-        //            a) --> dispatch --> removeUserLike --> dislikeComment
-        //         OR
-        //            b) --> dispatch --> dislikeComment 
         this.props.dislikeComment(commentID);
     };
     
-    // // // // // //
+    // // // // // // // // // // //
     //
     // Render
     //
-    // // // // // //
+    // // // // // // // // // // //
     render() {
+        // console.log('\n\n\ncomment data:', this.props.data);
         const { author, content, createdAt, id, 
-                replyComments, usersLiked, usersDisliked} = this.props.data;
+                replyComments, usersLiked, usersDisliked, avatarUrl} = this.props.data;
 
         let username = 'Account Deactivated'; // fallback for comments whos author removed their account
         if(author) {
@@ -99,7 +93,7 @@ export class Comment extends Component {
                 break;
             }
         }
-        // console.log({thisUserLiked, thisUserDisliked});
+
         const timeElapsed = getTimeElapsed(new Date(createdAt));
 
         return(
@@ -107,7 +101,11 @@ export class Comment extends Component {
 
                 <div className="description">
                     <div className="avatar">
-                        <TieAvatar />
+                        {this.props.data.avatarUrl ?
+                            <img className="user-avatar-img" src={this.props.data.avatarUrl} alt="User avatar"/>
+                            :
+                            <TieAvatar />
+                        }
                     </div>
                     <div className="metadata">
                         <span className="author">{username}</span>
@@ -154,7 +152,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     likeComment: commentID => dispatch(likeComment(commentID)),
-    dislikeComment: commentID => dispatch(dislikeComment(commentID))
+    dislikeComment: commentID => dispatch(dislikeComment(commentID)),
+    getAvatar: imgId => dispatch(getAvatar(imgId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comment);

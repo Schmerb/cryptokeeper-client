@@ -21,6 +21,10 @@ import {
     DISLIKE_REPLY_COMMENT_ERROR
 } from 'actions/comments';
 
+import {
+    GET_AVATAR_SUCCESS
+} from 'actions/protected-data'
+
 const initialState = {
     comments: [],
     error: null
@@ -61,6 +65,8 @@ export default function reducer(state = initialState, action) {
             return findAndUpdateCommentInState(state, action);
         case DISLIKE_REPLY_COMMENT_ERROR:
             return {...state, error: action.error};
+        case GET_AVATAR_SUCCESS:
+            return findAndUpdateCommentWithAvatar(state, action);
         default:
             return state;
     }
@@ -83,4 +89,39 @@ function findAndUpdateCommentInState(state, action) {
         ),
         error: null
     };
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Finds the comment the avatar image belongs to
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function findAndUpdateCommentWithAvatar(state, action) {
+    // console.log('\n\nComments REDUCER: ');
+    // console.log(state, action);
+    let newState = {
+            ...state,
+            comments: state.comments.map(comment => {
+                if(comment.author.avatar === action.data.avatarId) {
+                    comment = {
+                        ...comment,
+                        avatarUrl: action.data.url
+                    }
+                } 
+                comment = {
+                    ...comment,
+                    replyComments: comment.replyComments.map(replyComment => {
+                        if(replyComment.author.avatar === action.data.avatarId) {
+                            replyComment = {
+                                ...replyComment,
+                                avatarUrl: action.data.url
+                            }
+                        }
+                        return replyComment;
+                    })
+                };
+                return comment;
+            }),
+            error: null
+        };
+    // console.log('new STATE: ', newState);
+    return newState;
 }
