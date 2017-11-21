@@ -1,6 +1,5 @@
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
-import { updateUser } from 'actions/protected-data';
 
 
 // // // // // // // // // // //
@@ -32,15 +31,15 @@ export const requestVerificationCode = (phoneNumber) => (dispatch, getState) => 
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(res => {
-            console.log('RES: ', res);
-            if(res.success) {
-                console.log('Success');
-            } else {
-                console.log(res.message);
-            }
-            return res;
-        })
+        // .then(res => {
+        //     console.log('RES: ', res);
+        //     if(res.success) {
+        //         console.log('Success');
+        //     } else {
+        //         console.log(res.message);
+        //     }
+        //     return res;
+        // })
         .catch(err => {
             dispatch(requestVerificationCodeError(err));
             console.log({message: 'Internal server error', err})
@@ -61,15 +60,14 @@ export const verifyCode = (phoneNumber, code, email) => (dispatch, getState) => 
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(res => {
-            console.log('RES: ', res);
-            if(res.success) {
-                console.log('Success');
-                // dispatch(updateUser({email, phoneNumber}));
-            } else {
-                console.log(res.message);
-            }
-            return res;
-        })
+        // .then(res => {
+        //     console.log('RES: ', res);
+        //     if(res.success) {
+        //         console.log('Success');
+        //     } else {
+        //         console.log(res.message);
+        //     }
+        //     return res;
+        // })
         .catch(err => console.log({message: 'Internal server error', err}));
 };

@@ -68,8 +68,7 @@ export class Settings extends React.Component {
               phoneNumber = this.refs.tel.value;
         if(phoneNumber !== this.props.phoneNumber) {
             // need to confirm number with twilio
-            this.props.
-                dispatch(requestVerificationCode(phoneNumber))
+            this.props.dispatch(requestVerificationCode(phoneNumber))
                 .then(res => {
                     console.log('DIspatch res: ', res);
                     if(res.success) {
