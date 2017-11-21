@@ -25,7 +25,7 @@ export class SideNav extends React.Component {
     // Dispatches action to display confirm modal
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     confirmLogOut() {
-        this.props.dispatch(confirmMessage('Are you sure you want to log out?', logUserOut, 'LogOut'));
+        this.props.dispatch(confirmMessage('Are you sure you want to log out?', logUserOut, 'Log Out'));
     }
 
     render() {

@@ -100,6 +100,11 @@ export const flashMsgClass = (classname) => ({
     type: FLASH_MSG_CLASS,
     classname
 });
+// // // // // // // // // //
+//
+// Confirm Message Action
+//
+// // // // // // // // // //
 export const CONFIRM_MESSAGE = 'CONFIRM_MESSAGE';
 export const confirmMessage = (msg, action, actionMsg) => ({
     type: CONFIRM_MESSAGE,
@@ -111,6 +116,14 @@ export const CONFIRM_CLASS = 'CONFIRM_CLASS';
 export const confirmClass = classname => ({
     type: CONFIRM_CLASS,
     classname
+});
+
+export const CONFIRM_REDIRECT = 'CONFIRM_REDIRECT';
+export const confirmRedirect = (path, msg, confirmActionMsg) => ({
+    type: CONFIRM_REDIRECT,
+    path,
+    msg, 
+    confirmActionMsg
 });
 
 

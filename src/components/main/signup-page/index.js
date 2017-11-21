@@ -23,11 +23,19 @@ export class SignupPage extends React.Component{
         }
     }
 
+    getUserNumber = () => {
+        console.log('Inside signup Page');
+        this.props.history.push({
+            pathanme: '/dashboard/settings'
+        });
+    }
+
+
     render() {
         return(
             <div className="signup">
                 <h3>Signup</h3>
-                <SignupForm />
+                <SignupForm getUserNumber={this.getUserNumber}/>
             </div>
         );
     }

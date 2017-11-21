@@ -20,6 +20,9 @@
     height: 200px;
     padding: 20px;
     border-radius: 8px;
+    &.redirect-modal {
+        height: 250px;
+    }
     .btn-group {
         @extend %center;
         width: 90%;

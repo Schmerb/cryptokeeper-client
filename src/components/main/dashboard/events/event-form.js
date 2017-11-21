@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link }    from 'react-router-dom';
 
 import { addEvent } from 'actions/events';
+import { confirmRedirect } from 'actions/display';
 
 import ArrowDown from 'icons/arrow-down';
 import BackBtn   from 'icons/back-btn';
@@ -27,6 +28,10 @@ export class EventForm extends React.Component {
         if(!sms && !email) {
             // alert must pick either sms or email
             alert('You must choose an event type, SMS and/or Email');
+        } else if(sms && this.props.phoneNumber === '') {
+            const confirmMsg = 'Please enter your phone number before creating a text notification event.';
+            const confirmActionMsg = 'Go to Settings';
+            this.props.confirmRedirect('/dashboard/settings', confirmMsg, confirmActionMsg);
         } else {
             this.props.addEvent(data);
             this.props.history.push({
@@ -128,11 +133,13 @@ const mapStateToProps = state => ({
     DASH: state.crypto.DASH,
     DOGE: state.crypto.DOGE,
     XRP: state.crypto.XRP,
-    currencySym: state.currency.currencySym
+    currencySym: state.currency.currencySym,
+    phoneNumber: state.protectedData.phoneNumber
 });
 
 const mapDispatchToProps = dispatch => ({
-    addEvent: (data) => dispatch(addEvent(data))
+    addEvent: (data) => dispatch(addEvent(data)),
+    confirmRedirect: (path, msg, actionMsg) => dispatch(confirmRedirect(path, msg, actionMsg))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventForm);

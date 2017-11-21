@@ -16,6 +16,7 @@ import {
 
 import FlashMessage   from './services/flash-message';
 import ConfirmMessage from './services/confirmation-message';
+import ConfirmRedirect from './services/confirmation-redirect';
 
 import Header from './header/';
 import Main   from './main/';
@@ -146,6 +147,8 @@ export class App extends React.Component {
             flashMsg = <FlashMessage delay={200} msg={this.props.flashMsg}/>;
         } else if(this.props.confirmMsg) {
             confirmMsg = <ConfirmMessage />;
+        } else if(this.props.confirmPath) {
+            confirmMsg = <ConfirmRedirect />;
         }
         return(
             <section className="app">
@@ -164,6 +167,8 @@ const mapStateToProps = state => ({
     loggedIn: state.auth.currentUser !== null,
     justLoggedOut: state.auth.justLoggedOut,
     confirmMsg: state.display.confirmMsg,
+    confirmPathMsg: state.display.confirmPathMsg,
+    confirmPath: state.display.confirmPath,
     flashMsg: state.display.flashMsg
 });
 

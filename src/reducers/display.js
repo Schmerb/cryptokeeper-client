@@ -11,6 +11,7 @@ import {
     HAS_TOUCH,
     CONFIRM_MESSAGE,
     CONFIRM_CLASS,
+    CONFIRM_REDIRECT,
     FLASH_MESSAGE,
     REMOVE_FLASH_MESSAGE,
     FLASH_MSG_CLASS,
@@ -32,6 +33,8 @@ const initialState = {
         confirmAction: null,
         confirmActionMsg: null,
         confirmClass: '',
+        confirmPath: null,
+        confirmPathMsg: null,
         flashMsg: null,
         flashClass: '',
         item: ''
@@ -45,72 +48,49 @@ export default function reducer(state = initialState, action) {
         case TOGGLE_MENU:
             document.body.classList.toggle('no-scroll', !state.open);
             document.getElementsByTagName('html')[0].classList.toggle('no-scroll-html', !state.open);
-            return Object.assign({}, state, {
-                open: !state.open
-            });
+            return {...state, open: !state.open}
         case TOGGLE_LINKS:
-            return Object.assign({}, state, {
-                openLinks: action.open
-            });
+            return {...state, openLinks: action.open};
         case SET_Y_POS:
-            return Object.assign({}, state, {
-                yPos: action.yPos
-            });
+            return {...state, yPos: action.yPos};
         case SET_BASE_Y_POS:
-            return Object.assign({}, state, {
-                baseYPos: action.baseYPos
-            });
+            return {...state, baseYPos: action.baseYPos};
         case SET_DOWN_BASE_Y_POS:
-            return Object.assign({}, state, {
-                downBaseYPos: action.downBaseYPos
-            });
+            return {...state, downBaseYPos: action.downBaseYPos};
         case SET_UP_DIRECTION:
-            return Object.assign({}, state, {
-                up: action.up
-            });
+            return {...state, up: action.up};
         case SET_WIDTH:
-            return Object.assign({}, state, {
-                width: action.width
-            });
+            return {...state, width: action.width};
         case SET_HEIGHT:
-            return Object.assign({}, state, {
-                height: action.height
-            });
+            return {...state, height: action.height};
         case SET_CURRENT_PATH:
-            console.log('in reducer, current path = ', action.path);
-            return Object.assign({}, state, {
-                currentPath: action.path
-            });
+            return {...state, currentPath: action.path};
         case HAS_TOUCH:
-            return Object.assign({}, state, {
-                hasTouch: action.hasTouch
-            });
+            return {...state, hasTouch: action.hasTouch};
         case CONFIRM_MESSAGE:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 confirmMsg: action.msg,
                 confirmAction: action.action,
                 confirmActionMsg: action.actionMsg
-            });
+            };
         case CONFIRM_CLASS:
-            return Object.assign({}, state, {
-                confirmClass: action.classname
-            });
+            return {...state, confirmClass: action.classname};
+        case CONFIRM_REDIRECT:
+            return {
+                ...state, 
+                confirmPath: action.path,
+                confirmPathMsg: action.msg,
+                confirmActionMsg: action.confirmActionMsg,
+            };
         case FLASH_MESSAGE:
-            return Object.assign({}, state, {
-                flashMsg: action.msg
-            });
+            return {...state, flashMsg: action.msg};
         case REMOVE_FLASH_MESSAGE:
-            return Object.assign({}, state, {
-                flashMsg: null
-            });
+            return {...state, flashMsg: null};
         case FLASH_MSG_CLASS:
-            return Object.assign({}, state, {
-                flashClass: action.classname
-            });
+            return {...state, flashClass: action.classname};
         case DASH_HOVER_VR:
-            return Object.assign({}, state, {
-                item: action.item
-            });
+            return {...state, item: action.item};
         default:
             return state;
     }

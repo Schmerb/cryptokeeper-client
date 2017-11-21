@@ -31,3 +31,5 @@ export function deleteCurrentUser() {
     store.dispatch(deleteUser());
     logUserOut('Successfully closed your account. Come back soon!');
 }
+
+

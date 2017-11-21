@@ -3,9 +3,10 @@ import { Field, reduxForm, focus } from 'redux-form';
 
 import { registerUser } from 'actions/users';
 import { login }        from 'actions/auth';
-import { flashMessage } from 'actions/display';
+import { flashMessage, confirmRedirect } from 'actions/display';
 import Input from '../input';
 import { required, nonEmpty, matches, length, isTrimmed, email } from 'utils/validators';
+// import { getUserNumber } from 'services/user';
 
 
 export class SignupForm extends React.Component {
@@ -20,13 +21,18 @@ export class SignupForm extends React.Component {
     onSubmit(values) {
         const {email, username, password, firstName, lastName} = values;
         const user = {email, username, password, firstName, lastName};
+        const confirmMsg = 'Would you like to enter your phone number in order to receive text notifications?';
+        const confirmActionMsg = 'Go to Settings';
         return this.props
             .dispatch(registerUser(user))
             .then(() => this.props.dispatch(login(username, password)))
-            .then(() => this.props.dispatch(flashMessage('Successfully registered!')));
+            .then(() => this.props.dispatch(flashMessage('Successfully registered!')))
+            .then(() => this.props.dispatch(confirmRedirect('/dashboard/settings', confirmMsg, confirmActionMsg)));
     }
-
+    
+    
     render() {
+        // console.log(this.props);
         return (
             <form
                 className="signup-form"
