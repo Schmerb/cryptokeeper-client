@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
-
-
 import MobileDashboard from './mobile-dashboard/';
 import MobileNav       from './mobile-dashboard/mobile-nav';
 import SideNav         from './side-nav';
@@ -11,6 +9,7 @@ import Portfolio       from './portfolio/';
 import EventsPage      from './events/';
 import Avatar          from './account/avatar';
 import Settings        from './account/settings';
+import VerifyCode      from './account/verify-code';
 
 export class Dashboard extends React.Component {
 
@@ -58,6 +57,7 @@ export class Dashboard extends React.Component {
                 <Route path="/dashboard/events" component={EventsPage} />
                 <Route exact path="/dashboard/avatar" component={Avatar}/>
                 <Route exact path="/dashboard/settings" component={Settings}/>
+                <Route exact path="/dashboard/settings/verify-code" component={VerifyCode}/>
             </div>
         );
     }

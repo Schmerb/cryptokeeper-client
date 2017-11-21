@@ -1,0 +1,56 @@
+.code-verification-page {
+    position: relative;
+    height: 500px;
+    overflow: auto;
+    border: 1px solid white;
+
+    .back-btn {
+        svg {
+            width: 55px;
+            height: 55px;
+            fill: $green;
+        }
+    }
+}
+
+.code-verification-modal {
+    @extend %center;
+    top: 100px;
+    width: 300px;
+    text-align: center;
+    // border: 1px solid white;
+    @include mediaMin($tablet) {
+        @include abs-middle;
+    }
+    button {
+        color: $green;
+        border-color: $green;
+        height: 40px;
+        width: 120px;
+        margin-top: 30px;
+    }
+    button[type="submit"] {
+    }
+    .resend-code-btn {
+        margin-left: 40px;
+    }
+}
+
+.confirm-codes {
+    display: block;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    p {
+        font-size: 22px;
+        padding-bottom: 15px;
+    }
+    .confirm-code {
+        display: inline-block;
+        background-color: $offwhite;
+        border: 1px solid lightgrey;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+    }
+}

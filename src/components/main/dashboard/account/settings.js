@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { updateUser } from 'actions/protected-data';
 import { confirmMessage } from 'actions/display';
+import { requestVerificationCode } from 'actions/twilio';
 
 import { deleteCurrentUser } from 'services/user';
 
@@ -19,7 +20,8 @@ export class Settings extends React.Component {
             email: {
                 disabled: true,
                 value: props.email
-            }
+            },
+            error: null
         };
     }
 
@@ -64,7 +66,26 @@ export class Settings extends React.Component {
         e.preventDefault();
         const email       = this.refs.email.value,
               phoneNumber = this.refs.tel.value;
-        this.props.dispatch(updateUser({email, phoneNumber}));
+        if(phoneNumber !== this.props.phoneNumber) {
+            // need to confirm number with twilio
+            this.props.
+                dispatch(requestVerificationCode(phoneNumber))
+                .then(res => {
+                    console.log('DIspatch res: ', res);
+                    if(res.success) {
+                        this.props.history.push({
+                            pathname: '/dashboard/settings/verify-code',
+                            state: { phoneNumber, email }
+                        });
+                    } else {
+                        this.setState({
+                            error: res.message
+                        });
+                    }
+                });
+        } else {
+            this.props.dispatch(updateUser({email, phoneNumber}));
+        }
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -86,10 +107,16 @@ export class Settings extends React.Component {
     // Displays confirmation msg to delete account
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     deleteAccount = () => {
-        this.props.dispatch(confirmMessage('Are you sure you want to close your account?', deleteCurrentUser, 'DELETE ACCOUNT'));
+        const confirmMsg = 'Are you sure you want to close your account?';
+        const actionMsg = 'DELETE ACCOUNT';
+        this.props.dispatch(confirmMessage(confirmMsg, deleteCurrentUser, actionMsg));
     }
 
     render() {
+        // let verificationCode = null;
+        // if(!this.props.phoneNumber) {
+        //     verificationCode = 
+        // }
         return(
             <div className="settings">
                 <h2>Account Settings</h2>
@@ -100,16 +127,18 @@ export class Settings extends React.Component {
                             <label htmlFor="">
                                 <span>My Number: </span>
                                 <input type="tel" ref="tel" value={this.state.tel.value} disabled={this.state.tel.disabled}
-                                        onChange={e => this.handleChange(e, 'tel')} />
+                                        onChange={e => this.handleChange(e, 'tel')} required/>
                                 <button type="button" className="edit-btn" onClick={e => this.handleClick(e, 'tel')}>
                                     <EditIcon /> 
                                 </button>
                             </label>
+                            {/* {verificationCode} */}
+                            {this.state.error}
                             <hr/>
                             <label htmlFor="">
                                 <span>Email: </span>
                                 <input type="email" ref="email" value={this.state.email.value} disabled={this.state.email.disabled}
-                                        onChange={e => this.handleChange(e, 'email')}/>
+                                        onChange={e => this.handleChange(e, 'email')} required/>
                                 <button type="button" className="edit-btn" onClick={e => this.handleClick(e, 'email')}>
                                     <EditIcon /> 
                                 </button>

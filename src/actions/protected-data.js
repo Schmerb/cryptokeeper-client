@@ -66,9 +66,49 @@ export const updateUser = (updateData) => (dispatch, getState) => {
         .then(res => res.json())
         .then((data) => dispatch(updateUserSuccess(data)))
         .catch(err => {
+            console.log('ERROR: ', err);
             dispatch(updateUserError(err));
         });
 };
+
+//
+// Get User Data
+//
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+export const getUserSuccess = (user) => ({
+    type: GET_USER_SUCCESS,
+    user
+});
+export const GET_USER_ERROR = 'GET_USER_ERROR';
+export const getUserError = (error) => ({
+    type: GET_USER_ERROR,
+    error
+});
+
+export const getUser = () => (dispatch, getState) => {
+    const authToken = getState().auth.authToken;
+    return fetch(`${API_BASE_URL}/users/me/`, {
+        method: 'GET',
+        headers: {
+            // Provide our auth token as credentials
+            Authorization: `Bearer ${authToken}`,
+            "Content-Type": "application/json"
+        }
+    })
+        .then(res => normalizeResponseErrors(res))
+        .then(res => res.json())
+        .then((data) => dispatch(getUserSuccess(data)))
+        .catch(err => {
+            console.log(err);
+            // dispatch(getUserError(err));
+        });
+};
+
+// // // // // // // // // // //
+//
+//  User Avatar
+//
+// // // // // // // // // // //
 
 //
 // Uploads user's image for profile avatar
@@ -104,39 +144,6 @@ export const uploadImage = (image) => (dispatch, getState) => {
         .catch(err => {
             console.log(err);
             dispatch(updateImageError(err));
-        });
-};
-
-//
-// Get User Data
-//
-export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
-export const getUserSuccess = (user) => ({
-    type: GET_USER_SUCCESS,
-    user
-});
-export const GET_USER_ERROR = 'GET_USER_ERROR';
-export const getUserError = (error) => ({
-    type: GET_USER_ERROR,
-    error
-});
-
-export const getUser = () => (dispatch, getState) => {
-    const authToken = getState().auth.authToken;
-    return fetch(`${API_BASE_URL}/users/me/`, {
-        method: 'GET',
-        headers: {
-            // Provide our auth token as credentials
-            Authorization: `Bearer ${authToken}`,
-            "Content-Type": "application/json"
-        }
-    })
-        .then(res => normalizeResponseErrors(res))
-        .then(res => res.json())
-        .then((data) => dispatch(getUserSuccess(data)))
-        .catch(err => {
-            console.log(err);
-            // dispatch(getUserError(err));
         });
 };
 
@@ -222,3 +229,5 @@ export const CLEAR_USER_DATA = 'CLEAR_USER_DATA';
 export const clearUserData = () => ({
     type: CLEAR_USER_DATA
 });
+
+
