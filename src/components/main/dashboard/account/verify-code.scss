@@ -22,6 +22,12 @@
     @include mediaMin($tablet) {
         @include abs-middle;
     }
+    .error {
+        color: $error;
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+    }
     button {
         color: $green;
         border-color: $green;

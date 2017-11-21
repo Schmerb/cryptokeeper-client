@@ -13,13 +13,14 @@
     background-color: rgba($secondary, 0.7);
     width: 95%;
     max-width: 800px;
-    min-height: 400px;
+    min-height: 540px;
     margin: 20px auto;
     padding-top: 40px;
     padding-bottom: 40px;
     text-align: center;
     @include mediaMin($collapse) {
         text-align: left;
+        min-height: 440px;
     }
     .inner-container {
         max-width: 800px;
@@ -87,6 +88,12 @@
             font-size: 28px;
         }
     }
+    .error {
+        color: $error;
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+    }
     button {
         border: none;
         width: 40px;
@@ -112,11 +119,12 @@
         font-size: 13px;
         width: 120px;
         height: 40px;
+        // float: right;
+        @include center;
+        bottom: 10px;
         @include mediaMin($collapse) {
-            @include center;
             // position: absolute;
             // left: 20px;
-            bottom: 10px;
         }
     }
 }

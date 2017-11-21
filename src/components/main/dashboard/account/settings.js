@@ -113,10 +113,10 @@ export class Settings extends React.Component {
     }
 
     render() {
-        // let verificationCode = null;
-        // if(!this.props.phoneNumber) {
-        //     verificationCode = 
-        // }
+        let error = null;
+        if(this.state.error) {
+            error = <p className="error">{this.state.error}</p>
+        }
         return(
             <div className="settings">
                 <h2>Account Settings</h2>
@@ -133,7 +133,7 @@ export class Settings extends React.Component {
                                 </button>
                             </label>
                             {/* {verificationCode} */}
-                            {this.state.error}
+                            {error}
                             <hr/>
                             <label htmlFor="">
                                 <span>Email: </span>

@@ -56,7 +56,10 @@ export class VerifyCode extends Component {
 
     render() {
         console.log(this.props);
-        
+        let error = null;
+        if(this.state.error) {
+            error = <p className="error">{this.state.error}</p>
+        }
         return(
             <div className="code-verification-page">
                 <Link className="back-btn" to={"/dashboard/settings"}>
@@ -71,7 +74,7 @@ export class VerifyCode extends Component {
                             <input ref="_3" className="confirm-code" type="number" min={0} max={9} required/>
                             <input ref="_4" className="confirm-code" type="number" min={0} max={9} required/>
                         </label>
-                        {this.state.error}
+                        {error}
                         <div>
                             <button type="submit">Verify</button>
                             <button className="resend-code-btn" type="button" onClick={this.resendCode}>Resend Code</button>
