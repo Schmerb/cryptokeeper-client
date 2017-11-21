@@ -20,7 +20,7 @@
     text-align: center;
     @include mediaMin($collapse) {
         text-align: left;
-        min-height: 440px;
+        min-height: 450px;
     }
     .inner-container {
         max-width: 800px;
