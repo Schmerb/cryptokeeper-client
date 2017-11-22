@@ -26,6 +26,7 @@ export class EventBox extends React.Component {
     }
 
     render() {
+        console.log('\n\nDATA: ', this.props.data);
         const data = this.props.data;
         let classes = data.successful ? 'successful': null;
         let condition = null;
@@ -52,6 +53,10 @@ export class EventBox extends React.Component {
                 <h2>{data.name}</h2>
                 <ul>
                     <li>
+                        <span className="title">Currency:</span>
+                        <span>{data.currency}</span>
+                    </li>
+                    <li>
                         <span className="title">Type:</span>
                         <span>
                             {data.type.sms ? 'SMS Text Message' : ''}
@@ -62,7 +67,7 @@ export class EventBox extends React.Component {
                     {condition}
                     <li>
                         <span className="title">Message:</span> 
-                        <span>
+                        <span className="event-msg">
                             {data.message}
                         </span>
                     </li>

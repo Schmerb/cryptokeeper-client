@@ -137,7 +137,7 @@ export class EditEventForm extends React.Component {
                             <ArrowDown />
                         </div>
                         <div className="cond-value-type">
-                            <input type="number" id="condition-value" ref="value" min="0" placeholder="value" 
+                            <input type="number" id="condition-value" ref="value" min="0" step="any" placeholder="value" 
                                    value={this.state.value} onChange={e => this.handleChange(e, 'value')} required/>
                             <select name="" id="value-type" ref="valueType"
                                     value={this.state.valueType} onChange={e => this.handleChange(e, 'valueType')}>

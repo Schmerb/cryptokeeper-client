@@ -19,7 +19,7 @@
         // width: 80%;
         margin: 0 auto;
         // border: 1px solid limegreen;
-        overflow: auto;
+        // overflow: auto;
         @include mediaMin(877px) {
             width: 665px;
         }

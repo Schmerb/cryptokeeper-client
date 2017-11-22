@@ -103,7 +103,7 @@ export class EventForm extends React.Component {
                             <ArrowDown />
                         </div>
                         <div className="cond-value-type">
-                            <input type="number" id="condition-value" min="0" placeholder="value" ref="value" required/>
+                            <input type="number" id="condition-value" min="0" step="any" placeholder="value" ref="value" required/>
                             <select name="" id="value-type" ref="valueType">
                                 <option value="$">$</option>
                                 <option value="%">%</option>
