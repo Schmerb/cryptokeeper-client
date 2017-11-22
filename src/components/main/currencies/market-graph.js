@@ -60,7 +60,7 @@ export class MarketGraph extends Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     drawChart = () => {
         if(this.state.loading) {
-            return <Spinner name="three-bounce" color="coral"/>
+            return <Spinner className="loading-icon" name="three-bounce" color="coral"/>
         } else {
             return <Chart
                         chartType="LineChart" 
@@ -77,8 +77,6 @@ export class MarketGraph extends Component {
     render() {
         return(
             <div className="market-graph">
-                <p>D3 Chart</p>
-                <div id="chart"></div>
                 {this.drawChart()}
             </div>
         );
