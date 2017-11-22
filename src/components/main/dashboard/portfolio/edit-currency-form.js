@@ -93,10 +93,10 @@ export class EditCurrencyForm extends React.Component {
                         <option value="DASH">DASH (DASH)</option>
                         <option value="DOGE">Dogecoin (DOGE)</option>
                     </select>
-                    <input type="number" ref="input" min="0" required 
+                    <input type="number" ref="input" min="0" step="any" required 
                            value={this.state.input} onChange={this.handleChange}
                            placeholder="How many coins do you hold?"/>
-                    <input type="number" ref="buyInput" name="buyPrice" min="0" required
+                    <input type="number" ref="buyInput" name="buyPrice" min="0" step="any" required
                            value={this.state.buyInput} onChange={this.handleChange}
                            placeholder="How much was a coin worth at the time?"/>
                     <div className="edit-btns">

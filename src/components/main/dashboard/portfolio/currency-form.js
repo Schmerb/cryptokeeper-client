@@ -45,9 +45,9 @@ export class CurrencyForm extends React.Component {
                         <option value="DASH">DASH (DASH)</option>
                         <option value="DOGE">Dogecoin (DOGE)</option>
                     </select>
-                    <input type="number" name="coins" required min="0"
+                    <input type="number" name="coins" required min="0" step="any"
                            placeholder="How many coins do you hold?"/>
-                    <input type="number" name="buyPrice" required min="0"
+                    <input type="number" name="buyPrice" required min="0" step="any"
                            placeholder="How much was a coin worth at the time?"/>
                     <button type="submit">ADD</button>
                 </form>
