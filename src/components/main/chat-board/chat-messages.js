@@ -63,8 +63,9 @@ export class ChatMessages extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * 
     updateScroll(){
         let element = document.getElementById("messages");
-        const { scrollTop, scrollHeight, offsetHeight } = element;
+        const { scrollHeight } = element;
         const { name, msgs } = this.props;
+        // const { scrollTop, scrollHeight, offsetHeight } = element;
         // console.log('scrollTop: ', scrollTop);
         // console.log('scrollHeight: ', scrollHeight);
         // console.log('offsetHeight: ', offsetHeight);
