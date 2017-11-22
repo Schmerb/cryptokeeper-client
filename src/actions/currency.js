@@ -106,7 +106,6 @@ export const getCurrenciesError = error => ({
 //
 export const getCurrencies = () => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    console.log('FIRING');
     return fetch(`${API_BASE_URL}/currencies/`, {
         method: 'GET',
         headers: { 
@@ -146,7 +145,6 @@ export const addCurrencyError = error => ({
 // ADDs currencies
 export const addCurrency = (currency) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    console.log("CURRENCY", currency);
     return fetch(`${API_BASE_URL}/currencies/`, {
         method: 'POST',
         body: JSON.stringify(currency),
@@ -159,7 +157,6 @@ export const addCurrency = (currency) => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((data) => {
-            console.log(data);
             dispatch(addCurrencySuccess(data));
         })
         .catch(err => {
@@ -189,7 +186,6 @@ export const updateCurrencyError = error => ({
 
 export const updateCurrency = (currency) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    console.log("CURRENCY", currency);
     return fetch(`${API_BASE_URL}/currencies/${currency.id}`, {
         method: 'PUT',
         body: JSON.stringify(currency),
@@ -239,7 +235,6 @@ export const deleteCurrency = (currencyId) => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((data) => {
-            console.log(data);
             dispatch(deleteCurrencySuccess(data));
         })
         .catch(err => {

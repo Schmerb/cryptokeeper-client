@@ -27,7 +27,6 @@ export class VerifyCode extends Component {
         const { _1, _2, _3, _4 } = this.refs;
         let code = `${_1.value}${_2.value}${_3.value}${_4.value}`;
         const { phoneNumber, email } = this.props.location.state;
-        console.log(code, phoneNumber, email);
         this.props.verifyCode(phoneNumber, code, email)
             .then(res => {
                 if(res.success) {
@@ -62,7 +61,6 @@ export class VerifyCode extends Component {
     };
 
     render() {
-        console.log(this.props);
         let error = null;
         if(this.state.error) {
             error = <p className="error">{this.state.error}</p>

@@ -70,7 +70,6 @@ export class Settings extends React.Component {
             // need to confirm number with twilio
             this.props.dispatch(requestVerificationCode(phoneNumber))
                 .then(res => {
-                    console.log('DIspatch res: ', res);
                     if(res.success) {
                         this.props.history.push({
                             pathname: '/dashboard/settings/verify-code',

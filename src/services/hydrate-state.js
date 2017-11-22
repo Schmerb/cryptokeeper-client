@@ -22,7 +22,6 @@ export function clearState() {
 };
 
 export function hydrateState() {
-    console.log('hydrating state');
     store.dispatch(getBaseCurrency());
     store.dispatch(getCurrencies());
     store.dispatch(getEvents());

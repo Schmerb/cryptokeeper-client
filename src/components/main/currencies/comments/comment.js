@@ -24,7 +24,6 @@ export class Comment extends Component {
         // dispatch action to fetch user avatar if it exists
         const { avatar } = this.props.data.author;
         if(avatar.length > 0) {
-            console.log('\n\nAVATAR', avatar);
             this.props.getAvatar(avatar);
         }
     }
@@ -50,10 +49,7 @@ export class Comment extends Component {
     // Dispatches action to like comment
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     likeComment = (e, commentID) => {
-        this.props.likeComment(commentID)
-            .then((res) => {
-                console.log('likeComment.then() res: ', res);
-            });
+        this.props.likeComment(commentID);
     };
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

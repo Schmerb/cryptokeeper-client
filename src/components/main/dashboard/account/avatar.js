@@ -62,13 +62,11 @@ export class Avatar extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     handleDeleteClick = (e, avatarId) => {
         e.preventDefault();
-        console.log('DELETE CLICKED --> ', avatarId);
         this.props.removeUserAvatar(avatarId);
         // this.props.confirmDelete('Are you sure you want to remove your avatar image?', removeUserAvatar(avatarId), 'Yes, remove it');
     }
 
     render() {
-        console.log(this.props);
         let fileName, button, deleteBtn;
         if(this.state.fileName) {
             fileName = <label className="file-name">File: {this.state.fileName}</label>;

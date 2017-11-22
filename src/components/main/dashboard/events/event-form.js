@@ -23,7 +23,6 @@ export class EventForm extends React.Component {
             valueType = this.refs.valueType.value,
             message   = this.refs.message.value,
             basePrice = this.props[currency].price;
-        console.log('basePrice: ', basePrice);
         let data = {name, currency, basePrice, type: {sms, email}, condition, value, valueType, message};
         if(!sms && !email) {
             // alert must pick either sms or email

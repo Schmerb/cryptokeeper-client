@@ -68,9 +68,9 @@
             @include benz-transition(0.4s);
             @extend %cover;
             content: '';
-            top: -100%;
-            left: -100%;
-            transform: scale(1.4) rotate(45deg);
+            top: -110%;
+            left: -110%;
+            transform: scale(1.7) rotate(45deg);
             background-color: rgba($purple, 0.8);
         }
         &:hover {

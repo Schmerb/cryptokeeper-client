@@ -52,7 +52,6 @@ export const updateUserError = (error) => ({
 
 export const updateUser = (updateData) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    console.log("UpdateData", updateData);
     return fetch(`${API_BASE_URL}/users/me/settings`, {
         method: 'PUT',
         body: JSON.stringify(updateData),
@@ -137,7 +136,7 @@ export const uploadImage = (image) => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((data) => {
-            console.log('IMAGE RES: ', data);
+            // console.log('IMAGE RES: ', data);
             dispatch(getUserAvatar());
             // dispatch(updateImageSuccess(data));
         })
@@ -170,11 +169,11 @@ export const getUserAvatar = () => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then((data) => {
-        console.log('SUCCESS: ', data);
+        // console.log('SUCCESS: ', data);
         dispatch(getUserAvatarSuccess(data));
     })
     .catch(err => {
-        console.log(err);
+        // console.log(err);
         dispatch(getUserAvatarSuccess(null));
     });
 }

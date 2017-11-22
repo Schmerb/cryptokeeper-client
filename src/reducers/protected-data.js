@@ -34,7 +34,6 @@ export default function reducer(state = initialState, action) {
         case GET_USER_ERROR:
             return {...state, error: action.error};
         case GET_USER_AVATAR_SUCCESS:
-            console.log('INSIDE REDUCER', action.avatar);
             return {...state, avatar: action.avatar};
         case GET_USER_AVATAR_ERROR:
             return {...state, error: action.error};

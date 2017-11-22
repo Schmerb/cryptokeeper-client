@@ -26,7 +26,6 @@ export class EventBox extends React.Component {
     }
 
     render() {
-        console.log('\n\nDATA: ', this.props.data);
         const data = this.props.data;
         let classes = data.successful ? 'successful': null;
         let condition = null;
