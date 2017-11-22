@@ -3,21 +3,74 @@ import { connect } from 'react-redux';
 
 
 export class ChatMessages extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            lockScreen: true
+        };
+        this.handleScroll = this.handleScroll.bind(this);
+    }
+
+
+    componentDidMount() {
+        let element = document.getElementById("messages");
+        element.addEventListener('scroll', this.handleScroll);
+    }
+
+    componentWillUnmount() {
+        let element = document.getElementById("messages");
+        element.removeEventListener('scroll', this.handleScroll);
+    }
+
+
+
     // * * * * * * * * * * * * * * * * * * * *
     // Fired when a state change occurs
     // * * * * * * * * * * * * * * * * * * * *
     componentDidUpdate() {
-        if(this.props.visited) {
+
+        const { visited } = this.props;
+
+        if(visited) {
             this.updateScroll();
         }
     }  
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // 
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    handleScroll(e, $this) {
+        let el = e.target;
+        let distFromBottom = el.scrollHeight - el.scrollTop - el.offsetHeight;
+        // console.log('SCROLL!');
+        // console.log('scrollTop', el.scrollTop);
+        // console.log('scrollHeight', el.scrollHeight);
+        // console.log('offsetHeight', el.offsetHeight);
+        // console.log('distFromBottom', distFromBottom);
+        if(distFromBottom < 0) {
+            this.setState({
+                lockScreen: true
+            });
+        } else if(this.state.lockScreen) {
+            this.setState({
+                lockScreen: false
+            });
+        }
+    }
 
     // * * * * * * * * * * * * * * * * * * * * 
     // keeps position of chat window at bottom
     // * * * * * * * * * * * * * * * * * * * * 
     updateScroll(){
         let element = document.getElementById("messages");
-        element.scrollTop = element.scrollHeight;
+        const { scrollTop, scrollHeight, offsetHeight } = element;
+        const { name, msgs } = this.props;
+        // console.log('scrollTop: ', scrollTop);
+        // console.log('scrollHeight: ', scrollHeight);
+        // console.log('offsetHeight: ', offsetHeight);
+        if(this.state.lockScreen || name === msgs[msgs.length - 1].user) {
+            element.scrollTop = scrollHeight;
+        }
     }
 
 
