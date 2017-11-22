@@ -44,6 +44,13 @@ export class VerifyCode extends Component {
             });
     }
 
+    handleChange = e => {
+        let index = e.target.attributes.name.nodeValue[1];
+        if(index < 4) {
+            this.refs[`_${++index}`].focus();
+        }
+    }
+
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Dispatches action to resend verification code    
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -69,10 +76,10 @@ export class VerifyCode extends Component {
                     <form action="" onSubmit={this.handleSubmit}>
                         <label className="confirm-codes">
                             <p>Enter Verification Code</p>
-                            <input ref="_1" className="confirm-code" type="number" min={0} max={9} required/>
-                            <input ref="_2" className="confirm-code" type="number" min={0} max={9} required/>
-                            <input ref="_3" className="confirm-code" type="number" min={0} max={9} required/>
-                            <input ref="_4" className="confirm-code" type="number" min={0} max={9} required/>
+                            <input ref="_1" name="_1" className="confirm-code" type="number" min={0} max={9} onChange={this.handleChange} required/>
+                            <input ref="_2" name="_2" className="confirm-code" type="number" min={0} max={9} onChange={this.handleChange} required/>
+                            <input ref="_3" name="_3" className="confirm-code" type="number" min={0} max={9} onChange={this.handleChange} required/>
+                            <input ref="_4" name="_4" className="confirm-code" type="number" min={0} max={9} onChange={this.handleChange} required/>
                         </label>
                         {error}
                         <div>

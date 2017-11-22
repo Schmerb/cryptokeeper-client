@@ -28,9 +28,7 @@ export class ChatMessages extends React.Component {
     // Fired when a state change occurs
     // * * * * * * * * * * * * * * * * * * * *
     componentDidUpdate() {
-
         const { visited } = this.props;
-
         if(visited) {
             this.updateScroll();
         }

@@ -57,8 +57,12 @@ export class EditEventForm extends React.Component {
         if(!sms && !email) {
             // alert must pick either sms or email
             alert('You must choose an event type, SMS and/or Email');
+        } else if(sms && this.props.phoneNumber === '') {
+            const confirmMsg = 'Please enter your phone number before creating a text notification event.';
+            const confirmActionMsg = 'Go to Settings';
+            this.props.confirmRedirect('/dashboard/settings', confirmMsg, confirmActionMsg);
         } else {
-            this.props.addEvent(data);
+            this.props.updateEvent(data);
             this.props.history.push({
                 pathname: '/dashboard/events'
             });
