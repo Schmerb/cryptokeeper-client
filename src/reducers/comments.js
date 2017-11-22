@@ -82,11 +82,15 @@ export default function reducer(state = initialState, action) {
 function findAndUpdateCommentInState(state, action) {
     return {
         ...state,
-        comments: state.comments.map(comment => 
-            comment.id === action.comment.id ? 
-                action.comment : 
-                comment
-        ),
+        comments: state.comments.map(comment => {
+            if(comment.id === action.comment.id ) {
+                if(comment.avatarUrl) {
+                    action.comment.avatarUrl = comment.avatarUrl;
+                }
+                return action.comment;
+            } 
+            return comment;
+        }),
         error: null
     };
 }
