@@ -97,6 +97,7 @@ export class App extends React.Component {
         let pathname = getURLPath();
         if(pathname) {
             this.props.history.push({ pathname });
+            this.props.dispatch(setCurrentPath(location.pathname));
         }
     }
 
@@ -107,6 +108,7 @@ export class App extends React.Component {
         this.props.history.listen((location, action) => {
             storeURLPath(location.pathname);
             this.props.dispatch(setCurrentPath(location.pathname));
+            window.scrollTo(0, 0);
         });
     }
 

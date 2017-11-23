@@ -24,17 +24,21 @@ footer {
 
 .f-nav {
     text-align: center;
-
     ul {
         display: inline-block;
         padding: 20px 0;
     }
     a, button {
         color: $offwhite;
-
         &:hover {
             color: $primary;
         }  
+    }
+}
+
+.social-links {
+    fa {
+        color: white;
     }
 }
 

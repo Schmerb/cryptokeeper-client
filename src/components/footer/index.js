@@ -56,6 +56,23 @@ export class Footer extends React.Component {
                 <nav className="f-nav">
                     {links}
                 </nav>
+                <ul className="social-links">
+                    <li>
+                        <a href="https://github.com/Schmerb" target="__blank">
+                            <i className="fa fa-github" aria-hidden="true">github</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a className="fb-link" href="https://www.facebook.com/mike.schmerbeck" target="__blank">
+                            <i className="fa fa-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/michael-schmerbeck-20a8a7126/" target="__blank">
+                            <i className="fa fa-linkedin" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
                 <div className="copy">
                     <span>copyright &copy; 2017 Mike Schmerbeck</span>
                 </div>
