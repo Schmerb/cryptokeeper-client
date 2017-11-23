@@ -91,13 +91,14 @@ export class App extends React.Component {
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // Redirects to previous route stored in localStorage
+    // Redirects to previous route stored in localStorage and
+    // hydrates state with path
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     redirectToPreviousURL() {
         let pathname = getURLPath();
         if(pathname) {
             this.props.history.push({ pathname });
-            this.props.dispatch(setCurrentPath(location.pathname));
+            this.props.dispatch(setCurrentPath(pathname));
         }
     }
 

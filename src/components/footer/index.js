@@ -63,7 +63,7 @@ export class Footer extends React.Component {
                         </a>
                     </li>
                     <li>
-                        <a className="fb-link" href="https://www.facebook.com/mike.schmerbeck" target="__blank">
+                        <a href="https://www.facebook.com/mike.schmerbeck" target="__blank">
                             <i className="fa fa-facebook" aria-hidden="true"></i>
                         </a>
                     </li>
