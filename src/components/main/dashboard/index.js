@@ -30,6 +30,7 @@ export class Dashboard extends React.Component {
         let path = this.props.location.pathname;
         let nav  = null;
         let mobileDash = null;
+        console.log("this.props.width", this.props.width);
         if(this.props.width >= 805) {
             nav = (<SideNav />);
         } else {
@@ -39,6 +40,7 @@ export class Dashboard extends React.Component {
             if (path.includes('dashboard/')) {
                 nav = <MobileNav path={path}/>;
             }
+            console.log("Nav is mobile Nav");
         }
         return { nav, mobileDash };
     }

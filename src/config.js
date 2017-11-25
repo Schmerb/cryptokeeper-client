@@ -1,6 +1,6 @@
 // API
 export const API_BASE_URL = 
-    process.env.REACT_APP_API_BASE_URL || 'http://192.168.5.38:7000/api'; // 'http://192.168.1.112:8080/api';
+    process.env.REACT_APP_API_BASE_URL || 'http://172.20.10.2:7000/api'; // 'http://192.168.5.38:7000/api'; // 'http://192.168.1.112:8080/api';
 
 // Port
 export const PORT = process.env.PORT || 8080;

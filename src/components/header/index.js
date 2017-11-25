@@ -74,7 +74,7 @@ export class Header extends React.Component {
             classes = `${openLinks ? 'open':''}`;
         }
         return(
-            <header role="banner" className={classes}>
+            <header role="banner" className={`header ${classes}`}>
                 <Logo path={pathname}/>
                 <TopNav />
             </header>

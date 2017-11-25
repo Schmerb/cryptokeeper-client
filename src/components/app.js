@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -29,7 +29,12 @@ import Footer from './footer/';
 //     console.log('DOCUMENT has loaded!');
 // }
 
-export class App extends React.Component {
+export class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleWindowResize = this.handleWindowResize.bind(this);
+    }
     
     // * * * * * * * * * * * * * * * * * * * *
     // 
@@ -63,9 +68,8 @@ export class App extends React.Component {
     // Fires when component is about to mount
     // * * * * * * * * * * * * * * * * * * * *
     componentWillMount() {
-        let $this = this;
         this.stopPeriodicRefresh();
-        window.addEventListener('resize', () => this.handleWindowResize($this));
+        window.addEventListener('resize', this.handleWindowResize);
     };
 
     // * * * * * * * * * * * * * * * * * * * *
@@ -117,8 +121,8 @@ export class App extends React.Component {
     // Dispatches action to update current 
     // window width in state
     // * * * * * * * * * * * * * * * * * * * *
-    handleWindowResize($this) {
-        // console.log('innder width:', window.innerWidth);
+    handleWindowResize() {
+        console.log('innder width:', window.innerWidth);
         this.props.dispatch(setWidth(window.innerWidth));
     }
 
