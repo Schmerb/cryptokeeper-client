@@ -14,7 +14,7 @@ export class CommentForm extends Component {
         const value    = this.refs.textarea.value;
         const pathname = this.props.location.pathname;
         // dispatch an action to make fetch to db and update state
-        
+
         let coin = [];
         for(let i=pathname.length - 1; i > 0; i--) {
             // console.log(pathname[i]);

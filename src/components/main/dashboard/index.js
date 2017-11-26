@@ -13,15 +13,6 @@ import VerifyCode      from './account/verify-code';
 
 export class Dashboard extends React.Component {
 
-    componentDidMount() {
-        // console.log('Component just mounted');
-        // console.log(this.props);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        // console.log("current:", this.props);
-        // console.log("next:", nextProps);
-    }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Checks path and returns appropriate components or null
@@ -30,7 +21,6 @@ export class Dashboard extends React.Component {
         let path = this.props.location.pathname;
         let nav  = null;
         let mobileDash = null;
-        console.log("this.props.width", this.props.width);
         if(this.props.width >= 805) {
             nav = (<SideNav />);
         } else {
@@ -40,7 +30,6 @@ export class Dashboard extends React.Component {
             if (path.includes('dashboard/')) {
                 nav = <MobileNav path={path}/>;
             }
-            console.log("Nav is mobile Nav");
         }
         return { nav, mobileDash };
     }

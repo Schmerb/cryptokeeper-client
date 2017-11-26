@@ -19,9 +19,7 @@ export class ChatBox extends Component {
     // Returns user to homepage
     // * * * * * * * * * * * * * * * 
     goBack = () => {
-        this.props.history.push({
-            pathname: '/'
-        });
+        this.props.history.goBack();
     }
 
     handleClick = () => {
