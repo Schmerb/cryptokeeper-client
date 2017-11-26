@@ -25,6 +25,7 @@ export class CommentForm extends Component {
             }
         }
         let currency = coin.reverse().join('');
+        console.log('Currency: ', currency);
         if(this.props.reply) {
             this.props.addReplyComment(value, this.props.reply, currency);
         } else {
