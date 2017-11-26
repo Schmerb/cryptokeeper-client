@@ -2,13 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 
-// import { logUserIn } from 'actions/chat';
-
 import ChatNameBox from './chat-name-box';
 import ChatBox     from './chat-box';
-
-
-import { socketIO } from 'services/chat-stream';
 
 export class ChatBoard extends React.Component {
 
