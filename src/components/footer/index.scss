@@ -19,8 +19,13 @@ footer {
                 bottom: 100px;
             }
             .f-up-arrow {
-                bottom: 200px;
+                bottom: 230px;
             }
+        }
+    }
+    &.mobilechat {
+        .f-up-arrow {
+            opacity: 0;
         }
     }
 }
@@ -29,7 +34,7 @@ footer {
     @include transition(0.2s);
     position: fixed;
     bottom: 80px;
-    right: 0;
+    right: 10px;
     width: 40px;
     height: 40px;
     fill: lighten(gold, 15%);
@@ -39,6 +44,9 @@ footer {
     opacity: 0;
     &.fix {
         opacity: 1;
+    }
+    @include mediaMax($iphone5) {
+        right: 20px;
     }
 }
 
@@ -59,13 +67,21 @@ footer {
         width: 300px;
         margin: 0 auto;
         li {
+            position: relative;
             width: 33.3%;
+            height: 20px;
             float: left;
             margin: 0;
         }
         .fa {
-            font-size: 24px;
+            @extend %abs-middle;
+            @extend %transition;
+            font-size: 32px;
             color: $offwhite;
+            &:hover {
+                color: $primary;
+                @include transform(translate(-50%, -50%) scale(1.1));
+            }
         }
     }
 }

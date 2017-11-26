@@ -6,6 +6,10 @@ import ChatForm     from './chat-form';
 import ChatMessages from './chat-messages';
 import ChatUserList from './chat-user-list';
 
+import { logUserOut } from 'actions/chat';
+
+import { socketIO } from 'services/chat-stream';
+
 import ChatIcon from 'icons/chat-icon';
 import BackBtn  from 'icons/back-btn';
 
@@ -20,12 +24,18 @@ export class ChatBox extends Component {
         });
     }
 
+    handleClick = () => {
+        this.props.dispatch(logUserOut());
+        socketIO.emit('sign user out');
+    };
+
     render() {
         if(!this.props.visited) {
             return <Redirect to={'/chat'}/>
         }
         return(
             <div className={`chat-box ${this.props.hasTouch ? 'mobile' : ''}`}>
+                <button className="logout-chat-btn" onClick={this.handleClick}>Log Out</button>
                 <BackBtn onClick={this.goBack}/>
                 <ChatIcon className="chat-icon"/>
                 <h2>Live Chat Room</h2>

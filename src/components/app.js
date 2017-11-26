@@ -122,7 +122,7 @@ export class App extends Component {
     // window width in state
     // * * * * * * * * * * * * * * * * * * * *
     handleWindowResize() {
-        console.log('innder width:', window.innerWidth);
+        // console.log('innder width:', window.innerWidth);
         this.props.dispatch(setWidth(window.innerWidth));
     }
 

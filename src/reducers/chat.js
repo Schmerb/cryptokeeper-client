@@ -1,6 +1,8 @@
 import { 
     LOG_USER_IN,
+    LOG_USER_OUT,
     ADD_NEW_MESSAGE,
+    CLEAR_MESSAGES,
     UPDATE_USERS_LIST,
     SET_USER_NAME,
     USER_TYPING
@@ -19,26 +21,32 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch(action.type) {
         case LOG_USER_IN:
-            return Object.assign({}, state, {
-                loggedUserIn: true
-            });
+            return {...state, loggedUserIn: true}
+        case LOG_USER_OUT:
+            return {
+                ...state, 
+                msgs: [],
+                visited: false,
+                loggedUserIn: false
+            }
         case ADD_NEW_MESSAGE:
-            return Object.assign({}, state, {
-                msgs: [...state.msgs, action.msg]
-            });
+            return {...state, msgs: [...state.msgs, action.msg]}
+        case CLEAR_MESSAGES:
+            return {
+                ...state,
+                msgs: [],
+                visited: false
+            };
         case UPDATE_USERS_LIST:
-            return Object.assign({}, state, {
-                users: action.users
-            });
+            return {...state, users: action.users};
         case SET_USER_NAME:
-            return Object.assign({}, state, {
+            return {
+                ...state,
                 name: action.name,
                 visited: true
-            });
+            };
         case USER_TYPING:
-            return Object.assign({}, state, {
-                userTyping: action.userTyping
-            });
+            return {...state, userTyping: action.userTyping};
         default:
             return state;
     }

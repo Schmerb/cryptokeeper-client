@@ -41,13 +41,22 @@
     }
     .back-btn-icon {
         position: absolute;
-        top: 60px;
+        top: 20px;
         left: 10px;
         fill: $third; 
         width: 35px;
         height: 35px;
         cursor: pointer;
         z-index: 1;
+    }
+    .logout-chat-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        padding-right: 10px;
+        padding-left: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
     }
     .chat-icon {
         @extend %center;

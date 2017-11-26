@@ -28,7 +28,7 @@ export class Footer extends Component {
 
     getScrollPosition = () => {
         const distFromBottom = document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
-        console.log("distFromBottom: ", distFromBottom);
+        // console.log("distFromBottom: ", distFromBottom);
         if(distFromBottom <= 210) {
             this.setState({
                 fix: true
@@ -87,7 +87,10 @@ export class Footer extends Component {
                         </li>
                     </ul>);
         }
-        const classes = this.props.location.pathname.includes('dashboard') ? 'dash': null;
+        let classes = this.props.location.pathname.includes('dashboard') ? 'dash': '';
+        if(this.props.location.pathname.includes('chat/room') && this.props.hasTouch) {
+            classes = `${classes} mobilechat`;
+        }
 
         return(
             <footer role="contentinfo" className={classes}>
@@ -123,7 +126,8 @@ export class Footer extends Component {
 // 1) 
 
 const mapStateToPRops = state => ({
-    loggedIn: state.auth.currentUser !== null
+    loggedIn: state.auth.currentUser !== null,
+    hasTouch: state.display.hasTouch
 });
 
 export default withRouter(connect(mapStateToPRops)(Footer));

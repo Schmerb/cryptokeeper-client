@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import { setUserName, logUserIn } from 'actions/chat';
+import { socketIO } from 'services/chat-stream';
+
 import ChatIcon from 'icons/chat-icon';
 
-import { setUserName } from 'actions/chat';
 
 export class ChatNameBox extends Component {
     // * * * * * * * * * * * * * * * * * * * *
@@ -23,10 +25,13 @@ export class ChatNameBox extends Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     handleNameSubmit = (e) => {
         e.preventDefault();
-        this.props.dispatch(setUserName(this.nInput.value));
+        const username = this.nInput.value;
+        this.props.dispatch(setUserName(username));
         this.props.history.push({
             pathname: '/chat/room'
         });
+        socketIO.emit('loggedin', username);
+        this.props.dispatch(logUserIn());
     }
     
     render() {
