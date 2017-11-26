@@ -35,7 +35,7 @@ export class CommentForm extends Component {
 
     render() {
         return(
-            <form className="comments-form" action="#!" onSubmit={this.handleSubmit}>
+            <form className="comments-form" onSubmit={this.handleSubmit}>
                 <textarea name="" ref="textarea" placeholder="Write your comment . . ."></textarea>
                 <button type="submit">Post</button>
             </form>
