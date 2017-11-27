@@ -48,8 +48,6 @@ export const addCommentError = error => ({
 });
 export const addComment = (content, currency) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    console.log('Inside Action');
-    console.log({content, currency});
     const commentObj = {
         currency,
         content,
@@ -68,7 +66,6 @@ export const addComment = (content, currency) => (dispatch, getState) => {
     .then(comment => {
         comment.author = getState().auth.currentUser;
         comment.avatarUrl = getState().protectedData.avatar.url;
-        console.log('\n\nAction RES', comment);
         dispatch(addCommentSuccess(comment));
     });
 };
@@ -195,7 +192,11 @@ export const likeReplyComment = (commentID, replyCommentID) => (dispatch, getSta
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(comment => dispatch(likeReplyCommentSuccess(comment)));
+    .then(comment => {
+        comment = addAvatarToReplyComment(comment, getState);
+        console.log("\n\nCOMMENT: , ", comment);
+        dispatch(likeReplyCommentSuccess(comment));
+    });
 };
 //
 //  DISLIKE  ~ REPLY ~ COMMENTS
@@ -220,7 +221,31 @@ export const dislikeReplyComment = (commentID, replyCommentID) => (dispatch, get
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(comment => dispatch(dislikeReplyCommentSuccess(comment)));
+    .then(comment => {
+        comment = addAvatarToReplyComment(comment, getState);
+        dispatch(dislikeReplyCommentSuccess(comment))
+    });
 };
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Loops through replyComments and if finds a match,
+// adds current user's avatar img data to replyComment
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+function addAvatarToReplyComment(comment, getState) {
+    const currentUser = getState().auth.currentUser;
+    const avatarUrl   = getState().protectedData.avatar.url;
+    return {
+        ...comment,
+        replyComments: comment.replyComments.map(replyComment => {
+            console.log('ReplyComment: ', replyComment);
+            console.log("MINE: ", replyComment.author.id === currentUser.id);
+            if(replyComment.author.id === currentUser.id) {
+                replyComment.avatarUrl = avatarUrl;
+            }
+            return replyComment;
+        })
+    };
+}
 
 

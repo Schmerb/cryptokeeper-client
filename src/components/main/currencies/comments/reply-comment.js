@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { likeReplyComment, dislikeReplyComment } from 'actions/comments';
+import { getAvatar } from 'actions/protected-data';
 
 import getTimeElapsed from './elapsed-time';
 
@@ -12,6 +13,17 @@ import ThumbsUpFilled  from 'icons/thumbs-up-filled';
 export class ReplyComment extends Component {
 
     componentDidMount() {
+        console.log("REPLY PROPS: ", this.props);
+        const { avatar } = this.props.replyComment.author;
+        if(avatar.length > 0) {
+            this.props.getAvatar(avatar);
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('componentWillReceiveProps');
+        console.log(nextProps);
+        console.log(JSON.stringify(this.props.replyComment) === JSON.stringify(nextProps.replyComment));
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -112,7 +124,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     likeReplyComment: (commentID, replyCommentID) => dispatch(likeReplyComment(commentID, replyCommentID)),
-    dislikeReplyComment: (commentID, replyCommentID) => dispatch(dislikeReplyComment(commentID, replyCommentID))
+    dislikeReplyComment: (commentID, replyCommentID) => dispatch(dislikeReplyComment(commentID, replyCommentID)),
+    getAvatar: imgId => dispatch(getAvatar(imgId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReplyComment);
