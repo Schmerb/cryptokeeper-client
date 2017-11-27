@@ -14,8 +14,8 @@ import {
     getURLPath
 } from 'utils/local-storage';
 
-import FlashMessage   from './services/flash-message';
-import ConfirmMessage from './services/confirmation-message';
+import FlashMessage    from './services/flash-message';
+import ConfirmMessage  from './services/confirmation-message';
 import ConfirmRedirect from './services/confirmation-redirect';
 
 import Header from './header/';

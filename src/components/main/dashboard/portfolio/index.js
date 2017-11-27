@@ -2,8 +2,8 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 // import ProtectedData from './protected-data';
-import PortfolioHome from './portfolio-home';
-import CurrencyForm from './currency-form';
+import PortfolioHome    from './portfolio-home';
+import CurrencyForm     from './currency-form';
 import EditCurrencyForm from './edit-currency-form';
 
 export default class Portfolio extends React.Component {

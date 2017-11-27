@@ -17,7 +17,6 @@ export class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loaded: false,
             style: {}
         };
     }
@@ -75,24 +74,12 @@ export class Main extends React.Component {
         return '';
     }
 
-    // imgLoad(e) {
-    //     console.log('image has loaded!!!!');
-    //     const $this = this;
-    //     setTimeout(function() {
-    //         $this.setState({
-    //             loaded: true
-    //         });
-    //     }, 400);
-    // }
 
 
     render() {
         let classes = `${this.applyBackgroundImg()} ${this.props.hasTouch ? 'hasTouch' : ''}`;
-        // console.log('LOADED: ', this.state.loaded);
-        // let style = this.state.loaded ? '' : 'height: 0px;';
         return(
             <main role="main" >
-                {/* <img src="/assets/images/binary-script-compressor.jpg" alt="" onLoad={e => this.imgLoad(e)}/> */}
                 <div className={classes} style={this.state.style}></div>
                 <div ref="container" className={`container`}>
                     <Route exact path="/" component={Landing} />
