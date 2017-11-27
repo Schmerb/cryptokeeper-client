@@ -60,10 +60,10 @@ export class TopNavLinks extends React.Component {
     getLinks() {
         let avatarImg = <TieAvatar />;
         if(this.props.avatar) {
-            avatarImg = <div className="avatar-wrap">
-                            <img className="user-avatar-img" src={this.props.avatar.url} alt="User avatar profile"/>
-                        </div>;
-            // avatarImg = <img className="user-avatar-img" src={this.props.avatar.url} alt="User avatar profile"/>;
+            let styles = {
+                backgroundImage: `url(${this.props.avatar.url})`
+            };
+            avatarImg = <div className="avatar-wrap" style={styles} ></div>;
         }
         if(this.props.loggedIn) {
             return (<ul>

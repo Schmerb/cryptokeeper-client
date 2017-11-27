@@ -48,6 +48,8 @@ export class BoxSlider extends React.Component {
 			dots: true,
 			infinite: false,
 			speed: 1500,
+			autoplaySpeed: 2500,
+			autoplay: true,
 			slidesToShow: 1,
 			slidesToScroll: 1,
 			nextArrow: <NextArrow />,
