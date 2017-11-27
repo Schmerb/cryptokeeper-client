@@ -33,9 +33,13 @@ nav {
         height: 50px;
         vertical-align: middle;
     }
-    .user-avatar-img {
+    .avatar-wrap {
         width: 50px;
         height: 50px;
+    }
+    .user-avatar-img {
+        width: 100%;
+        height: auto;
         vertical-align: middle;
         border-radius: 50%;
     }

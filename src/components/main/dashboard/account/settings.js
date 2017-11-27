@@ -123,7 +123,7 @@ export class Settings extends React.Component {
                         <form action="#!" onSubmit={this.handleSubmit}>
 
                             <label htmlFor="">
-                                <span>My Number: </span>
+                                <span>My Phone Number: </span>
                                 <input type="tel" ref="tel" value={this.state.tel.value} disabled={this.state.tel.disabled}
                                         onChange={e => this.handleChange(e, 'tel')} required/>
                                 <button type="button" className="edit-btn" onClick={e => this.handleClick(e, 'tel')}>

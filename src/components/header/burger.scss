@@ -21,15 +21,15 @@
 
     &:hover {
         .burger {
-            background: $offwhite;
+            // background: $offwhite;
             &.open {
-                background: transparent;
+                background-color: transparent;
                 &:after, &:before {
-                    
+                    background-color: $offwhite;
                 }
             }
             &:after, &:before {
-                background: $offwhite;
+                // background: $offwhite;
             }
         }
     }

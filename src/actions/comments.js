@@ -48,7 +48,8 @@ export const addCommentError = error => ({
 });
 export const addComment = (content, currency) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    // console.log({content, currency});
+    console.log('Inside Action');
+    console.log({content, currency});
     const commentObj = {
         currency,
         content,
@@ -66,7 +67,7 @@ export const addComment = (content, currency) => (dispatch, getState) => {
     .then(res => res.json())
     .then(comment => {
         comment.author = getState().auth.currentUser;
-        // console.log('ADD COMMENT RES', comment);
+        console.log('\n\nAction RES', comment);
         dispatch(addCommentSuccess(comment));
     });
 };

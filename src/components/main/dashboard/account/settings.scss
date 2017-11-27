@@ -48,8 +48,9 @@
             font-size: 26px;
             span {
                 display: inline-block;
-                height: 50px;
-                line-height: 50px;
+                max-width: 150px;
+                min-height: 50px;
+                line-height: 35px;
             }
         }
         @include mediaMin($collapse + 100) {
