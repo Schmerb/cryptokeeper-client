@@ -99,14 +99,16 @@ function findAndUpdateCommentInState(state, action) {
 // Finds the comment the avatar image belongs to
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function findAndUpdateCommentWithAvatar(state, action) {
-    let newState = {
+    // let newState = 
+    return {
             ...state,
+            error: null,
             comments: state.comments.map(comment => {
                 if(comment.author.avatar === action.data.avatarId) {
                     comment = {
                         ...comment,
                         avatarUrl: action.data.url
-                    }
+                    };
                 } 
                 comment = {
                     ...comment,
@@ -115,15 +117,13 @@ function findAndUpdateCommentWithAvatar(state, action) {
                             replyComment = {
                                 ...replyComment,
                                 avatarUrl: action.data.url
-                            }
+                            };
                         }
                         return replyComment;
                     })
                 };
                 return comment;
-            }),
-            error: null
+            })
         };
-    // console.log('new STATE: ', newState);
-    return newState;
+    // return newState;
 }

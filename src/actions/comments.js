@@ -67,6 +67,7 @@ export const addComment = (content, currency) => (dispatch, getState) => {
     .then(res => res.json())
     .then(comment => {
         comment.author = getState().auth.currentUser;
+        comment.avatarUrl = getState().protectedData.avatar.url;
         console.log('\n\nAction RES', comment);
         dispatch(addCommentSuccess(comment));
     });
@@ -103,7 +104,20 @@ export const addReplyComment = (content, commentID, currency) => (dispatch, getS
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(comment => dispatch(addReplyCommentSuccess(comment)));
+    .then(comment => {
+        const currentUser = getState().auth.currentUser;
+        const avatarUrl   = getState().protectedData.avatar.url;
+        comment = {
+            ...comment,
+            replyComments: comment.replyComments.map(replyComment => {
+                if(replyComment.author.id === currentUser.id) {
+                    replyComment.avatarUrl = avatarUrl;
+                }
+                return replyComment;
+            })
+        };
+        dispatch(addReplyCommentSuccess(comment));
+    });
 };
 
 

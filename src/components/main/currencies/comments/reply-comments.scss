@@ -7,8 +7,6 @@
     &.open {
         @include transition(0.5s);
         max-height: 2000px;
-    }
-    .comment.reply {
-
+        overflow: auto;
     }
 }
