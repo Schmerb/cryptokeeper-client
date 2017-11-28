@@ -42,7 +42,7 @@ export default function reducer(state = initialState, action) {
         case ADD_COMMENT_ERROR:
             return {...state, error: action.error};
         case ADD_REPLY_COMMENT_SUCCESS: 
-            return findAndUpdateCommentInState(state, action);
+            return findCommentAndAddReplyComment(state, action);
         case ADD_REPLY_COMMENT_ERROR:
             return {...state, error: action.error};
         case GET_COMMENTS_SUCCESS:
@@ -58,11 +58,11 @@ export default function reducer(state = initialState, action) {
         case DISLIKE_COMMENT_ERROR:
             return {...state, error: action.error};
         case LIKE_REPLY_COMMENT_SUCCESS:
-            return findAndUpdateCommentInState(state, action);
+            return findAndUpdateReplyCommentInState(state, action);
         case LIKE_REPLY_COMMENT_ERROR:
             return {...state, error: action.error};
         case DISLIKE_REPLY_COMMENT_SUCCESS:
-            return findAndUpdateCommentInState(state, action);
+            return findAndUpdateReplyCommentInState(state, action);
         case DISLIKE_REPLY_COMMENT_ERROR:
             return {...state, error: action.error};
         case GET_AVATAR_SUCCESS:
@@ -85,7 +85,8 @@ function findAndUpdateCommentInState(state, action) {
         comments: state.comments.map(comment => {
             if(comment.id === action.comment.id ) {
                 if(comment.avatarUrl) {
-                    action.comment.avatarUrl = comment.avatarUrl;
+                    action.comment.avatarUrl = comment.avatarUrl; // apply avatarUrl from state to updated comment
+                    action.comment.replyComments = comment.replyComments; // use state data with avatarUrls
                 }
                 return action.comment;
             } 
@@ -95,11 +96,74 @@ function findAndUpdateCommentInState(state, action) {
     };
 }
 
+function findCommentAndAddReplyComment(state, action) {
+    // 1) Grab the last comment in the replycomments array
+    // 2) Add the avatarUrl to it
+    // 3) append it to the current state 
+    //      a) use commentID to find the correct comment
+    //      b) append replyComment to end of this comment's replyComments array
+    const { comment, getState } = action;
+    const commentID = comment.id;
+    const replyComments = comment.replyComments;
+    const newReplyComment = replyComments[replyComments.length - 1]; // grab newest replyComment
+    const avatar = getState().protectedData.avatar;
+    const avatarUrl = avatar ? avatar.url : null;
+    newReplyComment.avatarUrl = avatarUrl; // add avatarUrl to new reply comment
+    return {
+        ...state,
+        error: null,
+        comments: state.comments.map(comment => {
+            if(comment.id === commentID) {
+                return {
+                    ...comment,
+                    replyComments: [...comment.replyComments, newReplyComment]
+                };
+            }
+            return comment;
+        })
+    };
+}
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// Finds the comment the avatar image belongs to
+// Loops through to find the correct reply comment
+// that needs to update
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+function findAndUpdateReplyCommentInState(state, action) {
+    // 1) loop through api comment res to find the updated replyComment
+    // 2) loop through state and find old replyComment 
+    //              a) add old replyComment avatarUrl to new replyComment
+    //              b) swap new replyComment with old replyComment
+    // 3) return new state
+    let { comment, commentID, replyCommentID } = action;
+    let updatedReplyComment = comment.replyComments.find(replyComment => {
+        return replyComment.id === replyCommentID;
+    });
+    return {
+        ...state,
+        error: null,
+        comments: state.comments.map(comment => {
+            if(comment.id === commentID) {
+                return {
+                    ...comment,
+                    replyComments: comment.replyComments.map(replyComment => {
+                        if(replyComment.id === replyCommentID) {
+                            updatedReplyComment.avatarUrl = replyComment.avatarUrl;
+                            return updatedReplyComment;
+                        }
+                        return replyComment;
+                    })
+                };   
+            }
+            return comment;
+        })
+    };
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+// Finds the comment the avatar image belongs to and adds
+// the avatarUrl to that comment/replyComment
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function findAndUpdateCommentWithAvatar(state, action) {
-    // let newState = 
     return {
             ...state,
             error: null,
@@ -125,5 +189,4 @@ function findAndUpdateCommentWithAvatar(state, action) {
                 return comment;
             })
         };
-    // return newState;
 }

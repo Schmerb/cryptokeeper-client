@@ -7,6 +7,7 @@
 import { API_BASE_URL } from 'config';
 import { normalizeResponseErrors } from './utils';
 
+
 //
 // GET comments
 //
@@ -65,7 +66,10 @@ export const addComment = (content, currency) => (dispatch, getState) => {
     .then(res => res.json())
     .then(comment => {
         comment.author = getState().auth.currentUser;
-        comment.avatarUrl = getState().protectedData.avatar.url;
+        const avatar = getState().protectedData.avatar;
+        if(avatar) {
+            comment.avatarUrl = avatar.url;
+        }
         dispatch(addCommentSuccess(comment));
     });
 };
@@ -74,9 +78,10 @@ export const addComment = (content, currency) => (dispatch, getState) => {
 // ADD REPLY COMMENT
 //
 export const ADD_REPLY_COMMENT_SUCCESS = 'ADD_REPLY_COMMENT_SUCCESS';
-export const addReplyCommentSuccess = (comment) => ({
+export const addReplyCommentSuccess = (comment, getState) => ({
     type: ADD_REPLY_COMMENT_SUCCESS,
-    comment
+    comment,
+    getState
 });
 export const ADD_REPLY_COMMENT_ERROR = 'ADD_REPLY_COMMENT_ERROR';
 export const addReplyCommentError = error => ({
@@ -85,7 +90,6 @@ export const addReplyCommentError = error => ({
 });
 export const addReplyComment = (content, commentID, currency) => (dispatch, getState) => {
     const authToken = getState().auth.authToken;
-    // console.log({content, commentID, currency});
     const commentObj = {
         content,
         currency,
@@ -101,20 +105,7 @@ export const addReplyComment = (content, commentID, currency) => (dispatch, getS
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(comment => {
-        const currentUser = getState().auth.currentUser;
-        const avatarUrl   = getState().protectedData.avatar.url;
-        comment = {
-            ...comment,
-            replyComments: comment.replyComments.map(replyComment => {
-                if(replyComment.author.id === currentUser.id) {
-                    replyComment.avatarUrl = avatarUrl;
-                }
-                return replyComment;
-            })
-        };
-        dispatch(addReplyCommentSuccess(comment));
-    });
+    .then(comment => dispatch(addReplyCommentSuccess(comment, getState)));
 };
 
 
@@ -173,9 +164,12 @@ export const dislikeComment = (commentID) => (dispatch, getState) => {
 //  LIKE  ~ REPLY ~ COMMENTS
 //
 export const LIKE_REPLY_COMMENT_SUCCESS =  'LIKE_REPLY_COMMENT_SUCCESS';
-export const likeReplyCommentSuccess = (comment) => ({
+export const likeReplyCommentSuccess = (comment, commentID, replyCommentID, getState) => ({
     type: LIKE_REPLY_COMMENT_SUCCESS,
-    comment
+    comment,
+    commentID,
+    replyCommentID, 
+    getState
 });
 export const LIKE_REPLY_COMMENT_ERROR = 'LIKE_REPLY_COMMENT_ERROR';
 export const likeReplyCommentError = error => ({
@@ -192,19 +186,18 @@ export const likeReplyComment = (commentID, replyCommentID) => (dispatch, getSta
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(comment => {
-        comment = addAvatarToReplyComment(comment, getState);
-        console.log("\n\nCOMMENT: , ", comment);
-        dispatch(likeReplyCommentSuccess(comment));
-    });
+    .then(comment => dispatch(likeReplyCommentSuccess(comment, commentID, replyCommentID, getState)));
 };
 //
 //  DISLIKE  ~ REPLY ~ COMMENTS
 //
 export const DISLIKE_REPLY_COMMENT_SUCCESS =  'DISLIKE_REPLY_COMMENT_SUCCESS';
-export const dislikeReplyCommentSuccess = (comment) => ({
+export const dislikeReplyCommentSuccess = (comment, commentID, replyCommentID, getState) => ({
     type: DISLIKE_REPLY_COMMENT_SUCCESS,
-    comment
+    comment,
+    commentID,
+    replyCommentID, 
+    getState
 });
 export const DISLIKE_REPLY_COMMENT_ERROR = 'DISLIKE_REPLY_COMMENT_ERROR';
 export const dislikeReplyCommentError = error => ({
@@ -221,31 +214,8 @@ export const dislikeReplyComment = (commentID, replyCommentID) => (dispatch, get
     })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(comment => {
-        comment = addAvatarToReplyComment(comment, getState);
-        dispatch(dislikeReplyCommentSuccess(comment))
-    });
+    .then(comment => dispatch(likeReplyCommentSuccess(comment, commentID, replyCommentID, getState)));
 };
 
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-// Loops through replyComments and if finds a match,
-// adds current user's avatar img data to replyComment
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-function addAvatarToReplyComment(comment, getState) {
-    const currentUser = getState().auth.currentUser;
-    const avatarUrl   = getState().protectedData.avatar.url;
-    return {
-        ...comment,
-        replyComments: comment.replyComments.map(replyComment => {
-            console.log('ReplyComment: ', replyComment);
-            console.log("MINE: ", replyComment.author.id === currentUser.id);
-            if(replyComment.author.id === currentUser.id) {
-                replyComment.avatarUrl = avatarUrl;
-            }
-            return replyComment;
-        })
-    };
-}
 
 

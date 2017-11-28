@@ -1,14 +1,12 @@
+import { HEROKU_BASE_URL } from 'config';
+
 import {
     addNewMessage,
     updateUsersList,
     userTyping
 } from 'actions/chat';
 
-const ioClient = require('socket.io-client')  
-// const socket   = ioClient('http://localhost:8080');
-// const socket   = ioClient('http://172.20.10.2:7000');
-// const socket   = ioClient('http://192.168.5.38:7000/');
-const socket   = ioClient('https://cryptocoinkeeper.herokuapp.com/');
+const socket = require('socket.io-client')(HEROKU_BASE_URL);
 
 let store = null;
 

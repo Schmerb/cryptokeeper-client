@@ -13,17 +13,10 @@ import ThumbsUpFilled  from 'icons/thumbs-up-filled';
 export class ReplyComment extends Component {
 
     componentDidMount() {
-        console.log("REPLY PROPS: ", this.props);
         const { avatar } = this.props.replyComment.author;
         if(avatar.length > 0) {
             this.props.getAvatar(avatar);
         }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps');
-        console.log(nextProps);
-        console.log(JSON.stringify(this.props.replyComment) === JSON.stringify(nextProps.replyComment));
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
