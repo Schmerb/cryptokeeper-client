@@ -6,7 +6,10 @@ import { toggleMenu } from 'actions/display';
 import { logUserOut } from 'services/user';
 import { scrollIt }   from 'utils/scroll';
 
-import UpArrowCircle  from 'icons/up-arrow-circle';
+import UpArrowCircle from 'icons/up-arrow-circle';
+import FacebookIcon  from 'icons/social/facebook-icon';
+import GithubIcon    from 'icons/social/github-icon';
+import LinkedInIcon  from 'icons/social/linkedin-icon';
 
 
 export class Footer extends Component {
@@ -99,19 +102,21 @@ export class Footer extends Component {
                     {links}
                     <ul className="social-links">
                         <li>
-                            <a href="https://github.com/Schmerb" target="__blank">
-                                <i className="fa fa-github" aria-hidden="true"></i>
-                            </a>
+                            <Link to={"https://github.com/Schmerb"} target="__blank">
+                                <GithubIcon className="github-icon" />
+                            </Link>
                         </li>
                         <li>
-                            <a href="https://www.facebook.com/mike.schmerbeck" target="__blank">
-                                <i className="fa fa-facebook" aria-hidden="true"></i>
-                            </a>
+                            <Link to={"https://www.facebook.com/mike.schmerbeck"} target="__blank">
+                                <FacebookIcon className="facebook-icon" />
+                                {/* <img src={'assets/icons/fb-logo.png'} /> */}
+                                
+                            </Link>
                         </li>
                         <li>
-                            <a href="https://www.linkedin.com/in/michael-schmerbeck-20a8a7126/" target="__blank">
-                                <i className="fa fa-linkedin" aria-hidden="true"></i>
-                            </a>
+                             <Link to={"https://www.linkedin.com/in/michael-schmerbeck-20a8a7126/"} target="__blank">
+                                <LinkedInIcon className="linkedIn-icon" />
+                            </Link>
                         </li>
                     </ul>
                 </nav>

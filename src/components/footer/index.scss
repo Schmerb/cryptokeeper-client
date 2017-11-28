@@ -66,20 +66,26 @@ footer {
         display: block;
         width: 300px;
         margin: 0 auto;
+        padding: 0;
+        overflow: auto;
         li {
             position: relative;
             width: 33.3%;
-            height: 20px;
+            height: 50px;
             float: left;
             margin: 0;
         }
-        .fa {
+        svg, img {
             @extend %abs-middle;
             @extend %transition;
+            @include transform(translate(-50%, -50%));
+            height: 30px;
+            width: 30px;
+            backface-visibility: hidden;
             font-size: 32px;
-            color: $offwhite;
+            fill: $offwhite;
             &:hover {
-                color: $primary;
+                fill: $primary;
                 @include transform(translate(-50%, -50%) scale(1.1));
             }
         }
@@ -96,3 +102,9 @@ footer {
     transform: translate(-50%, 0);
 }
 
+
+@keyframes grow {
+    0%   { @include transform(scale(1));   }
+    50%  { @include transform(scale(1.1)); }
+    100% { @include transform(scale(1));   }
+}
