@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Spinner from 'react-spinkit';
-// import TieAvatar from 'icons/tie-avatar';
 
 import { getComments } from 'actions/comments';
 
@@ -26,21 +25,14 @@ export class Comments extends Component {
         if(this.props.currency !== nextProps.currency) {
             this.props.getComments(nextProps.currency);
         }
-        if(nextProps.comments.length > 0) {
+        if(nextProps.comments.length >= 0) {
             this.setState({
                 loading: false
             });
         }
-        // fallback for empty comments array
-        setTimeout(() => {
-            this.setState({
-                loading: false
-            });
-        }, 4000);
     }
 
     render() {
-        // console.log('CURRENCY', this.props.currency);
         if(this.state.loading) {
             return(
                 <div className="comments-container">
