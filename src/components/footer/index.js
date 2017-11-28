@@ -46,7 +46,7 @@ export class Footer extends Component {
     // * * * * * * * * * * * * * * * * * * * *
     // logs user out by removing jwt token
     // * * * * * * * * * * * * * * * * * * * *
-    logOut() {
+    logOut = () => {
         logUserOut();
         this.hideMenu();
     }
@@ -54,16 +54,16 @@ export class Footer extends Component {
     // * * * * * * * * * * * * * * * * * * * *
     // hides menu if it is currently open
     // * * * * * * * * * * * * * * * * * * * *
-    hideMenu() {
+    hideMenu = () => {
         if(this.props.open) {
             this.props.dispatch(toggleMenu());
         }
     }
 
-    handleClick = e => {
-        console.log('CLICK');
-        scrollIt(0, 500, 'easeInOutCubic');
-    };
+    // * * * * * * * * * * * * * * * * * * * *
+    // Scrolls to top of document
+    // * * * * * * * * * * * * * * * * * * * *
+    handleClick = () => scrollIt(0, 500, 'easeInOutCubic');
 
     render() {
         let links = (<ul>
@@ -86,7 +86,7 @@ export class Footer extends Component {
                             <Link to={'/dashboard/portfolio'}>Dashboard</Link>
                         </li>
                         <li>
-                            <button className="logout-btn" onClick={() => this.logOut()}>Logout</button>
+                            <button className="logout-btn" onClick={this.logOut}>Logout</button>
                         </li>
                     </ul>);
         }
@@ -109,14 +109,12 @@ export class Footer extends Component {
                         <li>
                             <Link to={"https://www.facebook.com/mike.schmerbeck"} target="__blank">
                                 <FacebookIcon className="facebook-icon" />
-                                {/* <img src={'assets/icons/fb-logo.png'} /> */}
-                                
                             </Link>
                         </li>
                         <li>
                              <Link to={"https://www.linkedin.com/in/michael-schmerbeck-20a8a7126/"} target="__blank">
                                 <LinkedInIcon className="linkedIn-icon" />
-                            </Link>
+                            </Link> 
                         </li>
                     </ul>
                 </nav>
