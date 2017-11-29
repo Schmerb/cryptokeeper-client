@@ -73,7 +73,7 @@ main {
 	@include mediaMin($collapse) {
 			background-position-x: 20%;
 	}
-	@include mediaMin(1250px) {
+	@include mediaMin(1800px) {
 			background-position-x: 50px;
 	}
 }
