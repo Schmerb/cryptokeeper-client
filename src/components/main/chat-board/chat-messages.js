@@ -8,7 +8,6 @@ export class ChatMessages extends React.Component {
         this.state = {
             lockScreen: true
         };
-        this.handleScroll = this.handleScroll.bind(this);
     }
 
 
@@ -37,7 +36,7 @@ export class ChatMessages extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    handleScroll(e, $this) {
+    handleScroll = (e) => {
         let el = e.target;
         let distFromBottom = el.scrollHeight - el.scrollTop - el.offsetHeight;
         // console.log('SCROLL!');

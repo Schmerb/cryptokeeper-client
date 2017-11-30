@@ -32,8 +32,6 @@ import Footer from './footer/';
 export class App extends Component {
     constructor(props) {
         super(props);
-
-        this.handleWindowResize = this.handleWindowResize.bind(this);
     }
     
     // * * * * * * * * * * * * * * * * * * * *
@@ -121,8 +119,9 @@ export class App extends Component {
     // Dispatches action to update current 
     // window width in state
     // * * * * * * * * * * * * * * * * * * * *
-    handleWindowResize() {
-        // console.log('innder width:', window.innerWidth);
+    handleWindowResize = () => {
+        console.log(this);
+        console.log('innder width:', window.innerWidth);
         this.props.dispatch(setWidth(window.innerWidth));
     }
 

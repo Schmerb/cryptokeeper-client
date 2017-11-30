@@ -18,7 +18,6 @@ export class Footer extends Component {
         this.state = {
             fix: false
         };
-        this.getScrollPosition = this.getScrollPosition.bind(this);
     }
 
     componentDidMount() {
