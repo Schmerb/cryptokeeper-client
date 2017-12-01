@@ -13,6 +13,9 @@ import VerifyCode      from './account/verify-code';
 
 export class Dashboard extends React.Component {
 
+    componentDidUpdate() {
+        // console.log('\n\nLUPdated!!!', this.props);
+    }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Checks path and returns appropriate components or null
@@ -35,9 +38,13 @@ export class Dashboard extends React.Component {
     }
 
     render() {
+        const { pathname } = this.props.location;
         // Only visible to logged in users
         if (!this.props.loggedIn) {
             return <Redirect to="/" />; // Fires when logOut() is dispatched
+        } 
+        else if(this.props.width >= 805 && (pathname === '/dashboard' || pathname === '/dashboard/')) {
+            return <Redirect to="/dashboard/portfolio"/>
         }
         const { nav, mobileDash } = this.checkPath();
         return (
@@ -58,8 +65,9 @@ const mapStateToProps = state => {
     const { currentUser } = state.auth;
     const { width }       = state.display;
     return {
+        currentUser,
         loggedIn: currentUser !== null,
-        username: currentUser ? state.auth.currentUser.username : '',
+        username: currentUser ? currentUser.username : '',
         name: currentUser
             ? `${currentUser.firstName} ${currentUser.lastName}`
             : '',

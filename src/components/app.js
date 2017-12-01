@@ -23,16 +23,13 @@ import Main   from './main/';
 import Footer from './footer/';
 
 // window.onload = () => {
-//     console.log('has loaded!');
+//     // console.log('has loaded!');
 // }
 // document.onload = () => {
 //     console.log('DOCUMENT has loaded!');
 // }
 
 export class App extends Component {
-    constructor(props) {
-        super(props);
-    }
     
     // * * * * * * * * * * * * * * * * * * * *
     // 
@@ -44,7 +41,7 @@ export class App extends Component {
             // console.log('hasAuthToken: ', this.props.hasAuthToken);
             this.props.dispatch(refreshAuthToken());
         }
-        this.redirectToPreviousURL();
+        // this.redirectToPreviousURL();
         this.checkForTouch();
         this.listenForHistoryChange();
     };
@@ -120,8 +117,6 @@ export class App extends Component {
     // window width in state
     // * * * * * * * * * * * * * * * * * * * *
     handleWindowResize = () => {
-        console.log(this);
-        console.log('innder width:', window.innerWidth);
         this.props.dispatch(setWidth(window.innerWidth));
     }
 

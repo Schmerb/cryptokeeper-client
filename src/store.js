@@ -5,9 +5,10 @@ import {
 } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
+import jwtDecode from 'jwt-decode';
 
 
-import { setAuthToken }  from 'actions/auth';
+import { setAuthToken, setCurrentUser }  from 'actions/auth';
 import { loadAuthToken } from 'utils/local-storage';
 
 import authReducer          from 'reducers/auth';
@@ -22,6 +23,7 @@ import eventsReducer        from 'reducers/events';
 import hydrateService from 'services/hydrate-state';
 import cryptoService  from 'services/crypto-stream';
 import chatService    from 'services/chat-stream';
+
 
 const store = createStore(
     combineReducers({
@@ -50,9 +52,9 @@ chatService(store);
 // Hydrate the authToken from localStorage if it exist
 const authToken = loadAuthToken();
 if (authToken) {
-    const token = authToken;
-    // console.log('setting auth token');
-    store.dispatch(setAuthToken(token));
+    const decodedToken = jwtDecode(authToken);
+    store.dispatch(setAuthToken(authToken));
+    store.dispatch(setCurrentUser(decodedToken.user));
 }
 
 // Hydrate stores from MongoDB

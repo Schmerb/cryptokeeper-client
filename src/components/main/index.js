@@ -25,6 +25,12 @@ export class Main extends React.Component {
         this.fixBackgroundImageSize();
     }
 
+    shouldComponentUpdate(nextProps) {
+        return ! (!nextProps.hasTouch 
+            && this.props.loggedIn === nextProps.loggedIn
+            && (this.props.height !== nextProps.height || this.props.width !== nextProps.width)); 
+    }
+
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Fires when componenet receives new props, checks if
     // width/height changed to update background image size
@@ -33,7 +39,7 @@ export class Main extends React.Component {
         if(prevProps.width !== this.props.width 
             || prevProps.height !== this.props.height) {
             this.fixBackgroundImageSize();
-        }
+        } 
     }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

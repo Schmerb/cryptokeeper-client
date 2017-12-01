@@ -10,13 +10,9 @@ import CurrencyNav   from './currency-nav';
 import Comments      from './comments/';
 
 export class CurrencyPage extends Component {
-    componentDidMount() {
-
-    }
-
 
     render() {
-        let abbrv = this.props.match.params.currency.toUpperCase();
+        let abbrv  = this.props.match.params.currency.toUpperCase();
         const sym  = this.props.currencySym;
         const data = this.props[abbrv];
         return(
