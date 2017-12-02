@@ -10,13 +10,11 @@
         overflow: auto;
     }
     li {
-        // float: left;
         margin-bottom: 10px;
         a {
             @include transition(0.2s);
-            // color: $third;
             &:hover {
-                color: lighten($third, 5%);
+                color: lighten(#bdc2ce, 5%);
             }
         }
     }

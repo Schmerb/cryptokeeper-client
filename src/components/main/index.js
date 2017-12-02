@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { Route, withRouter } from 'react-router-dom';
 
 // import Spinner from 'react-spinkit';
-import Particles from 'react-particles-js';
 
-import { settings } from 'utils/particles';
+// import Particles from 'react-particles-js';
+// import { settings } from 'utils/particles';
+
 
 import Landing    from './landing/';
 import ChatBoard  from './chat-board/';
@@ -87,13 +88,13 @@ export class Main extends React.Component {
 
     render() {
         let classes = `${this.applyBackgroundImg()} ${this.props.hasTouch ? 'hasTouch' : ''}`;
-        let path = this.props.location.pathname;
-        let props = {
-            className: 'canvas-wrap',
-            canvasClassName: 'canvas',
-            params: settings
-        };
-        let particles = path === '/' ? <Particles {...props}/> : null;
+        // let path = this.props.location.pathname;
+        // let props = {
+        //     className: 'canvas-wrap',
+        //     canvasClassName: 'canvas',
+        //     params: settings
+        // };
+        // let particles = path === '/' ? <Particles {...props}/> : null;
         return(
             <main role="main" >
                 <div className={classes} style={this.state.style}></div>
