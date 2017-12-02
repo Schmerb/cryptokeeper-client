@@ -17,6 +17,7 @@
     @include mediaMin(877px) {
         float: left;
         &.center {
+            height: 300px;
             float: none;
         }
     }
@@ -68,8 +69,8 @@
             @include benz-transition(0.4s);
             @extend %cover;
             content: '';
-            top: -110%;
-            left: -110%;
+            top: -120%;
+            left: -120%;
             transform: scale(1.7) rotate(45deg);
             background-color: rgba($purple, 0.8);
         }
