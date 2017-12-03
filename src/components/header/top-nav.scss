@@ -147,7 +147,7 @@
 // Dropdown Sub-Menu
 .username-li.closed {
     color: $offwhite;
-    width: 85px;
+    min-width: 85px;
     cursor: pointer;
     &:hover {
         .sub-menu {

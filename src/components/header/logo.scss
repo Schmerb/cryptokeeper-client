@@ -8,12 +8,13 @@
     color: $offwhite;
     position: relative;
     float: left;
-    font-size: 21px;
+    font-size: 18px;
+    font-family: 'Audiowide', cursive;
     padding-left: 20px;
-    width: 200px;
+    min-width: 200px;
     z-index: 1011;
     .fa {
-        color: $brown;
+        color: $red;
     }
     &.dash {
         @include mediaMin($collapse) {

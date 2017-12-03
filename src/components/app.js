@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { Cookies } from 'react-cookie';
 
 import { refreshAuthToken } from 'actions/auth';
 import { 
@@ -18,9 +19,11 @@ import FlashMessage    from './services/flash-message';
 import ConfirmMessage  from './services/confirmation-message';
 import ConfirmRedirect from './services/confirmation-redirect';
 
+import LandingPage from './landing-page';
 import Header from './header/';
 import Main   from './main/';
 import Footer from './footer/';
+
 
 // window.onload = () => {
 //     // console.log('has loaded!');
@@ -141,7 +144,11 @@ export class App extends Component {
         clearInterval(this.refreshInterval);
     };
 
-    render () {
+    // * * * * * * * * * * * * * * * * * * * *
+    // checks for confirmation and flash
+    // messages and returns them
+    // * * * * * * * * * * * * * * * * * * * *
+    getMessages() {
         let confirmMsg = null,
             flashMsg   = null;
         if(this.props.flashMsg) {
@@ -151,6 +158,30 @@ export class App extends Component {
         } else if(this.props.confirmPath) {
             confirmMsg = <ConfirmRedirect />;
         }
+        return { confirmMsg, flashMsg };
+    }
+
+    // // // // // // // // // //
+    //
+    //      Render
+    //
+    // // // // // // // // // //
+    render () {
+        const cookies = new Cookies();
+        const crypCook = cookies.get('cryptokeeper');
+        let hasVisited = crypCook && crypCook.visited;
+
+        const { confirmMsg, flashMsg } = this.getMessages();
+
+        if(!hasVisited) {
+            document.body.classList.toggle('landing', true);
+            return(
+                <section className="app">
+                    <LandingPage history={this.props.history}/>
+                </section>
+            );
+        }
+        document.body.classList.toggle('landing', false);
         return(
             <section className="app">
                 {confirmMsg}

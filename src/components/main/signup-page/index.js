@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 
 import SignupForm from './signup-form';
 
+import SignupUserIcon from 'icons/signup-user-icon';
+
 export class SignupPage extends React.Component{
 
     // * * * * * * * * * * * * * * * * * 
@@ -23,18 +25,12 @@ export class SignupPage extends React.Component{
         }
     }
 
-    getUserNumber = () => {
-        this.props.history.push({
-            pathanme: '/dashboard/settings'
-        });
-    }
-
-
     render() {
         return(
             <div className="signup">
+                <SignupUserIcon className="signup-user-icon"/>
                 <h3>Signup</h3>
-                <SignupForm getUserNumber={this.getUserNumber}/>
+                <SignupForm />
             </div>
         );
     }

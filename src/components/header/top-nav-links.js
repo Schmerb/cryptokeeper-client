@@ -12,6 +12,12 @@ import ArrowDown  from 'icons/arrow-down';
 import LogoutIcon from 'icons/logout-icon';
 
 export class TopNavLinks extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            fullyExtended: true
+        };
+    }
 
     componentDidMount() {
         // console.log('just mounted, props:', this.props);
@@ -24,6 +30,24 @@ export class TopNavLinks extends React.Component {
         setTimeout(() => {
             $this.props.dispatch(toggleLinks(nextProps.open));
         }, delay);
+
+        let username = this.checkLength(nextProps.username);
+        if(!username.includes('..')) {
+            if(!this.state.fullyExtended) {
+                this.setState({
+                    fullyExtended: true
+                });
+            }
+        } 
+        else if(this.state.fullyExtended)  {
+            this.setState({
+                fullyExtended: false
+            });
+        } else {
+            this.setState({
+                fullyExtended: true
+            });
+        }
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -32,8 +56,20 @@ export class TopNavLinks extends React.Component {
         // console.log('\tnextState', nextState);
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        // console.log('just updated, prevProps:', prevProps);
+
+    shouldComponentUpdate(nextProps) {
+        if(this.props.loggedIn === nextProps.loggedIn
+            && this.props.username === nextProps.username
+            && this.props.open === nextProps.open
+            && this.props.openLinks === nextProps.openLinks
+            && this.props.currentPath === nextProps.currentPath
+            && this.props.avatar === nextProps.avatar
+            && this.props.width !== nextProps.width) {
+                if(nextProps.width > 1000 && nextProps.username.length >= 7 && this.state.fullyExtended) {
+                    return false;
+                }
+            }
+        return true; 
     }
 
     // * * * * * * * * * * * * * * * * * * * *
@@ -73,10 +109,10 @@ export class TopNavLinks extends React.Component {
                             </Link>
                         </li>
                         <li className={`username-li ${this.props.open ? '' : 'closed'}`}>
-                            {this.props.username}
-                                <Link to={"#!"} className={`${this.props.open ? 'hidden' : ''}`}>
-                                    <ArrowDown/>
-                                </Link>
+                            <span className="nav-username">{this.checkLength(this.props.username)}</span>
+                            <Link to={"#!"} className={`${this.props.open ? 'hidden' : ''}`}>
+                                <ArrowDown/>
+                            </Link>
                             <ul className={`sub-menu ${this.props.open ? 'hidden' : ''}`}>
                                 <li>
                                     <button className="logout-btn" onClick={() => this.logOut()}>
@@ -110,6 +146,30 @@ export class TopNavLinks extends React.Component {
     }
 
     // * * * * * * * * * * * * * * * * * * * *
+    // Returns shortened username if
+    // necessary to ensure UI does not break
+    // * * * * * * * * * * * * * * * * * * * *
+    checkLength(username) {
+        const len = username.length;
+        const width = this.props.width;
+        if(len > 13 && width <= 805) {
+            username = `${username.slice(0, 13)}..`;
+        }
+        else if(len > 7) {
+            if(width > 930 && width <= 1000) {
+                username = `${username.slice(0, 16)}..`;
+            }
+            else if(width > 875 && width <= 930) {
+                username = `${username.slice(0, 10)}..`;
+            }
+            else if(width > 805 && width <= 875) {
+                username = `${username.slice(0, 6)}..`;
+            } 
+        }
+        return username
+    }
+
+    // * * * * * * * * * * * * * * * * * * * *
     // returns current page pathname
     // * * * * * * * * * * * * * * * * * * * *
     getCurrentPage() {
@@ -137,9 +197,6 @@ export class TopNavLinks extends React.Component {
                         <li className="links-li one">
                             <Link to={'/'} onClick={e => this.hideMenu()}>Home</Link>
                         </li>
-                        {/* <li className="links-li two">
-                            <Link to={'/'} onClick={e => this.hideMenu()}>Dashboard</Link>
-                        </li> */}
                         <li className="links-li two">
                             <Link to={'/chat'} onClick={e => this.hideMenu()}>LiveChat</Link>
                         </li>
@@ -166,7 +223,8 @@ const mapStateToProps = state => {
         open: state.display.open,
         openLinks: state.display.openLinks,
         currentPath: state.display.currentPath,
-        avatar: state.protectedData.avatar
+        avatar: state.protectedData.avatar,
+        width: state.display.width
     };
 };
 

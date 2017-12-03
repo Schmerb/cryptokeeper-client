@@ -21,6 +21,7 @@ html {
 }
 
 body {
+    font-weight: lighter;
     position: relative;
     background-color: $third;
     margin: 0; 
@@ -28,7 +29,9 @@ body {
     min-width: 320px;
     padding-bottom: 150px;
     overflow-x: hidden;
-    // overflow-y: hidden;
+    &.landing {
+        padding: 0;
+    }
 }
 
 

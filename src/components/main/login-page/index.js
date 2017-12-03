@@ -47,6 +47,10 @@ export class LoginPage extends React.Component {
             return  (
                 <div className="login">
                     <h3>Login</h3>
+                    <ul>
+                        <li>username: <b>demo</b></li>
+                        <li>password: <b>demopassword</b></li>
+                    </ul>
                     <LoginForm />
                 </div>
             );

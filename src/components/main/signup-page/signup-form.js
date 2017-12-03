@@ -6,7 +6,6 @@ import { login }        from 'actions/auth';
 import { flashMessage, confirmRedirect } from 'actions/display';
 import Input from '../input';
 import { required, nonEmpty, matches, length, isTrimmed, email } from 'utils/validators';
-// import { getUserNumber } from 'services/user';
 
 
 export class SignupForm extends React.Component {
