@@ -17,7 +17,7 @@ Project Must:
 
 ## Screenshots
 
-Create Events Page
+My Events Page
 
 ![Events Page](./working-screenshots/desktop-events-compressor.png?raw=true "Events Page")
 
@@ -29,12 +29,12 @@ My Currencies
 
 ![My Currencies Page](./working-screenshots/desktop-currencies-compressor.png?raw=true "My Currencies Page")
 
-CryptoCurrency Page
+Cryptocurrency Page
 
 ![Bitcoin Page](./working-screenshots/desktop-currency-page-compressor.png?raw=true "Bitcoin Page")
 
 Mobile Views
-![Mobile Views](./working-screenshots/mobile-views-compressor.png.png?raw=true "Mobile Views")
+![Mobile Views](./working-screenshots/mobile-views-compressor.png?raw=true "Mobile Views")
 
 ## Live [DEMO](https://www.cryptokeeper.co/)
 * username: demo
