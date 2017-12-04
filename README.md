@@ -50,7 +50,7 @@ Responsive Mobile Views
 * password: demopassword
 
 ## Description
-CryptoKeeper is a cryptocurrency tracking application using real-time market data via Socket.IO. The current cryptocurrencies tend be quite volatile compared to more traditional currencies and stocks with prices sometimes dropping or increasing drastically in a matter of hours. By registering for an account, users can overcome the uncertaintity of keeping up with the market by creating custom events to monitor a given currency for a specific condition.
+CryptoKeeper is a cryptocurrency tracking application using real-time market data via [Socket.IO](https://socket.io/) and [Cryptocompare](https://www.cryptocompare.com/). The current cryptocurrencies tend be quite volatile compared to more traditional currencies and stocks with prices sometimes dropping or increasing drastically in a matter of hours. By registering for an account, users can overcome the uncertaintity of keeping up with the market by creating custom events to monitor a given currency for a specific condition.
 
  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
  (e.g. Bitcoin just reached $12k, Ethereum dropped 5%) 
