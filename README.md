@@ -33,7 +33,7 @@ Account Settings
 
 ![Account Settings Page](./working-screenshots/desktop-account-compressor.png?raw=true "Account Settings Page")
 
-Cryptocurrency Page(s)
+Currency Stats/Forum Page(s)
 
 ![Bitcoin Page](./working-screenshots/desktop-currency-page-compressor.png?raw=true "Bitcoin Page")
 
@@ -41,7 +41,8 @@ Socket.IO Chat Room
 
 ![Chat Room Page](./working-screenshots/desktop-chat-compressor.png?raw=true "Chat Room Page")
 
-Mobile Views
+Responsive Mobile Views
+
 ![Mobile Views](./working-screenshots/mobile-views-compressor.png?raw=true "Mobile Views")
 
 ## Live [DEMO](https://www.cryptokeeper.co/)
