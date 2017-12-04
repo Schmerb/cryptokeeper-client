@@ -17,6 +17,10 @@ Project Must:
 
 ## Screenshots
 
+My Currencies 
+
+![My Currencies Page](./working-screenshots/desktop-currencies-compressor.png?raw=true "My Currencies Page")
+
 My Events Page
 
 ![Events Page](./working-screenshots/desktop-events-compressor.png?raw=true "Events Page")
@@ -25,9 +29,6 @@ Add Event Form
 
 ![Event Form](./working-screenshots/desktop-event-form-full-compressor.png?raw=true "Event Form")
 
-My Currencies 
-
-![My Currencies Page](./working-screenshots/desktop-currencies-compressor.png?raw=true "My Currencies Page")
 
 Account Settings 
 
