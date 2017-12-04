@@ -33,7 +33,7 @@ Account Settings
 
 ![Account Settings Page](./working-screenshots/desktop-account-compressor.png?raw=true "Account Settings Page")
 
-Currency Stats/Forum Page(s)
+Currency Stats/Forum Page
 
 ![Bitcoin Page](./working-screenshots/desktop-currency-page-compressor.png?raw=true "Bitcoin Page")
 
