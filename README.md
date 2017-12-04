@@ -46,8 +46,12 @@ CryptoKeeper is a cryptocurrency tracking application using real-time market dat
   * React.js
   * Redux
   * Socket.IO
-  * React Slick
+  * React Slick 
   * React Google Charts
 
 
 ## Notes
+* Responsive, mobile first design strategy 
+* All tests handled by Jest / Enzyme testing libraries
+* APIs
+  * Market data are powered by the Cryptocompare API and websocket

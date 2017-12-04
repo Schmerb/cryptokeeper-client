@@ -4,6 +4,7 @@ import store from 'store';
 
 import { BaseCurrencyBox } from 'components/main/dashboard/portfolio/base-currency-box';
 
+
 const mockSetBaseCurrency = {
     type: 'SET_BASE_CURRENCY'
 };

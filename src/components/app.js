@@ -24,7 +24,6 @@ import Header from './header/';
 import Main   from './main/';
 import Footer from './footer/';
 
-
 // window.onload = () => {
 //     // console.log('has loaded!');
 // }
@@ -44,7 +43,7 @@ export class App extends Component {
             // console.log('hasAuthToken: ', this.props.hasAuthToken);
             this.props.dispatch(refreshAuthToken());
         }
-        // this.redirectToPreviousURL();
+        this.redirectToPreviousURL();
         this.checkForTouch();
         this.listenForHistoryChange();
     };
