@@ -29,9 +29,17 @@ My Currencies
 
 ![My Currencies Page](./working-screenshots/desktop-currencies-compressor.png?raw=true "My Currencies Page")
 
+Account Settings 
+
+![Account Settings Page](./working-screenshots/desktop-account-compressor.png?raw=true "Account Settings Page")
+
 Cryptocurrency Page
 
 ![Bitcoin Page](./working-screenshots/desktop-currency-page-compressor.png?raw=true "Bitcoin Page")
+
+Chat Room
+
+![Chat Room Page](./working-screenshots/desktop-chat-compressor.png?raw=true "Chat Room Page")
 
 Mobile Views
 ![Mobile Views](./working-screenshots/mobile-views-compressor.png?raw=true "Mobile Views")
