@@ -51,9 +51,9 @@ export class Settings extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Updates input vlaues as user types
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    handleChange(e, input) {
+    handleChange = e => {
         this.setState({
-            [input]: {
+            [e.target.type]: {
                 value: e.target.value
             }
         });
@@ -125,7 +125,7 @@ export class Settings extends React.Component {
                             <label htmlFor="">
                                 <span>My Phone Number: </span>
                                 <input type="tel" ref="tel" value={this.state.tel.value} disabled={this.state.tel.disabled}
-                                        onChange={e => this.handleChange(e, 'tel')} required/>
+                                        onChange={this.handleChange} required/>
                                 <button type="button" className="edit-btn" onClick={e => this.handleClick(e, 'tel')}>
                                     <EditIcon /> 
                                 </button>
@@ -136,7 +136,7 @@ export class Settings extends React.Component {
                             <label htmlFor="">
                                 <span>Email: </span>
                                 <input type="email" ref="email" value={this.state.email.value} disabled={this.state.email.disabled}
-                                        onChange={e => this.handleChange(e, 'email')} required/>
+                                        onChange={this.handleChange} required/>
                                 <button type="button" className="edit-btn" onClick={e => this.handleClick(e, 'email')}>
                                     <EditIcon /> 
                                 </button>

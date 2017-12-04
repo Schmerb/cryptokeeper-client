@@ -75,7 +75,7 @@ export class TopNavLinks extends React.Component {
     // * * * * * * * * * * * * * * * * * * * *
     // logs user out by removing jwt token
     // * * * * * * * * * * * * * * * * * * * *
-    logOut() {
+    logOut = () => {
         logUserOut();
         this.hideMenu();
     }
@@ -83,7 +83,7 @@ export class TopNavLinks extends React.Component {
     // * * * * * * * * * * * * * * * * * * * *
     // hides menu if it is currently open
     // * * * * * * * * * * * * * * * * * * * *
-    hideMenu() {
+    hideMenu = () => {
         if(this.props.open) {
             this.props.dispatch(toggleMenu());
         }
@@ -104,7 +104,7 @@ export class TopNavLinks extends React.Component {
         if(this.props.loggedIn) {
             return (<ul>
                         <li className="gear-item">
-                            <Link to={'/dashboard/settings'} onClick={e => this.hideMenu()}>
+                            <Link to={'/dashboard/settings'} onClick={this.hideMenu}>
                                 <GearWheel />
                             </Link>
                         </li>
@@ -115,7 +115,7 @@ export class TopNavLinks extends React.Component {
                             </Link>
                             <ul className={`sub-menu ${this.props.open ? 'hidden' : ''}`}>
                                 <li>
-                                    <button className="logout-btn" onClick={() => this.logOut()}>
+                                    <button className="logout-btn" onClick={this.logOut}>
                                         Logout
                                         <LogoutIcon />
                                     </button>
@@ -123,12 +123,12 @@ export class TopNavLinks extends React.Component {
                             </ul>
                         </li>
                         <li>
-                            <Link className="avatar-link" to="/dashboard/portfolio" onClick={e => this.hideMenu()}>
+                            <Link className="avatar-link" to="/dashboard/portfolio" onClick={this.hideMenu}>
                                 {avatarImg}
                             </Link>
                         </li>
                         <li className={`links-li ${!this.props.open ? 'hidden' : ''}`}>
-                            <button className="logout-btn" onClick={() => this.logOut()}>
+                            <button className="logout-btn" onClick={this.logOut}>
                                 Logout
                                 <LogoutIcon />
                             </button>
@@ -137,10 +137,10 @@ export class TopNavLinks extends React.Component {
         }
         return  (<ul>
                     <li className="links-li">
-                        <Link to={'/login'} onClick={e => this.hideMenu()}>LOGIN</Link>
+                        <Link to={'/login'} onClick={this.hideMenu}>LOGIN</Link>
                     </li>
                     <li className="links-li">
-                        <Link to={'/signup'} onClick={e => this.hideMenu()}>SIGNUP</Link>
+                        <Link to={'/signup'} onClick={this.hideMenu}>SIGNUP</Link>
                     </li>
                 </ul>);
     }
