@@ -80,6 +80,6 @@ CryptoKeeper is a cryptocurrency tracking application using real-time market dat
 * Hosted on [Netlify](https://netlify.com/)'s Cloud Application Platform 
     * (PaaS) platform as a service
 * Responsive, mobile first design strategy 
-* All tests handled by Jest / Enzyme testing libraries
+* All tests handled by [Jest](https://facebook.github.io/jest/) / [Enzyme](https://github.com/airbnb/enzyme) testing libraries
 * APIs
   * Market data are powered by the [Cryptocompare](https://www.cryptocompare.com/) API and websocket
