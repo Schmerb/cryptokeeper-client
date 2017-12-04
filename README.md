@@ -27,6 +27,8 @@ Homepage
 
 
 ## Live [DEMO](https://www.cryptokeeper.co/)
+* username: demo
+* password: demopassword
 
 ## Description
 CryptoKeeper is a cryptocurrency tracking application using real-time market data via Socket.IO. The current cryptocurrencies tend be quite volatile compared to more traditional currencies and stocks with prices sometimes dropping or increasing drastically in a matter of hours. By registering for an account, users can overcome the uncertaintity of keeping up with the market by creating custom events to monitor a given currency for a specific condition. (e.g. Bitcoin just reached $12k, Ethereum dropped 5%) If and when a condition is eventually met, a notification will be sent to the user by text message and/or email indicating the current price. User's have control over each event condition as well as the method of deilvery and custom message that will be displayed with the notification.
