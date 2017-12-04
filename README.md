@@ -17,7 +17,7 @@ Project Must:
 
 ## Screenshots
 
-My Currencies 
+Dashboard Home
 
 ![My Currencies Page](./working-screenshots/desktop-currencies-compressor.png?raw=true "My Currencies Page")
 
