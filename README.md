@@ -82,4 +82,4 @@ CryptoKeeper is a cryptocurrency tracking application using real-time market dat
 * Responsive, mobile first design strategy 
 * All tests handled by [Jest](https://facebook.github.io/jest/) / [Enzyme](https://github.com/airbnb/enzyme) testing libraries
 * APIs
-  * Market data are powered by the [Cryptocompare](https://www.cryptocompare.com/) API and websocket
+  * Market data is powered by the [Cryptocompare](https://www.cryptocompare.com/) API and websocket
