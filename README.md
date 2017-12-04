@@ -33,11 +33,11 @@ Account Settings
 
 ![Account Settings Page](./working-screenshots/desktop-account-compressor.png?raw=true "Account Settings Page")
 
-Cryptocurrency Page
+Cryptocurrency Page(s)
 
 ![Bitcoin Page](./working-screenshots/desktop-currency-page-compressor.png?raw=true "Bitcoin Page")
 
-Chat Room
+Socket.IO Chat Room
 
 ![Chat Room Page](./working-screenshots/desktop-chat-compressor.png?raw=true "Chat Room Page")
 
