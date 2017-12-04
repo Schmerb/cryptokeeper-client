@@ -7,7 +7,6 @@ import { confirmClass, confirmRedirect } from 'actions/display';
 export class ConfirmRedirect extends React.Component {
     
     componentDidMount() {
-        // console.log('componentDidMount');
         const $this = this;
         setTimeout(function() {
             $this.props.dispatch(confirmClass('fadeIn'));
@@ -17,14 +16,14 @@ export class ConfirmRedirect extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Cancels logout, returns to dashboard
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    handleWindowClick(e) {
+    handleWindowClick = e => {
         const $this = this;
         if(e.target.id === 'confirm-window') {
             $this.cancel();
         }
     }
 
-    cancel() {
+    cancel = () => {
         let $this = this;
         this.props.dispatch(confirmClass(''));
         setTimeout(function() {
@@ -32,7 +31,7 @@ export class ConfirmRedirect extends React.Component {
         }, 300);
     }
     
-    confirm() {
+    confirm = () => {
         let $this = this;
         this.props.dispatch(confirmClass(''));
         setTimeout(function() {
@@ -44,14 +43,13 @@ export class ConfirmRedirect extends React.Component {
     }
     
     render() {
-        // console.log(this.props);
         return(
-            <div id="confirm-window" className={`confirmation ${this.props.confirmClass}`} onClick={e => this.handleWindowClick(e)}>
+            <div id="confirm-window" className={`confirmation ${this.props.confirmClass}`} onClick={this.handleWindowClick}>
                 <div className="confirmation-modal redirect-modal">
                     <h2>{this.props.confirmPathMsg}</h2>
                     <div className="btn-group">
-                        <button type="button" onClick={() => this.confirm()}>{this.props.confirmActionMsg}</button>
-                        <button type="button" onClick={() => this.cancel()}>I'll do it later</button>
+                        <button type="button" onClick={this.confirm}>{this.props.confirmActionMsg}</button>
+                        <button type="button" onClick={this.cancel}>I'll do it later</button>
                     </div>
                 </div>
             </div>

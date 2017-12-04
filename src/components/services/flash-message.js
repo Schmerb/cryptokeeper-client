@@ -7,7 +7,6 @@ export class FlashMessage extends React.Component {
 
     componentDidMount() {
         let delay = this.props.delay || 200;
-        // console.log('componentDidMount');
         const $this = this;
         setTimeout(function() {
             $this.props.dispatch(flashMsgClass('fadeIn'));

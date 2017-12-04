@@ -28,7 +28,6 @@ export default class MarketStats extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        // console.log(this.props.pathname, nextProps.pathname);
         if(this.props.pathname !== nextProps.pathname) {
             this.setState({
                 VOL24TO: 'N/A',
@@ -66,7 +65,6 @@ export default class MarketStats extends Component {
     }
 
     render() {
-        // console.log(this.props.data);
         return(
             <div className="market-stats">
                 <ul>

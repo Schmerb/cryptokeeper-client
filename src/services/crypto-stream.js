@@ -22,8 +22,6 @@ let currency = 'USD';
 function handleChange() {
     const state = store.getState();
     const newCurrency = state.currency.currency;
-    // console.log('currency: ', currency);
-    // console.log('newCurrency: ', newCurrency);
     if(newCurrency !== currency) {
         emitSubscription('SubAdd', newCurrency);
         emitSubscription('SubRemove', currency);

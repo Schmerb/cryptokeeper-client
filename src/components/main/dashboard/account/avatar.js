@@ -18,17 +18,10 @@ export class Avatar extends React.Component {
         };
     }
 
-    componentDidMount() {
-    }
-
-    componentWillReceiveProps(nextProps) {
-    }
-
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    // 
+    // updates state with new file meta data
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    handleChange = (e) => {
-        // console.log(e.target.files);
+    handleChange = e => {
         if(e.target.files.length > 0) {
             let fileName = e.target.files[0].name;
             let file = e.target.files[0];
@@ -44,7 +37,7 @@ export class Avatar extends React.Component {
     // Handles submit and dispatches action to upload file
     // to server
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    handleSubmit = (e) => {
+    handleSubmit = e => {
         e.preventDefault();
         if(this.state.fileName === null) {
             this.setState({
@@ -60,10 +53,10 @@ export class Avatar extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Handles removal of profile image
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    handleDeleteClick = (e, avatarId) => {
+    handleDeleteClick = e => {
         e.preventDefault();
+        const { avatarId } = this.props.avatar;
         this.props.removeUserAvatar(avatarId);
-        // this.props.confirmDelete('Are you sure you want to remove your avatar image?', removeUserAvatar(avatarId), 'Yes, remove it');
     }
 
     render() {
@@ -75,7 +68,7 @@ export class Avatar extends React.Component {
         let avatarImg = null;
         if(this.props.avatar) {
             avatarImg = <img className="user-avatar-img" src={this.props.avatar.url} alt="User avatar profile"/>;
-            deleteBtn = <button type="button" onClick={e => this.handleDeleteClick(e, this.props.avatar.avatarId)} className="remove-avatar-btn">Remove</button>
+            deleteBtn = <button type="button" onClick={this.handleDeleteClick} className="remove-avatar-btn">Remove</button>
         }
         return(
             <div className="avatar">

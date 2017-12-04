@@ -7,7 +7,6 @@ import { confirmMessage, confirmClass } from 'actions/display';
 export class ConfirmMessage extends React.Component {
 
     componentDidMount() {
-        // console.log('componentDidMount');
         const $this = this;
         setTimeout(function() {
             $this.props.dispatch(confirmClass('fadeIn'));
@@ -17,7 +16,7 @@ export class ConfirmMessage extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Cancels logout, returns to dashboard
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    handleWindowClick(e) {
+    handleWindowClick = e => {
         const $this = this;
         if(e.target.id === 'confirm-window') {
             $this.cancel();
@@ -27,7 +26,7 @@ export class ConfirmMessage extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Cancels logout, returns to dashboard
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    cancel() {
+    cancel = () => {
         let $this = this;
         this.props.dispatch(confirmClass(''));
         setTimeout(function() {
@@ -38,7 +37,7 @@ export class ConfirmMessage extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // dispatches action to close modal and log user out
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    confirm() {
+    confirm = () => {
         let $this = this;
         this.props.dispatch(confirmClass(''));
         setTimeout(function() {
@@ -48,14 +47,13 @@ export class ConfirmMessage extends React.Component {
     }
 
     render() {
-        // console.log(this.props);
         return(
-            <div id="confirm-window" className={`confirmation ${this.props.confirmClass}`} onClick={e => this.handleWindowClick(e)}>
+            <div id="confirm-window" className={`confirmation ${this.props.confirmClass}`} onClick={this.handleWindowClick}>
                 <div className="confirmation-modal">
                     <h2>{this.props.confirmMsg}</h2>
                     <div className="btn-group">
-                        <button type="button" onClick={() => this.confirm()}>{this.props.confirmActionMsg}</button>
-                        <button type="button" onClick={() => this.cancel()}>Nevermind</button>
+                        <button type="button" onClick={this.confirm}>{this.props.confirmActionMsg}</button>
+                        <button type="button" onClick={this.cancel}>Nevermind</button>
                     </div>
                 </div>
             </div>

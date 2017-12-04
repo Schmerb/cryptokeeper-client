@@ -65,7 +65,6 @@ export class Comment extends Component {
     //
     // // // // // // // // // // //
     render() {
-        // console.log('\n\n\ncomment data:', this.props.data);
         const { author, content, createdAt, id, 
                 replyComments, usersLiked, usersDisliked, avatarUrl} = this.props.data;
 

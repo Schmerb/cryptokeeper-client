@@ -17,7 +17,6 @@ export class CommentForm extends Component {
 
         let coin = [];
         for(let i=pathname.length - 1; i > 0; i--) {
-            // console.log(pathname[i]);
             if(pathname[i] !== '/') {
                 coin.push(pathname[i]);
             } else {
@@ -25,7 +24,6 @@ export class CommentForm extends Component {
             }
         }
         let currency = coin.reverse().join('');
-        console.log('Currency: ', currency);
         if(this.props.reply) {
             this.props.addReplyComment(value, this.props.reply, currency);
         } else {

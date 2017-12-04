@@ -17,7 +17,6 @@ export class SideNav extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     hover(target) {
         // update the class on dash-vr
-        // console.log('target: ', target);
         this.props.dispatch(dashHoverVr(target));
     }
 

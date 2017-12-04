@@ -39,11 +39,6 @@ export class ChatMessages extends React.Component {
     handleScroll = (e) => {
         let el = e.target;
         let distFromBottom = el.scrollHeight - el.scrollTop - el.offsetHeight;
-        // console.log('SCROLL!');
-        // console.log('scrollTop', el.scrollTop);
-        // console.log('scrollHeight', el.scrollHeight);
-        // console.log('offsetHeight', el.offsetHeight);
-        // console.log('distFromBottom', distFromBottom);
         if(distFromBottom < 0) {
             this.setState({
                 lockScreen: true
@@ -62,10 +57,6 @@ export class ChatMessages extends React.Component {
         let element = document.getElementById("messages");
         const { scrollHeight } = element;
         const { name, msgs } = this.props;
-        // const { scrollTop, scrollHeight, offsetHeight } = element;
-        // console.log('scrollTop: ', scrollTop);
-        // console.log('scrollHeight: ', scrollHeight);
-        // console.log('offsetHeight: ', offsetHeight);
         if(this.state.lockScreen || name === msgs[msgs.length - 1].user) {
             element.scrollTop = scrollHeight;
         }

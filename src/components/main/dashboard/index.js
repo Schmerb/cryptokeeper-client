@@ -13,10 +13,6 @@ import VerifyCode      from './account/verify-code';
 
 export class Dashboard extends React.Component {
 
-    componentDidUpdate() {
-        // console.log('\n\nLUPdated!!!', this.props);
-    }
-
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Checks path and returns appropriate components or null
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

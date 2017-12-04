@@ -19,12 +19,7 @@ export class TopNavLinks extends React.Component {
         };
     }
 
-    componentDidMount() {
-        // console.log('just mounted, props:', this.props);
-    }
-
     componentWillReceiveProps(nextProps) {
-        // console.log('componentWillReceiveProps, nextProps:', nextProps);
         let $this = this;
         let delay = nextProps.open ? 0: 400;
         setTimeout(() => {
@@ -49,13 +44,6 @@ export class TopNavLinks extends React.Component {
             });
         }
     }
-
-    componentWillUpdate(nextProps, nextState) {
-        // console.log('componentWillUpdate');
-        // console.log('\tnextProps', nextProps);
-        // console.log('\tnextState', nextState);
-    }
-
 
     shouldComponentUpdate(nextProps) {
         if(this.props.loggedIn === nextProps.loggedIn

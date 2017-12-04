@@ -24,13 +24,6 @@ import Header from './header/';
 import Main   from './main/';
 import Footer from './footer/';
 
-// window.onload = () => {
-//     // console.log('has loaded!');
-// }
-// document.onload = () => {
-//     console.log('DOCUMENT has loaded!');
-// }
-
 export class App extends Component {
     
     // * * * * * * * * * * * * * * * * * * * *
@@ -40,10 +33,9 @@ export class App extends Component {
         if(this.props.hasAuthToken) {
             // Try to get a fresh auth token if we had an existing one in
             // localStorage
-            // console.log('hasAuthToken: ', this.props.hasAuthToken);
             this.props.dispatch(refreshAuthToken());
         }
-        this.redirectToPreviousURL();
+        // this.redirectToPreviousURL();
         this.checkForTouch();
         this.listenForHistoryChange();
     };

@@ -30,7 +30,6 @@ export class Footer extends Component {
 
     getScrollPosition = () => {
         const distFromBottom = document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
-        // console.log("distFromBottom: ", distFromBottom);
         if(distFromBottom <= 230) {
             this.setState({
                 fix: true

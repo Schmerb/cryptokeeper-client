@@ -136,9 +136,7 @@ export const uploadImage = (image) => (dispatch, getState) => {
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
         .then((data) => {
-            // console.log('IMAGE RES: ', data);
             dispatch(getUserAvatar());
-            // dispatch(updateImageSuccess(data));
         })
         .catch(err => {
             console.log(err);
@@ -169,7 +167,6 @@ export const getUserAvatar = () => (dispatch, getState) => {
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then((data) => {
-        // console.log('SUCCESS: ', data);
         dispatch(getUserAvatarSuccess(data));
     })
     .catch(err => {

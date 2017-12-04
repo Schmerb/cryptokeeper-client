@@ -19,9 +19,7 @@ export default class Input extends React.Component {
                 <div className="form-warning">{this.props.meta.warning}</div>
             );
         }
-        // console.log(this.props);
         const {input, meta, ...custom} = this.props;
-        // console.log('custom:', custom);
         return (
             <div className="form-input">
                 <label htmlFor={this.props.input.name}>

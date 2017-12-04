@@ -39,7 +39,6 @@ export class ReplyComment extends Component {
     //
     // // // // // //
     render() {
-        // console.log('\n\n\n\nREPLY COMMENTS, ', this.props.replyComment);
         const { author, content, createdAt, usersLiked, usersDisliked,
             id: replyCommentID, parentComment: commentID } = this.props.replyComment;
 
@@ -64,7 +63,6 @@ export class ReplyComment extends Component {
             }
         }
         const timeElapsed = getTimeElapsed(new Date(createdAt));
-        // console.log('THIS USER LIKED', thisUserLiked);
         return(
             <div className="comment reply">
 
