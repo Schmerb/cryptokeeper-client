@@ -6,7 +6,8 @@ Fullstack (React) Capstone Project from [Thinkful's](https://www.thinkful.com/) 
 Project Must:
 
 * Do something interesting or useful.
-* Be a fullstack app using HTML, CSS, React, Node, Express, and Mongoose.* The client and API should be deployed separately and stored in separate GitHub repos.
+* Be a fullstack app using HTML, CSS, React, Node, Express, and Mongoose.
+* The client and API should be deployed separately and stored in separate GitHub repos.
 * Both client- and server-side code should be tested, and you should use TravisCI for continuous integration and deployment.
 * Your app should be responsive, and should work just as well on mobile devices as it does on desktop devices.
 * All code should be high quality, error free, commented as necessary, and clean.
