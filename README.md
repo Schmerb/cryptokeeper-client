@@ -1,4 +1,4 @@
-# CryptoKeeper
+# CryptoKeeper (Client)
 Fullstack (React) Capstone Project from [Thinkful's](https://www.thinkful.com/) Fullstack Web Development program. 
 
 ## Project Requirements
@@ -17,14 +17,24 @@ Project Must:
 
 ## Screenshots
 
-Project Landing Page
+Create Events Page
 
-![Landing Page](./working-screenshots/.png?raw=true "Landing Page")
+![Events Page](./working-screenshots/desktop-events-compressor.png?raw=true "Events Page")
 
-Homepage
+Add Event Form
 
-![Home Page](./working-screenshots/.png?raw=true "Home Page")
+![Event Form](./working-screenshots/desktop-event-form-full-compressor.png?raw=true "Event Form")
 
+My Currencies 
+
+![My Currencies Page](./working-screenshots/desktop-currencies-compressor.png?raw=true "My Currencies Page")
+
+CryptoCurrency Page
+
+![Bitcoin Page](./working-screenshots/desktop-currency-page-compressor.png?raw=true "Bitcoin Page")
+
+Mobile Views
+![Mobile Views](./working-screenshots/mobile-views-compressor.png.png?raw=true "Mobile Views")
 
 ## Live [DEMO](https://www.cryptokeeper.co/)
 * username: demo
@@ -39,15 +49,22 @@ CryptoKeeper is a cryptocurrency tracking application using real-time market dat
  If and when a condition is eventually met, a notification will be sent to the user via text message and/or email indicating the current price. User's have control over each event condition as well as the method of deilvery and custom message that will be displayed with the notification.
 
 ## Technology
-* Frontend
+* Production (Frontend / Client)
   * HTML5
   * SCSS
   * JavaScript
-  * React.js
-  * Redux
-  * Socket.IO
-  * React Slick 
-  * React Google Charts
+  * [React.js](https://reactjs.org/redux)
+  * [Redux](https://redux.js.org/)
+  * [Socket.IO](https://socket.io/)
+  * [React Slick](https://github.com/akiran/react-slick)
+  * [React Google Charts](https://www.npmjs.com/package/react-google-charts)
+* Development
+  * [Jest](https://facebook.github.io/jest/) / [Enzyme](https://github.com/airbnb/enzyme)
+      * testing librariesenzyme
+  * [TravisCI](https://travis-ci.org/)
+      * Continuous Integration testing that tests latest build before deploying to production environment
+  * [Gulp](https://gulpjs.com/) 
+      * task manager that compiles my scss to css and minifies the resulting file
 
 
 ## Notes
@@ -56,4 +73,4 @@ CryptoKeeper is a cryptocurrency tracking application using real-time market dat
 * Responsive, mobile first design strategy 
 * All tests handled by Jest / Enzyme testing libraries
 * APIs
-  * Market data are powered by the Cryptocompare API and websocket
+  * Market data are powered by the [Cryptocompare](https://www.cryptocompare.com/) API and websocket
