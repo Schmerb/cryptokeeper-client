@@ -27,8 +27,7 @@ My Events Page
 
 Add Event Form
 
-![Event Form](./working-screenshots/desktop-event-form-compressor.png?raw=true "Event Form")
-
+![Event Form](./working-screenshots/desktop-event-form-full-compressor.png?raw=true "Event Form")
 
 Account Settings 
 
