@@ -7,7 +7,7 @@ export default class AddEventBox extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Brings user to add event form
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    addEvent(e) {
+    addEvent = e => {
         e.preventDefault();
         this.props.history.push({
             pathname: '/dashboard/events/add-event'
@@ -17,7 +17,7 @@ export default class AddEventBox extends React.Component {
     render() {
         
         return(
-            <div className={`event-box edit ${this.props.className}`} onClick={e => this.addEvent(e)}>
+            <div className={`event-box edit ${this.props.className}`} onClick={this.addEvent}>
                 <button type="button" className="circle-plus-btn">
                     <CirclePlus />
                 </button>

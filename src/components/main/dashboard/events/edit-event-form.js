@@ -42,7 +42,7 @@ export class EditEventForm extends React.Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Handles form submit
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    handleSubmit(e) {
+    handleSubmit = e => {
         e.preventDefault();
         let name      = this.refs.name.value,
             currency  = this.refs.currency.value,
@@ -75,7 +75,7 @@ export class EditEventForm extends React.Component {
                 <Link to={"/dashboard/events"}>
                     <BackBtn />
                 </Link>
-                <form action="#!" onSubmit={e => this.handleSubmit(e)}>
+                <form action="#!" onSubmit={this.handleSubmit}>
                 <h2>Edit Event</h2>
                 
                     <label htmlFor="event-name">

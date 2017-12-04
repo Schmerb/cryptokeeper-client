@@ -7,15 +7,12 @@ import CurrencyBox from './currency-box';
 import CirclePlus from 'icons/circle-plus';
 
 
-
-
-
 export class MyCurrencies extends React.Component {
   
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Display add currency form
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-    openForm(e) {
+    openForm = () => {
         this.props.history.push({
             pathname: '/dashboard/portfolio/currency-form'
         });
@@ -39,7 +36,7 @@ export class MyCurrencies extends React.Component {
             <section className={`my-currencies ${center}`}>
                 <h2>My Currencies</h2>
                 {boxes}
-                <button className="add-currency-btn" onClick={e => this.openForm()}>
+                <button className="add-currency-btn" onClick={this.openForm}>
                     <CirclePlus />
                 </button>
             </section>

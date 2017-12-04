@@ -11,7 +11,7 @@ export class CurrencyForm extends React.Component {
     // Handles form submit and adds 
     // card with input data
     // * * * * * * * * * * * * * * * 
-    handleSubmit(e) {
+    handleSubmit = e => {
         e.preventDefault();
         let currency = e.target.selectCurrency.value,
             buyPrice = parseFloat(e.target.buyPrice.value),
@@ -34,7 +34,7 @@ export class CurrencyForm extends React.Component {
                     <BackBtn />
                 </Link>
                 <form action="#!" className="add-currency-form" 
-                      onSubmit={e => this.handleSubmit(e)}>
+                      onSubmit={this.handleSubmit}>
                     <h2>Add Your Currency</h2>
                     <select name="selectCurrency">
                         <option value="BTC">Bitcoin (BTC)</option>

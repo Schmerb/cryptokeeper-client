@@ -15,7 +15,6 @@ export default function MobileNav(props){
                     <Link to={'/dashboard/portfolio'}>
                         <div>
                             <PortfolioBag />
-                            {/* <span>My Portfolio</span>  */}
                         </div> 
                     </Link>
                 </li>
@@ -23,7 +22,6 @@ export default function MobileNav(props){
                     <Link to={'/dashboard/events'}>
                         <div>
                             <Events />
-                            {/* <span>Events</span> */}
                         </div>
                     </Link>
                 </li>
@@ -31,7 +29,6 @@ export default function MobileNav(props){
                     <Link to={'/dashboard/avatar'}>
                         <div>
                             <TieAvatar />
-                            {/* <span>Avatar</span> */}
                         </div>
                     </Link>
                 </li>
@@ -39,7 +36,6 @@ export default function MobileNav(props){
                     <Link to={'/dashboard/settings'}>
                         <div>
                             <GearWheel />
-                            {/* <span>Settings</span> */}
                         </div>
                     </Link>
                 </li>

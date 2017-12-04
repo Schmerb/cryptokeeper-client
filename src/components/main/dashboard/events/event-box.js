@@ -10,8 +10,9 @@ export class EventBox extends React.Component {
     // * * * * * * * * * * * * * * * 
     // Opens up edit form
     // * * * * * * * * * * * * * * * 
-    editEvent = (e, data) => {
+    editEvent = e => {
         e.preventDefault();
+        const { data } = this.props;
         this.props.history.push({
             pathname: '/dashboard/events/edit-event',
             data: data
@@ -21,7 +22,8 @@ export class EventBox extends React.Component {
     // * * * * * * * * * * * * * * * 
     // Removes event from db
     // * * * * * * * * * * * * * * * 
-    removeEvent = (e, id) => {
+    removeEvent = e => {
+        const { _id: id } = this.props.data;
         this.props.deleteEvent(id);
     }
 
@@ -72,10 +74,10 @@ export class EventBox extends React.Component {
                     </li>
                 </ul>
                 {success}    
-                <button className="edit-btn" type="button" onClick={e => this.editEvent(e, data)}>
+                <button className="edit-btn" type="button" onClick={this.editEvent}>
                     <EditIcon />
                 </button>
-                <button className="delete-btn" type="button" onClick={e => this.removeEvent(e, data._id)}>DELETE</button>
+                <button className="delete-btn" type="button" onClick={this.removeEvent}>DELETE</button>
             </div>
         );
     }

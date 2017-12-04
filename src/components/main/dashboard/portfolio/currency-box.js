@@ -4,8 +4,13 @@ import EditIcon from 'icons/edit-icon';
 
 export default class CurrencyBox extends React.Component {
     
-    editForm(e, data) {
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    // Opens currency edit form passing in the current field
+    // values to fill in
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    editForm = e => {
         e.preventDefault();
+        const { data } = this.props;
         this.props.history.push({
             pathname: "/dashboard/portfolio/edit-currency-form",
             state: {
@@ -19,7 +24,6 @@ export default class CurrencyBox extends React.Component {
     
     render() {
         const { data } = this.props;
-        // console.log(data);
         const valued = (data.price * data.amount).toFixed(2);
         const profit = (valued - data.buyPrice * data.amount).toFixed(2);
         return(
@@ -47,7 +51,7 @@ export default class CurrencyBox extends React.Component {
                         <span className="value">{this.props.currencySym}{profit}</span>
                     </li>
                 </ul>
-                <button className="edit-btn" onClick={e => this.editForm(e, data)}>
+                <button className="edit-btn" onClick={this.editForm}>
                     <EditIcon />
                 </button>
             </div>

@@ -42,7 +42,7 @@ export class BaseCurrencyBox extends React.Component {
 
     render() {
         const { conversionSym, currencySym } = this.getCurrencySyms();
-
+        
         return(
             <div className="base-currency-box">
                 <h2>Base Currency</h2>
@@ -56,7 +56,6 @@ export class BaseCurrencyBox extends React.Component {
                         <option value="EUR">Euro</option>
                         <option value="GBP">Pound</option>
                         <option value="AUD">Australian</option>
-                        {/* <option value="canadian">Canadian</option> */}
                     </select>
                     <ArrowDown />
                 </form>

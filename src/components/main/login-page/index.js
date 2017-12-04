@@ -32,14 +32,11 @@ export class LoginPage extends React.Component {
         }
     }
 
-    imgLoad(e) {
-        // console.log('image has loaded!!!!');
-        const $this = this;
-        setTimeout(function() {
-            $this.setState({
-                loaded: true
-            });
-        }, 100);
+    imgLoad = e => {
+        console.log('image has loaded!!!!');
+        this.setState({
+            loaded: true
+        });
     }
 
     render() {
@@ -57,7 +54,7 @@ export class LoginPage extends React.Component {
         }
         return(
             <div>
-                <img src="/assets/images/binary-script-compressor.jpg" alt="" onLoad={e => this.imgLoad(e)}/>
+                <img src="/assets/images/binary-script-compressor.jpg" alt="" onLoad={this.imgLoad}/>
                 <Spinner name="circle" fadeIn="none" />
             </div>
         );
