@@ -1,13 +1,13 @@
-import React          from 'react';
+import React, { Component } from 'react';
 import { connect }    from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import Spinner from 'react-spinkit';
 
 import LoginForm from './login-form';
 
-import Spinner from 'react-spinkit';
 
 
-export class LoginPage extends React.Component {
+export class LoginPage extends Component {
     constructor(props) {
         super(props);
         this.state = {

@@ -1,4 +1,4 @@
-import React          from 'react';
+import React, { Component} from 'react';
 import { connect }    from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Spinner        from 'react-spinkit';
@@ -7,7 +7,7 @@ import SignupForm from './signup-form';
 
 import SignupUserIcon from 'icons/signup-user-icon';
 
-export class SignupPage extends React.Component{
+export class SignupPage extends Component{
     constructor(props) {
         super(props);
         this.state = {
