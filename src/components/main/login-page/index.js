@@ -52,9 +52,9 @@ export class LoginPage extends React.Component {
             );
         }
         return(
-            <div>
-                <img src="/assets/images/binary-script-compressor.jpg" alt="" onLoad={this.imgLoad}/>
-                <Spinner name="circle" fadeIn="none" />
+            <div className="loading-container">
+                <img src="/assets/images/binary-script-kraken.jpg" alt="" onLoad={this.imgLoad}/>
+                <Spinner className="spinner" name="circle" fadeIn="none" color="coral" />
             </div>
         );
     }
