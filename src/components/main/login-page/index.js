@@ -32,6 +32,10 @@ export class LoginPage extends React.Component {
         }
     }
 
+    // * * * * * * * * * * * * * * * * * 
+    // Lets state know when background 
+    // image is loaded
+    // * * * * * * * * * * * * * * * * *
     imgLoad = e => {
         this.setState({
             loaded: true

@@ -1,12 +1,19 @@
-import React        from 'react';
-import { connect }  from 'react-redux';
+import React          from 'react';
+import { connect }    from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import Spinner        from 'react-spinkit';
 
 import SignupForm from './signup-form';
 
 import SignupUserIcon from 'icons/signup-user-icon';
 
 export class SignupPage extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+            loaded: false
+        };
+    }
 
     // * * * * * * * * * * * * * * * * * 
     // Fires when state variable in 
@@ -24,13 +31,31 @@ export class SignupPage extends React.Component{
             });
         }
     }
+    
+    // * * * * * * * * * * * * * * * * * 
+    // Lets state know when background 
+    // image is loaded
+    // * * * * * * * * * * * * * * * * *
+    imgLoad = e => {
+        this.setState({
+            loaded: true
+        });
+    }
 
     render() {
+        if(this.state.loaded) {
+            return(
+                <div className="signup">
+                    <SignupUserIcon className="signup-user-icon"/>
+                    <h3>Signup</h3>
+                    <SignupForm />
+                </div>
+            );
+        }
         return(
-            <div className="signup">
-                <SignupUserIcon className="signup-user-icon"/>
-                <h3>Signup</h3>
-                <SignupForm />
+            <div className="loading-container">
+                <img src="/assets/images/binary-script-kraken.jpg" alt="" onLoad={this.imgLoad}/>
+                <Spinner className="spinner" name="circle" fadeIn="none" color="coral" />
             </div>
         );
     }
