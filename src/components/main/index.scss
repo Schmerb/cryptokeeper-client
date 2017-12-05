@@ -45,21 +45,21 @@ main {
 	}
 }
 .live-chat-back {
-	// background-image: url('/assets/images/times-square-compressor.jpg');
-	background-image: url($timesSquare);
+	background-image: url('/assets/images/times-square-prog-kraken.jpg');
+	// background-image: url($timesSquare);
 	-webkit-filter: none;
 	filter: none;
 }
 .login-signup-back {
 	@include transform(scale(1));
-	// background-image: url('/assets/images/binary-script-compressor.jpg');
-	background-image: url($binaryScript);
+	background-image: url('/assets/images/binary-script-kraken.jpg');
+	// background-image: url($binaryScript);
 	-webkit-filter: none;
 	filter: none;
 }
 .dashboard-back {
-	// background-image: url('/assets/images/city-night-cafe-compressor.jpg');
-	background-image: url($cityNightCafe);
+	background-image: url('/assets/images/city-night-cafe-kraken.jpg');
+	// background-image: url($cityNightCafe);
 	background-position: left top;
 }
 .landing-back {
@@ -71,8 +71,8 @@ main {
 	background-color: #70A3CC;
 }
 .settings-back {
-	// background-image: url('/assets/images/blake-connally-373084-compressor.jpg');
-	background-image: url($blakeConnally);
+	background-image: url('/assets/images/blake-connally-373084-kraken.jpg');
+	// background-image: url($blakeConnally);
 	-webkit-filter: blur(2px);
 	filter: blur(2px);
 	@include mediaMin($collapse) {
@@ -83,8 +83,8 @@ main {
 	}
 }
 .currency-page-back {
-	// background-image: url('/assets/images/william-bout-264826-compressor.jpg');
-	background-image: url($williamBout);
+	background-image: url('/assets/images/william-bout-264826-kraken.jpg');
+	// background-image: url($williamBout);
 	-webkit-filter: blur(0);
 	filter: blur(0);
 }
