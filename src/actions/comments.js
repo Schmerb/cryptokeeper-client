@@ -28,10 +28,7 @@ export const getComments = (currency) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(res => {
-            console.log('GET COMMENTS RES: ', res);
-            dispatch(getCommentsSuccess(res.comments));
-        })
+        .then(res => dispatch(getCommentsSuccess(res.comments)))
         .catch(err => console.log({message: 'Internal server error', err}));
 };
 
