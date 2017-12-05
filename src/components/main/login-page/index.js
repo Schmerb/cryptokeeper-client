@@ -33,7 +33,6 @@ export class LoginPage extends React.Component {
     }
 
     imgLoad = e => {
-        console.log('\n\n\nimage LOADED\n\n\n');
         this.setState({
             loaded: true
         });
