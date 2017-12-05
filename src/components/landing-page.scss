@@ -13,8 +13,8 @@
     &::before {
         @extend %cover;
         content: '';
-        // background-image: url('/assets/images/crypto-mobile-compressor.jpg');
-        background-image: url($cryptoMobile);
+        background-image: url('/assets/images/crypto-mobile-kraken.jpg');
+        // background-image: url($cryptoMobile);
         background-size: cover;
         background-repeat: no-repeat;
         background-position-x: 50%;
