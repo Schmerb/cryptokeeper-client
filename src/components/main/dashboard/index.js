@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Component }  from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
+import Spinner from 'react-spinkit';
 
 import MobileDashboard from './mobile-dashboard/';
 import MobileNav       from './mobile-dashboard/mobile-nav';
@@ -11,7 +12,13 @@ import Avatar          from './account/avatar';
 import Settings        from './account/settings';
 import VerifyCode      from './account/verify-code';
 
-export class Dashboard extends React.Component {
+export class Dashboard extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            loaded: false
+        };
+    }
 
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     // Checks path and returns appropriate components or null
@@ -33,6 +40,16 @@ export class Dashboard extends React.Component {
         return { nav, mobileDash };
     }
 
+    // * * * * * * * * * * * * * * * * * 
+    // Lets state know when background 
+    // image is loaded
+    // * * * * * * * * * * * * * * * * *
+    imgLoad = e => {
+        this.setState({
+            loaded: true
+        });
+    }
+
     render() {
         const { pathname } = this.props.location;
         // Only visible to logged in users
@@ -43,15 +60,23 @@ export class Dashboard extends React.Component {
             return <Redirect to="/dashboard/portfolio"/>
         }
         const { nav, mobileDash } = this.checkPath();
-        return (
-            <div className="dashboard">
-                {nav}
-                {mobileDash}
-                <Route path="/dashboard/portfolio" component={Portfolio} />
-                <Route path="/dashboard/events" component={EventsPage} />
-                <Route exact path="/dashboard/avatar" component={Avatar}/>
-                <Route exact path="/dashboard/settings" component={Settings}/>
-                <Route exact path="/dashboard/settings/verify-code" component={VerifyCode}/>
+        if(this.state.loaded) {
+            return (
+                <div className="dashboard">
+                    {nav}
+                    {mobileDash}
+                    <Route path="/dashboard/portfolio" component={Portfolio} />
+                    <Route path="/dashboard/events" component={EventsPage} />
+                    <Route exact path="/dashboard/avatar" component={Avatar}/>
+                    <Route exact path="/dashboard/settings" component={Settings}/>
+                    <Route exact path="/dashboard/settings/verify-code" component={VerifyCode}/>
+                </div>
+            );
+        }
+        return(
+            <div className="loading-container">
+                <img src="/assets/images/city-night-cafe-kraken.jpg" alt="" onLoad={this.imgLoad}/>
+                <Spinner className="spinner" name="circle" fadeIn="none" color="coral" />
             </div>
         );
     }
