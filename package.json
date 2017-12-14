@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "REACT_APP_API_BASE_URL='http://192.168.1.112:7000/api' react-scripts start",
-    "start-office": "REACT_APP_API_BASE_URL='http://192.168.5.38:7000/api' react-scripts start",
+    "start-office": "REACT_APP_API_BASE_URL='http://192.168.5.43:7000/api' react-scripts start",
     "build": "REACT_APP_API_BASE_URL='https://cryptocoinkeeper.herokuapp.com/api' react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "test-local": "REACT_APP_API_BASE_URL='http://192.168.1.112:7000/api' react-scripts test --env=jsdom",

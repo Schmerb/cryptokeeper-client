@@ -33,7 +33,7 @@ export class ChatNameBox extends Component {
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
     handleNameSubmit = (e) => {
         e.preventDefault();
-        const username = this.nInput.value;
+        const username = this.refs.input.value;
         this.props.dispatch(setUserName(username));
         this.props.history.push({
             pathname: '/chat/room'
