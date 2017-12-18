@@ -28,6 +28,11 @@ export class Footer extends Component {
         window.removeEventListener('scroll', this.getScrollPosition);
     }
 
+    // * * * * * * * * * * * * * * * * * * * *
+    // Checks user scroll position from the 
+    // bottom to determine if up arrow should
+    // be set to fixed position
+    // * * * * * * * * * * * * * * * * * * * *
     getScrollPosition = () => {
         const distFromBottom = document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
         if(distFromBottom <= 230) {
@@ -110,7 +115,7 @@ export class Footer extends Component {
                             </Link>
                         </li>
                         <li>
-                             <Link to={"https://www.linkedin.com/in/michael-schmerbeck-20a8a7126/"} target="__blank">
+                             <Link to={"https://www.linkedin.com/in/michael-schmerbeck/"} target="__blank">
                                 <LinkedInIcon className="linkedIn-icon" />
                             </Link> 
                         </li>
@@ -124,7 +129,6 @@ export class Footer extends Component {
     }
 }
 
-// 1) 
 
 const mapStateToPRops = state => ({
     loggedIn: state.auth.currentUser !== null,
