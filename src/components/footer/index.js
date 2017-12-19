@@ -122,7 +122,7 @@ export class Footer extends Component {
                     </ul>
                 </nav>
                 <div className="copy">
-                    <span>copyright &copy; 2017 Mike Schmerbeck</span>
+                    <span>copyright &copy; 2017 <a href="https://www.mikeschmerbeck.com" target="__blank">Mike Schmerbeck</a></span>
                 </div>
             </footer>
         );
