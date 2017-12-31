@@ -65,12 +65,12 @@ export function getIcon(abbrv) {
 export function getCurrencies() {
     return [
         "BTC",
+        "XRP",
         "ETH",
         "LTC",
         "XMR",
         "DASH",
-        "DOGE",
-        "XRP"
+        "DOGE"
     ];
 }
 

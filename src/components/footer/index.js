@@ -7,7 +7,7 @@ import { logUserOut } from 'services/user';
 import { scrollIt }   from 'utils/scroll';
 
 import UpArrowCircle from 'icons/up-arrow-circle';
-import FacebookIcon  from 'icons/social/facebook-icon';
+import PortfolioIcon from 'icons/portfolio';
 import GithubIcon    from 'icons/social/github-icon';
 import LinkedInIcon  from 'icons/social/linkedin-icon';
 
@@ -109,9 +109,14 @@ export class Footer extends Component {
                                 <GithubIcon className="github-icon" />
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link to={"https://www.facebook.com/mike.schmerbeck"} target="__blank">
                                 <FacebookIcon className="facebook-icon" />
+                            </Link>
+                        </li> */}
+                        <li>
+                            <Link to={"https://www.mikeschmerbeck.com"} target="__blank">
+                                <PortfolioIcon />
                             </Link>
                         </li>
                         <li>
@@ -122,7 +127,10 @@ export class Footer extends Component {
                     </ul>
                 </nav>
                 <div className="copy">
-                    <span>copyright &copy; 2017 <a href="https://www.mikeschmerbeck.com" target="__blank">Mike Schmerbeck</a></span>
+                    <span>
+                        copyright &copy; 2017 
+                        <Link to={"https://www.mikeschmerbeck.com"} target="__blank"> Mike Schmerbeck</Link>
+                    </span>
                 </div>
             </footer>
         );
